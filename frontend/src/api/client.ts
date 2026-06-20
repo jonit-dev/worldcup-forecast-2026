@@ -1,4 +1,4 @@
-import type { MatchForecast, ModelDiagnostics, Simulation, Standing, Summary, Team } from './types';
+import type { MatchForecast, ModelDiagnostics, ModelEvaluation, Simulation, Standing, Summary, Team } from './types';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000';
 
@@ -35,6 +35,10 @@ export async function getSimulation(): Promise<Simulation> {
 
 export async function getModelDiagnostics(): Promise<ModelDiagnostics> {
   return getJson<ModelDiagnostics>('/api/model/diagnostics');
+}
+
+export async function getModelEvaluation(): Promise<ModelEvaluation> {
+  return getJson<ModelEvaluation>('/api/model/evaluation');
 }
 
 async function getJson<T>(path: string): Promise<T> {

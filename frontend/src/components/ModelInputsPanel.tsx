@@ -1,12 +1,14 @@
-import type { MatchForecast, ModelDiagnostics } from '../api/types';
+import type { MatchForecast, ModelDiagnostics, ModelEvaluation } from '../api/types';
+import { formatPercent } from '../utils/format';
 import { teamLabel } from '../utils/flags';
 
 type ModelInputsPanelProps = {
   forecast?: MatchForecast;
   diagnostics?: ModelDiagnostics;
+  evaluation?: ModelEvaluation;
 };
 
-export function ModelInputsPanel({ forecast, diagnostics }: ModelInputsPanelProps) {
+export function ModelInputsPanel({ forecast, diagnostics, evaluation }: ModelInputsPanelProps) {
   if (!forecast) {
     return <p className="muted">Select a match to inspect model inputs.</p>;
   }
@@ -49,6 +51,33 @@ export function ModelInputsPanel({ forecast, diagnostics }: ModelInputsPanelProp
           {diagnostics.team_coverage.median_matches}, maximum{' '}
           {diagnostics.team_coverage.max_matches}.
         </p>
+      ) : null}
+      {evaluation ? (
+        <div className="backtest-note">
+          <strong>Pre-tournament backtest</strong>
+          <span>
+            Trained through {evaluation.training_cutoff}, then compared with actual World Cup
+            results: {evaluation.correct_outcomes}/{evaluation.holdout_match_count} outcomes
+            correct
+            {evaluation.outcome_accuracy === null
+              ? ''
+              : ` (${formatPercent(evaluation.outcome_accuracy)})`}
+            .
+          </span>
+          {evaluation.statistical_relevance.accuracy_confidence_interval_95 ? (
+            <span>
+              95% confidence range:{' '}
+              {formatPercent(evaluation.statistical_relevance.accuracy_confidence_interval_95.low)}-
+              {formatPercent(evaluation.statistical_relevance.accuracy_confidence_interval_95.high)}
+              . This is a small holdout, so it checks leakage and direction, not final proof.
+            </span>
+          ) : null}
+          <span>
+            Quality gate: {evaluation.quality_gate.clears_gate ? 'decent' : 'needs iteration'}.
+            Completed World Cup matches used for training:{' '}
+            {evaluation.completed_current_matches_used_for_training}.
+          </span>
+        </div>
       ) : null}
     </div>
   );

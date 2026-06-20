@@ -1,6 +1,7 @@
 import type { MatchForecast } from '../api/types';
 import { formatPercent } from '../utils/format';
 import { teamLabel } from '../utils/flags';
+import { Target } from 'lucide-react';
 
 type ForecastTableProps = {
   forecasts: MatchForecast[];
@@ -19,7 +20,12 @@ export function ForecastTable({ forecasts, selectedMatchId, onSelectMatch }: For
             <th>Home</th>
             <th>Draw</th>
             <th>Away</th>
-            <th>xG</th>
+            <th>
+              <span className="icon-label">
+                <Target size={14} aria-hidden="true" />
+                Expected goals
+              </span>
+            </th>
           </tr>
         </thead>
         <tbody>

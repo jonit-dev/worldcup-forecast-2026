@@ -13,6 +13,8 @@ class TeamRating:
     attack: float
     defense: float
     matches_used: int
+    recent_goal_difference: float = 0.0
+    form_adjustment: float = 0.0
 
 
 def expected_result(rating_a: float, rating_b: float) -> float:
@@ -61,8 +63,9 @@ def calculate_ratings(
         and row["match_date"] <= as_of_date
     ]
     all_results = list(historical_results) + completed_current
+    sorted_results = sorted(all_results, key=lambda item: item["match_date"])
 
-    for row in sorted(all_results, key=lambda item: item["match_date"]):
+    for row in sorted_results:
         home = row["home_team_id"]
         away = row["away_team_id"]
         home_score = int(row["home_score"])
@@ -89,12 +92,31 @@ def calculate_ratings(
         played = max(matches_used.get(team_id, 0), 1)
         attack = (goals_for.get(team_id, 1.2) / played) / 1.35
         defense = (goals_against.get(team_id, 1.2) / played) / 1.35
+        recent_goal_difference = calculate_recent_goal_difference(sorted_results, team_id, as_of_date)
+        form_adjustment = 35.0 * recent_goal_difference
         output[team_id] = TeamRating(
             team_id=team_id,
-            rating=round(rating, 6),
+            rating=round(rating + form_adjustment, 6),
             attack=max(0.35, min(2.75, attack)),
             defense=max(0.35, min(2.75, defense)),
             matches_used=matches_used.get(team_id, 0),
+            recent_goal_difference=round(recent_goal_difference, 6),
+            form_adjustment=round(form_adjustment, 6),
         )
     return output
 
+
+def calculate_recent_goal_difference(results: list[dict], team_id: str, as_of_date: date) -> float:
+    recent: list[int] = []
+    for row in reversed(results):
+        if row["match_date"] > as_of_date:
+            continue
+        if row["home_team_id"] == team_id:
+            recent.append(int(row["home_score"]) - int(row["away_score"]))
+        elif row["away_team_id"] == team_id:
+            recent.append(int(row["away_score"]) - int(row["home_score"]))
+        if len(recent) == 12:
+            break
+    if not recent:
+        return 0.0
+    return sum(recent) / len(recent)

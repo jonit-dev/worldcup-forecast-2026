@@ -127,6 +127,39 @@ test.beforeEach(async ({ page }) => {
       },
     });
   });
+  await page.route('**/api/model/evaluation', async (route) => {
+    await route.fulfill({
+      json: {
+        model_version: 'elo-poisson-baseline-2026-06-20',
+        config_hash: 'abc123',
+        as_of_date: '2026-06-20',
+        tournament_start_date: '2026-06-11',
+        training_cutoff: '2026-06-10',
+        completed_current_matches_used_for_training: 0,
+        historical_result_rows_used_for_training: 12000,
+        holdout_match_count: 28,
+        correct_outcomes: 20,
+        outcome_accuracy: 0.714285714,
+        log_loss: 0.77,
+        brier_score: 0.43,
+        exact_top_scoreline_accuracy: 0.107,
+        average_actual_outcome_probability: 0.51,
+        quality_gate: {
+          label: 'decent_holdout_check',
+          accuracy_threshold: 0.55,
+          log_loss_threshold: 1.05,
+          clears_gate: true,
+        },
+        statistical_relevance: {
+          accuracy_confidence_interval_95: { low: 0.5285, high: 0.856 },
+          chance_baseline_accuracy: 0.333333333,
+          chance_baseline_p_value: 0.00005,
+          warning: 'sample',
+        },
+        note: 'sample',
+      },
+    });
+  });
 });
 
 test('should load dashboard and select a match forecast', async ({ page }) => {
@@ -134,7 +167,9 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
 
   await expect(page.getByText('Forecast data loaded')).toBeVisible();
   await expect(page.getByLabel('Team')).toHaveValue('usa');
-  await expect(page.getByText(/Expected goals means average goals/)).toBeVisible();
+  await expect(page.getByText(/Expected goals means the average goals/)).toBeVisible();
+  await expect(page.getByText(/20\/28 outcomes/)).toBeVisible();
+  await expect(page.getByText(/95% confidence range/)).toBeVisible();
   await expect(page.getByText(/Broad sample/)).toBeVisible();
   await page.getByRole('button', { name: /United States.*Australia/ }).click();
   await expect(page.getByText('United States rating')).toBeVisible();

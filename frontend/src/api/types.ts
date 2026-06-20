@@ -92,3 +92,33 @@ export type ModelDiagnostics = {
   };
   limitations: string[];
 };
+
+export type ModelEvaluation = {
+  model_version: string;
+  config_hash: string;
+  as_of_date: string;
+  tournament_start_date: string;
+  training_cutoff: string;
+  completed_current_matches_used_for_training: number;
+  historical_result_rows_used_for_training: number;
+  holdout_match_count: number;
+  correct_outcomes: number;
+  outcome_accuracy: number | null;
+  log_loss: number | null;
+  brier_score: number | null;
+  exact_top_scoreline_accuracy: number | null;
+  average_actual_outcome_probability: number | null;
+  quality_gate: {
+    label: string;
+    accuracy_threshold: number;
+    log_loss_threshold: number;
+    clears_gate: boolean;
+  };
+  statistical_relevance: {
+    accuracy_confidence_interval_95: { low: number; high: number } | null;
+    chance_baseline_accuracy: number;
+    chance_baseline_p_value: number | null;
+    warning: string;
+  };
+  note: string;
+};

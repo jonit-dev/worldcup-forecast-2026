@@ -6,7 +6,7 @@ from typing import Any
 
 import duckdb
 
-from wc_forecast.data.schema import connect, initialize_schema
+from wc_forecast.data.schema import connect
 
 
 def table_exists(connection: duckdb.DuckDBPyConnection, table_name: str) -> bool:

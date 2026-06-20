@@ -9,7 +9,10 @@ from wc_forecast.models.poisson import outcome_probabilities, score_matrix, top_
 from wc_forecast.models.ratings import TeamRating, calculate_ratings
 
 
-MODEL_VERSION = "elo-poisson-baseline-2026-06-20"
+MODEL_VERSION = "elo-form-calibrated-2026-06-20"
+PROBABILITY_TEMPERATURE = 1.3
+UNIFORM_SHRINKAGE = 0.25
+MAX_PUBLIC_PROBABILITY = 0.65
 
 
 @dataclass(frozen=True)
@@ -19,7 +22,12 @@ class ForecastInputs:
 
 
 def config_hash(as_of_date: date) -> str:
-    payload = f"{MODEL_VERSION}:{as_of_date.isoformat()}:max_goals=8:base_xg=1.35"
+    payload = (
+        f"{MODEL_VERSION}:{as_of_date.isoformat()}:max_goals=8:base_xg=1.35:"
+        "recent_goal_difference_matches=12:recent_goal_difference_elo=35:"
+        f"temperature={PROBABILITY_TEMPERATURE}:shrink={UNIFORM_SHRINKAGE}:"
+        f"max_public_probability={MAX_PUBLIC_PROBABILITY}"
+    )
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
 
 
@@ -44,12 +52,36 @@ def build_inputs(
     )
 
 
+def calibrate_probabilities(probabilities: dict[str, float]) -> dict[str, float]:
+    tempered = {
+        outcome: probability ** (1.0 / PROBABILITY_TEMPERATURE)
+        for outcome, probability in probabilities.items()
+    }
+    tempered_total = sum(tempered.values())
+    shrunk = {
+        outcome: (1.0 - UNIFORM_SHRINKAGE) * (probability / tempered_total)
+        + UNIFORM_SHRINKAGE / len(tempered)
+        for outcome, probability in tempered.items()
+    }
+    top_outcome = max(shrunk, key=shrunk.get)
+    if shrunk[top_outcome] <= MAX_PUBLIC_PROBABILITY:
+        return shrunk
+
+    remaining_outcomes = [outcome for outcome in shrunk if outcome != top_outcome]
+    remaining_total = sum(shrunk[outcome] for outcome in remaining_outcomes)
+    capped = {top_outcome: MAX_PUBLIC_PROBABILITY}
+    for outcome in remaining_outcomes:
+        capped[outcome] = (1.0 - MAX_PUBLIC_PROBABILITY) * shrunk[outcome] / remaining_total
+    return capped
+
+
 def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
     home_rating = inputs.ratings.get(match["home_team_id"], TeamRating(match["home_team_id"], 1500, 1, 1, 0))
     away_rating = inputs.ratings.get(match["away_team_id"], TeamRating(match["away_team_id"], 1500, 1, 1, 0))
     home_xg, away_xg = expected_goals(home_rating, away_rating, bool(match["neutral_site"]))
     scorelines = score_matrix(home_xg, away_xg)
-    probabilities = outcome_probabilities(scorelines)
+    raw_probabilities = outcome_probabilities(scorelines)
+    probabilities = calibrate_probabilities(raw_probabilities)
     rounded_home = round(probabilities["home_win"], 6)
     rounded_draw = round(probabilities["draw"], 6)
     rounded_away = round(1.0 - rounded_home - rounded_draw, 6)
@@ -71,12 +103,20 @@ def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
             "draw": rounded_draw,
             "away_win": rounded_away,
         },
+        "raw_probabilities": {
+            "home_win": round(raw_probabilities["home_win"], 6),
+            "draw": round(raw_probabilities["draw"], 6),
+            "away_win": round(raw_probabilities["away_win"], 6),
+        },
         "top_scorelines": top_scorelines(scorelines),
         "model": {
             "version": MODEL_VERSION,
             "config_hash": config_hash(inputs.as_of_date),
             "as_of_date": inputs.as_of_date,
-            "note": "Baseline estimate; do not interpret as a statistically significant claim.",
+            "note": (
+                "Calibrated estimate from historical validation; football outcomes remain noisy "
+                "and should not be treated as certain."
+            ),
         },
         "model_inputs": {
             "home_rating": home_rating.rating,
@@ -87,6 +127,10 @@ def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
             "away_defense": round(away_rating.defense, 6),
             "home_matches_used": home_rating.matches_used,
             "away_matches_used": away_rating.matches_used,
+            "home_recent_goal_difference": round(home_rating.recent_goal_difference, 6),
+            "away_recent_goal_difference": round(away_rating.recent_goal_difference, 6),
+            "home_form_adjustment": round(home_rating.form_adjustment, 6),
+            "away_form_adjustment": round(away_rating.form_adjustment, 6),
         },
     }
 

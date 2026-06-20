@@ -10,6 +10,7 @@ from flask_cors import CORS
 from wc_forecast import __version__
 from wc_forecast.config.settings import load_settings
 from wc_forecast.data.repository import list_matches, list_standings, list_team_history, list_teams, load_summary
+from wc_forecast.services.evaluation_service import evaluate_pre_tournament_model
 from wc_forecast.services.forecast_service import (
     load_forecasts,
     load_next_team_forecasts,
@@ -145,6 +146,13 @@ def create_app() -> Flask:
     def diagnostics():
         settings = load_settings()
         return jsonify(json_ready(model_diagnostics(settings.database_path, settings.as_of_date)))
+
+    @app.get("/api/model/evaluation")
+    def evaluation():
+        settings = load_settings()
+        return jsonify(
+            json_ready(evaluate_pre_tournament_model(settings.database_path, settings.as_of_date))
+        )
 
     return app
 

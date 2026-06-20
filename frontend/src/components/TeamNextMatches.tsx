@@ -41,7 +41,7 @@ export function TeamNextMatches({
         </div>
         <p className="interpretation-note">
           Read each card left to right: chance to win, chance to draw, chance to lose, likely score,
-          then expected goals. These are model estimates, not certainties.
+          then expected goals. “Expected goals” is the model’s average goal estimate for the match.
         </p>
       </div>
 
@@ -139,8 +139,9 @@ export function TeamNextMatches({
                 <strong>{formatPercent(teamWinProbability)}</strong>
               </div>
               <p className="plain-explainer">
-                Expected goals means average goals if this match were replayed many times. Here:
-                {` ${selectedTeamName} ${selectedExpectedGoals.toFixed(2)} xG, ${opponentName} ${opponentExpectedGoals.toFixed(2)} xG.`}
+                Expected goals means the average goals the model would expect if this match were
+                replayed many times. Here: {selectedTeamName} {selectedExpectedGoals.toFixed(2)}{' '}
+                expected goals, {opponentName} {opponentExpectedGoals.toFixed(2)} expected goals.
               </p>
               <p className="sample-note">
                 {coverageLabel}: {selectedTeamName} has {selectedSample} prior/current matches in

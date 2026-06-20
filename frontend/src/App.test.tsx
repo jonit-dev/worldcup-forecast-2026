@@ -118,6 +118,37 @@ describe('App', () => {
             ],
           });
         }
+        if (url.endsWith('/api/model/evaluation')) {
+          return Response.json({
+            model_version: 'elo-poisson-baseline-2026-06-20',
+            config_hash: 'abc123',
+            as_of_date: '2026-06-20',
+            tournament_start_date: '2026-06-11',
+            training_cutoff: '2026-06-10',
+            completed_current_matches_used_for_training: 0,
+            historical_result_rows_used_for_training: 12000,
+            holdout_match_count: 28,
+            correct_outcomes: 20,
+            outcome_accuracy: 0.714285714,
+            log_loss: 0.77,
+            brier_score: 0.43,
+            exact_top_scoreline_accuracy: 0.107,
+            average_actual_outcome_probability: 0.51,
+            quality_gate: {
+              label: 'decent_holdout_check',
+              accuracy_threshold: 0.55,
+              log_loss_threshold: 1.05,
+              clears_gate: true,
+            },
+            statistical_relevance: {
+              accuracy_confidence_interval_95: { low: 0.5285, high: 0.856 },
+              chance_baseline_accuracy: 0.333333333,
+              chance_baseline_p_value: 0.00005,
+              warning: 'sample',
+            },
+            note: 'sample',
+          });
+        }
         return Response.json({
           model_version: 'elo-poisson-baseline-2026-06-20',
           config_hash: 'abc123',
@@ -142,7 +173,9 @@ describe('App', () => {
 
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
     expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
-    expect(await screen.findByText(/Expected goals means average goals/)).toBeInTheDocument();
+    expect(await screen.findByText(/Expected goals means the average goals/)).toBeInTheDocument();
+    expect(await screen.findByText(/20\/28 outcomes/)).toBeInTheDocument();
+    expect(screen.getByText(/95% confidence range/)).toBeInTheDocument();
     expect(screen.getByText(/Broad sample/)).toBeInTheDocument();
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);

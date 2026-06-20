@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getForecasts,
   getModelDiagnostics,
+  getModelEvaluation,
   getNextForecasts,
   getSimulation,
   getStandings,
@@ -26,6 +27,11 @@ export function App() {
   const diagnosticsQuery = useQuery({
     queryKey: ['model-diagnostics'],
     queryFn: getModelDiagnostics,
+    retry: false,
+  });
+  const evaluationQuery = useQuery({
+    queryKey: ['model-evaluation'],
+    queryFn: getModelEvaluation,
     retry: false,
   });
   const [selectedTeamId, setSelectedTeamId] = useState('');
@@ -136,7 +142,11 @@ export function App() {
 
         <article className="panel">
           <h2>Model Inputs</h2>
-          <ModelInputsPanel forecast={selectedMatch} diagnostics={diagnosticsQuery.data} />
+          <ModelInputsPanel
+            forecast={selectedMatch}
+            diagnostics={diagnosticsQuery.data}
+            evaluation={evaluationQuery.data}
+          />
         </article>
 
         <article className="panel">

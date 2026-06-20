@@ -32,8 +32,9 @@ def test_should_return_forecasts_from_generated_artifacts(monkeypatch, tmp_path)
 
     assert response.status_code == 200
     assert forecasts
-    assert forecasts[0]["model"]["version"].startswith("elo-poisson")
+    assert forecasts[0]["model"]["version"].startswith("elo-form-calibrated")
     assert sum(forecasts[0]["probabilities"].values()) == 1.0
+    assert "home_form_adjustment" in forecasts[0]["model_inputs"]
 
 
 def test_should_return_next_match_predictions_for_selected_team(monkeypatch, tmp_path):
@@ -96,3 +97,22 @@ def test_should_report_broad_historical_coverage(monkeypatch, tmp_path):
     assert body["team_coverage"]["team_count"] == 48
     assert body["team_coverage"]["min_matches"] >= body["coverage_threshold"]
     assert body["team_coverage"]["teams_below_threshold"] == []
+
+
+def test_should_backtest_as_if_tournament_had_not_started(monkeypatch, tmp_path):
+    database_path = ingest_test_database(tmp_path)
+    monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))
+    monkeypatch.setenv("WC_FORECAST_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-20")
+
+    response = create_app().test_client().get("/api/model/evaluation")
+    body = response.get_json()
+
+    assert response.status_code == 200
+    assert body["training_cutoff"] == "2026-06-10"
+    assert body["completed_current_matches_used_for_training"] == 0
+    assert body["holdout_match_count"] == 28
+    assert body["correct_outcomes"] >= 15
+    assert body["outcome_accuracy"] >= body["quality_gate"]["accuracy_threshold"]
+    assert body["quality_gate"]["clears_gate"] is True
+    assert body["statistical_relevance"]["accuracy_confidence_interval_95"]["low"] < body["outcome_accuracy"]

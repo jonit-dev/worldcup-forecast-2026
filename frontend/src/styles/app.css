@@ -107,10 +107,15 @@ h3 {
 }
 
 .panel-heading,
-.match-card-title {
+.match-card-title,
+.icon-label {
   align-items: center;
   display: flex;
   gap: 10px;
+}
+
+.icon-label {
+  gap: 6px;
 }
 
 .panel-heading h2,
@@ -176,6 +181,20 @@ select {
   border: 1px solid #d6dfda;
   border-radius: 8px;
   padding: 10px;
+}
+
+.backtest-note {
+  border-left: 3px solid #1f6d36;
+  color: #172026;
+  display: grid;
+  font-size: 0.87rem;
+  gap: 0.35rem;
+  line-height: 1.45;
+  padding-left: 0.8rem;
+}
+
+.backtest-note span {
+  color: #52615a;
 }
 
 .selected-team-summary {

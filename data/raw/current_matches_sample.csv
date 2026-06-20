@@ -11,12 +11,12 @@ match_id,match_date,stage,group_name,home_team_id,home_team,away_team_id,away_te
 2026-GB-004,2026-06-24,group,B,bosnia-herzegovina,Bosnia and Herzegovina,qatar,Qatar,,,scheduled,true
 2026-GB-005,2026-06-28,group,B,canada,Canada,bosnia-herzegovina,Bosnia and Herzegovina,,,scheduled,true
 2026-GB-006,2026-06-28,group,B,qatar,Qatar,switzerland,Switzerland,,,scheduled,true
-2026-GC-001,2026-06-13,group,C,brazil,Brazil,haiti,Haiti,3,0,complete,true
-2026-GC-002,2026-06-19,group,C,scotland,Scotland,morocco,Morocco,0,1,complete,true
-2026-GC-003,2026-06-24,group,C,scotland,Scotland,brazil,Brazil,,,scheduled,true
-2026-GC-004,2026-06-24,group,C,morocco,Morocco,haiti,Haiti,,,scheduled,true
-2026-GC-005,2026-06-28,group,C,brazil,Brazil,morocco,Morocco,,,scheduled,true
-2026-GC-006,2026-06-28,group,C,haiti,Haiti,scotland,Scotland,,,scheduled,true
+2026-GC-001,2026-06-13,group,C,brazil,Brazil,morocco,Morocco,1,1,complete,true
+2026-GC-002,2026-06-13,group,C,haiti,Haiti,scotland,Scotland,0,1,complete,true
+2026-GC-003,2026-06-19,group,C,brazil,Brazil,haiti,Haiti,3,0,complete,true
+2026-GC-004,2026-06-19,group,C,scotland,Scotland,morocco,Morocco,0,1,complete,true
+2026-GC-005,2026-06-24,group,C,scotland,Scotland,brazil,Brazil,,,scheduled,true
+2026-GC-006,2026-06-24,group,C,morocco,Morocco,haiti,Haiti,,,scheduled,true
 2026-GD-001,2026-06-12,group,D,usa,United States,paraguay,Paraguay,4,1,complete,true
 2026-GD-002,2026-06-16,group,D,australia,Australia,turkiye,Turkiye,2,0,complete,true
 2026-GD-003,2026-06-19,group,D,turkiye,Turkiye,paraguay,Paraguay,0,1,complete,true

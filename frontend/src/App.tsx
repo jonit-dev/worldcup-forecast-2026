@@ -1,4 +1,4 @@
-import { Activity, AlertTriangle, Database, LineChart } from 'lucide-react';
+import { Activity, AlertTriangle, BarChart3, Database, LineChart, Target } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -16,8 +16,10 @@ import { ActualResults } from './components/ActualResults';
 import { ForecastTable } from './components/ForecastTable';
 import { GroupStandings } from './components/GroupStandings';
 import { ModelInputsPanel } from './components/ModelInputsPanel';
+import { PastPredictions } from './components/PastPredictions';
 import { TeamNextMatches } from './components/TeamNextMatches';
 import { TournamentOdds } from './components/TournamentOdds';
+import { formatPercent } from './utils/format';
 
 export function App() {
   const summaryQuery = useQuery({ queryKey: ['summary'], queryFn: getSummary, retry: false });
@@ -102,7 +104,42 @@ export function App() {
       ) : null}
 
       <section className="dashboard-grid" aria-label="Forecast dashboard">
-        <article className="panel panel-wide team-panel">
+        <section className="panel panel-wide grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Model summary">
+          <div className="rounded-md border border-line bg-slate-50 p-3">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">Actual results</p>
+            <strong className="text-2xl font-black text-ink">{actualResults.length}</strong>
+            <p className="mb-0 text-xs text-slate-500">Completed matches in snapshot</p>
+          </div>
+          <div className="rounded-md border border-line bg-slate-50 p-3">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">Backtest hit rate</p>
+            <strong className="text-2xl font-black text-ink">
+              {evaluationQuery.data?.outcome_accuracy == null
+                ? 'pending'
+                : formatPercent(evaluationQuery.data.outcome_accuracy)}
+            </strong>
+            <p className="mb-0 text-xs text-slate-500">
+              {evaluationQuery.data
+                ? `${evaluationQuery.data.correct_outcomes}/${evaluationQuery.data.holdout_match_count} outcomes`
+                : 'Waiting for model evaluation'}
+            </p>
+          </div>
+          <div className="rounded-md border border-line bg-slate-50 p-3">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">Training cutoff</p>
+            <strong className="text-2xl font-black text-ink">
+              {evaluationQuery.data?.training_cutoff ?? 'pending'}
+            </strong>
+            <p className="mb-0 text-xs text-slate-500">No completed WC matches in training</p>
+          </div>
+          <div className="rounded-md border border-line bg-slate-50 p-3">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">Quality gate</p>
+            <strong className="text-2xl font-black text-ink">
+              {evaluationQuery.data?.quality_gate.clears_gate ? 'Pass' : 'Pending'}
+            </strong>
+            <p className="mb-0 text-xs text-slate-500">Accuracy and log-loss check</p>
+          </div>
+        </section>
+
+        <article className="panel team-panel xl:col-span-8">
           <div className="panel-heading">
             <LineChart size={20} aria-hidden="true" />
             <h2>Team Forecast Path</h2>
@@ -119,6 +156,18 @@ export function App() {
           />
         </article>
 
+        <article className="panel xl:col-span-4">
+          <div className="panel-heading">
+            <Target size={20} aria-hidden="true" />
+            <h2>Model Inputs</h2>
+          </div>
+          <ModelInputsPanel
+            forecast={selectedMatch}
+            diagnostics={diagnosticsQuery.data}
+            evaluation={evaluationQuery.data}
+          />
+        </article>
+
         <article className="panel panel-wide">
           <div className="panel-heading">
             <LineChart size={20} aria-hidden="true" />
@@ -131,7 +180,15 @@ export function App() {
           />
         </article>
 
-        <article className="panel">
+        <article className="panel panel-wide">
+          <div className="panel-heading">
+            <BarChart3 size={20} aria-hidden="true" />
+            <h2>Past Predictions vs Actual Results</h2>
+          </div>
+          <PastPredictions rows={evaluationQuery.data?.rows ?? []} />
+        </article>
+
+        <article className="panel xl:col-span-4">
           <div className="panel-heading">
             <Database size={20} aria-hidden="true" />
             <h2>Group Standings</h2>
@@ -142,7 +199,7 @@ export function App() {
           />
         </article>
 
-        <article className="panel">
+        <article className="panel xl:col-span-4">
           <div className="panel-heading">
             <Database size={20} aria-hidden="true" />
             <h2>Actual Results</h2>
@@ -150,7 +207,7 @@ export function App() {
           <ActualResults results={actualResults.slice(0, 12)} />
         </article>
 
-        <article className="panel">
+        <article className="panel xl:col-span-4">
           <div className="panel-heading">
             <LineChart size={20} aria-hidden="true" />
             <h2>Advance Odds</h2>
@@ -158,16 +215,7 @@ export function App() {
           <TournamentOdds teams={teamsQuery.data ?? []} odds={simulationQuery.data?.teams ?? []} />
         </article>
 
-        <article className="panel">
-          <h2>Model Inputs</h2>
-          <ModelInputsPanel
-            forecast={selectedMatch}
-            diagnostics={diagnosticsQuery.data}
-            evaluation={evaluationQuery.data}
-          />
-        </article>
-
-        <article className="panel">
+        <article className="panel xl:col-span-4">
           <h2>Data Freshness</h2>
           <dl className="metric-grid">
             <div>

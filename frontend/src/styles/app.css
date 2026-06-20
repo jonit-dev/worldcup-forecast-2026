@@ -1,416 +1,254 @@
-:root {
-  color: #172026;
-  background: #f4f7f5;
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  margin: 0;
-}
-
-button,
-select {
-  font: inherit;
-}
-
-.app-shell {
-  min-height: 100vh;
-  padding: 28px;
-}
-
-.topbar {
-  align-items: center;
-  display: flex;
-  gap: 24px;
-  justify-content: space-between;
-  margin: 0 auto 20px;
-  max-width: 1280px;
-}
-
-.eyebrow {
-  color: #52615a;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  margin: 0 0 8px;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1;
-  margin-bottom: 0;
-}
-
-h2 {
-  font-size: 1.05rem;
-  margin-bottom: 12px;
-}
-
-h3 {
-  font-size: 0.98rem;
-  margin-bottom: 6px;
-}
-
-.status-pill,
-.notice {
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #d6dfda;
-  border-radius: 8px;
-  display: flex;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 14px;
-}
-
-.status-ok {
-  border-color: #7fb58b;
-  color: #1f6d36;
-}
-
-.notice {
-  color: #7a4c00;
-  margin: 0 auto 16px;
-  max-width: 1252px;
-}
-
-.dashboard-grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 0 auto;
-  max-width: 1280px;
-}
-
-.panel {
-  background: #ffffff;
-  border: 1px solid #d6dfda;
-  border-radius: 8px;
-  padding: 18px;
-}
-
-.panel-wide {
-  grid-column: 1 / -1;
-}
-
-.team-panel {
-  background: #fbfcfb;
-}
-
-.panel-heading,
-.match-card-title,
-.icon-label {
-  align-items: center;
-  display: flex;
-  gap: 10px;
-}
-
-.icon-label {
-  gap: 6px;
-}
-
-.panel-heading h2,
-.match-card-title h3 {
-  margin-bottom: 0;
-}
-
-.detail-stack {
-  display: grid;
-  gap: 14px;
-}
-
-.field-label {
-  display: block;
-  color: #52615a;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-
-select {
-  background: #ffffff;
-  border: 1px solid #b9c7c0;
-  border-radius: 8px;
-  color: #172026;
-  min-height: 42px;
-  padding: 0 12px;
-  width: min(360px, 100%);
-}
-
-.next-match-list {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.match-card {
-  border: 1px solid #d6dfda;
-  border-radius: 8px;
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-}
-
-.team-picker-row {
-  align-items: end;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
-}
-
-.interpretation-note,
-.plain-explainer,
-.sample-note {
-  color: #3e4d46;
-  line-height: 1.45;
-  margin-bottom: 0;
-}
-
-.sample-note {
-  background: #f6faf8;
-  border: 1px solid #d6dfda;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.backtest-note {
-  border-left: 3px solid #1f6d36;
-  color: #172026;
-  display: grid;
-  font-size: 0.87rem;
-  gap: 0.35rem;
-  line-height: 1.45;
-  padding-left: 0.8rem;
-}
-
-.backtest-note span {
-  color: #52615a;
-}
-
-.selected-team-summary {
-  align-items: center;
-  background: #172026;
-  border-radius: 8px;
-  color: #ffffff;
-  display: flex;
-  gap: 14px;
-  padding: 14px;
-}
-
-.selected-team-summary p {
-  color: #dbe5e0;
-  margin-bottom: 0;
-}
-
-.selected-team-flag {
-  font-size: 2.2rem;
-  line-height: 1;
-}
-
-.verdict {
-  background: #eef6f0;
-  border: 1px solid #cfe0d5;
-  border-radius: 8px;
-  display: grid;
-  gap: 4px;
-  padding: 10px;
-}
-
-.verdict strong {
-  color: #1f6d36;
-}
-
-.probability-grid {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.probability-chip {
-  border: 1px solid #d6dfda;
-  border-radius: 8px;
-  display: grid;
-  gap: 4px;
-  padding: 10px;
-}
-
-.probability-chip span {
-  color: #52615a;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.probability-chip strong {
-  font-size: 1.25rem;
-}
-
-.probability-chip.positive {
-  background: #eef8f1;
-}
-
-.probability-chip.neutral {
-  background: #f7f8ee;
-}
-
-.probability-chip.negative {
-  background: #fff3ef;
-}
-
-.muted,
-.path-text {
-  color: #52615a;
-}
-
-.path-text {
-  overflow-wrap: anywhere;
-}
-
-.warning {
-  background: #fff8e8;
-  border: 1px solid #f0d8a8;
-  border-radius: 8px;
-  color: #6f4a00;
-  margin-bottom: 0;
-  padding: 10px;
-}
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-table {
-  border-collapse: collapse;
-  min-width: 720px;
-  width: 100%;
-}
-
-.compact-table table {
-  min-width: 520px;
-}
-
-th,
-td {
-  border-bottom: 1px solid #e2e9e5;
-  padding: 10px 8px;
-  text-align: left;
-  white-space: nowrap;
-}
-
-th {
-  color: #52615a;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-}
-
-.selected-row {
-  background: #eef6f0;
-}
-
-.link-button {
-  background: transparent;
-  border: 0;
-  color: #1d6f83;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-}
-
-.link-button:hover {
-  text-decoration: underline;
-}
-
-.metric-grid {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 0;
-}
-
-dt {
-  color: #52615a;
-  font-size: 0.78rem;
-}
-
-dd {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 4px 0 0;
-}
-
-.bar-row,
-.odds-row {
-  align-items: center;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 44px minmax(0, 1fr) 58px;
-}
-
-.odds-row {
-  grid-template-columns: minmax(110px, 1fr) minmax(0, 1.5fr) 58px;
-}
-
-.odds-list {
-  display: grid;
-  gap: 12px;
-}
-
-.bar-track {
-  background: #e8eeeb;
-  border-radius: 999px;
-  height: 10px;
-  overflow: hidden;
-}
-
-.bar-track span {
-  background: #2d7c92;
-  display: block;
-  height: 100%;
-}
-
-@media (max-width: 860px) {
-  .app-shell {
-    padding: 20px;
+@layer base {
+  :root {
+    color: #172026;
+    background: #f5f7f4;
+    font-family: ui-sans-serif, system-ui, sans-serif;
   }
 
-  .topbar,
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+  body {
+    margin: 0;
+  }
+
+  button,
+  select {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-paper px-4 py-5 text-ink sm:px-6 lg:px-8;
   }
 
   .topbar {
-    align-items: flex-start;
-    flex-direction: column;
+    @apply mx-auto mb-4 flex max-w-[1500px] flex-col gap-3 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between;
+  }
+
+  .eyebrow {
+    @apply mb-1 text-xs font-bold uppercase tracking-wide text-slate-500;
+  }
+
+  h1 {
+    @apply m-0 text-3xl font-black tracking-tight text-ink sm:text-5xl;
+  }
+
+  h2 {
+    @apply m-0 text-base font-bold text-ink;
+  }
+
+  h3 {
+    @apply m-0 text-sm font-bold text-ink;
+  }
+
+  p {
+    @apply mt-0;
+  }
+
+  .status-pill,
+  .notice {
+    @apply inline-flex min-h-10 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm shadow-sm;
+  }
+
+  .status-ok {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-700;
+  }
+
+  .notice {
+    @apply mx-auto mb-4 flex max-w-[1500px] text-signal;
+  }
+
+  .dashboard-grid {
+    @apply mx-auto grid max-w-[1500px] grid-cols-1 gap-4 xl:grid-cols-12;
   }
 
   .panel {
-    grid-column: 1 / -1;
+    @apply rounded-lg border border-line bg-white p-4 shadow-panel;
   }
 
-  .next-match-list {
-    grid-template-columns: 1fr;
+  .panel-wide {
+    @apply xl:col-span-12;
+  }
+
+  .team-panel {
+    @apply bg-white;
+  }
+
+  .panel-heading,
+  .match-card-title,
+  .icon-label {
+    @apply mb-3 flex items-center gap-2;
+  }
+
+  .icon-label {
+    @apply mb-0 gap-1;
+  }
+
+  .detail-stack {
+    @apply grid gap-4;
+  }
+
+  .field-label {
+    @apply mb-1 block text-xs font-bold uppercase tracking-wide text-slate-500;
+  }
+
+  select {
+    @apply h-10 w-full max-w-sm rounded-md border border-line bg-white px-3 text-sm text-ink outline-none ring-ocean/20 focus:ring-4;
   }
 
   .team-picker-row {
-    align-items: stretch;
-    grid-template-columns: 1fr;
+    @apply grid gap-3 lg:grid-cols-[minmax(220px,360px)_1fr] lg:items-end;
+  }
+
+  .interpretation-note,
+  .plain-explainer {
+    @apply mb-0 text-sm leading-6 text-slate-600;
+  }
+
+  .selected-team-summary {
+    @apply flex items-center gap-3 rounded-lg bg-ink p-4 text-white;
+  }
+
+  .selected-team-summary p {
+    @apply mb-0 text-sm text-slate-300;
+  }
+
+  .selected-team-flag {
+    @apply text-3xl leading-none;
+  }
+
+  .next-match-list {
+    @apply grid gap-3 lg:grid-cols-2;
+  }
+
+  .match-card {
+    @apply grid gap-3 rounded-lg border border-line bg-slate-50 p-4;
+  }
+
+  .muted,
+  .path-text {
+    @apply text-sm text-slate-500;
+  }
+
+  .path-text {
+    overflow-wrap: anywhere;
+  }
+
+  .verdict {
+    @apply grid gap-1 rounded-md border border-emerald-100 bg-emerald-50 p-3 text-sm;
+  }
+
+  .verdict strong {
+    @apply text-emerald-800;
   }
 
   .probability-grid {
-    grid-template-columns: 1fr;
+    @apply grid grid-cols-3 gap-2;
+  }
+
+  .probability-chip {
+    @apply grid gap-1 rounded-md border border-line bg-white p-3;
+  }
+
+  .probability-chip span {
+    @apply text-[11px] font-bold uppercase tracking-wide text-slate-500;
+  }
+
+  .probability-chip strong {
+    @apply text-lg font-black text-ink;
+  }
+
+  .probability-chip.positive {
+    @apply bg-emerald-50;
+  }
+
+  .probability-chip.neutral {
+    @apply bg-amber-50;
+  }
+
+  .probability-chip.negative {
+    @apply bg-rose-50;
+  }
+
+  .bar-row,
+  .odds-row {
+    @apply grid items-center gap-2 text-xs text-slate-600;
+    grid-template-columns: 48px minmax(0, 1fr) 58px;
+  }
+
+  .odds-row {
+    grid-template-columns: minmax(110px, 1fr) minmax(0, 1.5fr) 58px;
+  }
+
+  .bar-track {
+    @apply h-2 overflow-hidden rounded-full bg-slate-200;
+  }
+
+  .bar-track span {
+    @apply block h-full bg-ocean;
+  }
+
+  .sample-note {
+    @apply mb-0 rounded-md border border-line bg-white p-3 text-sm leading-6 text-slate-600;
+  }
+
+  .backtest-note {
+    @apply grid gap-1 border-l-4 border-moss pl-3 text-sm leading-6 text-ink;
+  }
+
+  .backtest-note span {
+    @apply text-slate-600;
+  }
+
+  .warning {
+    @apply mb-0 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-signal;
+  }
+
+  .table-wrap {
+    @apply overflow-x-auto rounded-lg border border-line bg-white;
+  }
+
+  table {
+    @apply w-full min-w-[720px] border-collapse text-sm;
+  }
+
+  .compact-table table {
+    @apply min-w-[520px];
+  }
+
+  th,
+  td {
+    @apply whitespace-nowrap border-b border-slate-100 px-3 py-2 text-left;
+  }
+
+  th {
+    @apply bg-slate-50 text-xs font-bold uppercase tracking-wide text-slate-500;
+  }
+
+  .selected-row {
+    @apply bg-emerald-50;
+  }
+
+  .link-button {
+    @apply cursor-pointer border-0 bg-transparent p-0 text-left font-medium text-ocean hover:underline;
   }
 
   .metric-grid {
-    grid-template-columns: 1fr;
+    @apply m-0 grid grid-cols-2 gap-3;
+  }
+
+  dt {
+    @apply text-xs text-slate-500;
+  }
+
+  dd {
+    @apply m-0 mt-1 text-base font-bold text-ink;
+  }
+
+  .odds-list {
+    @apply grid gap-3;
   }
 }

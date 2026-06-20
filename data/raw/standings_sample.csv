@@ -7,10 +7,10 @@ B,canada,1,1,0,0,6,0,3
 B,switzerland,1,1,0,0,2,1,3
 B,bosnia-herzegovina,1,0,0,1,1,2,0
 B,qatar,1,0,0,1,0,6,0
-C,brazil,1,1,0,0,3,0,3
-C,morocco,1,1,0,0,1,0,3
-C,scotland,1,0,0,1,0,1,0
-C,haiti,1,0,0,1,0,3,0
+C,brazil,2,1,1,0,4,1,4
+C,morocco,2,1,1,0,2,1,4
+C,scotland,2,1,0,1,1,1,3
+C,haiti,2,0,0,2,0,4,0
 D,usa,2,2,0,0,6,1,6
 D,australia,2,1,0,1,2,2,3
 D,paraguay,2,1,0,1,2,4,3

@@ -24,12 +24,12 @@ started:
 
 As of `2026-06-20`, the holdout comparison against actual results returns:
 
-- Holdout matches: `28`.
+- Holdout matches: `30`.
 - Correct match outcomes: `20`.
-- Outcome accuracy: `71.4%`.
-- Log loss: `0.8431`.
-- Brier score: `0.4805`.
-- 95% Wilson accuracy interval: `52.9%` to `84.7%`.
+- Outcome accuracy: `66.7%`.
+- Log loss: `0.8741`.
+- Brier score: `0.5023`.
+- 95% Wilson accuracy interval: `48.8%` to `80.8%`.
 
 The holdout clears the current quality gate, but it is still too small to tune model parameters
 against directly.

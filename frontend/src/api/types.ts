@@ -120,5 +120,26 @@ export type ModelEvaluation = {
     chance_baseline_p_value: number | null;
     warning: string;
   };
+  rows: EvaluationRow[];
   note: string;
+};
+
+export type EvaluationRow = {
+  match_id: string;
+  match_date: string;
+  home_team_id: string;
+  away_team_id: string;
+  home_team: string;
+  away_team: string;
+  actual_score: { home: number; away: number };
+  actual_outcome: 'home_win' | 'draw' | 'away_win';
+  predicted_outcome: 'home_win' | 'draw' | 'away_win';
+  correct_outcome: boolean;
+  actual_outcome_probability: number;
+  actual_log_loss: number;
+  brier_score: number;
+  probabilities: { home_win: number; draw: number; away_win: number };
+  expected_goals: { home: number; away: number };
+  top_scoreline: { home_score: number; away_score: number; probability: number };
+  top_scoreline_correct: boolean;
 };

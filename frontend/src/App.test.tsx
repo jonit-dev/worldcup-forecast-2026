@@ -61,6 +61,26 @@ const completedForecast = {
   away_score: 0,
 };
 
+const evaluationRow = {
+  match_id: '2026-GD-004',
+  match_date: '2026-06-19',
+  home_team_id: 'usa',
+  away_team_id: 'australia',
+  home_team: 'United States',
+  away_team: 'Australia',
+  actual_score: { home: 2, away: 0 },
+  actual_outcome: 'home_win',
+  predicted_outcome: 'away_win',
+  correct_outcome: false,
+  actual_outcome_probability: 0.31,
+  actual_log_loss: 1.17,
+  brier_score: 0.82,
+  probabilities: { home_win: 0.31, draw: 0.21, away_win: 0.48 },
+  expected_goals: { home: 1.2, away: 1.6 },
+  top_scoreline: { home_score: 1, away_score: 2, probability: 0.1 },
+  top_scoreline_correct: false,
+};
+
 describe('App', () => {
   it('should display forecast details when a team is selected', async () => {
     vi.stubGlobal(
@@ -140,11 +160,11 @@ describe('App', () => {
             training_cutoff: '2026-06-10',
             completed_current_matches_used_for_training: 0,
             historical_result_rows_used_for_training: 12000,
-            holdout_match_count: 28,
+            holdout_match_count: 30,
             correct_outcomes: 20,
-            outcome_accuracy: 0.714285714,
-            log_loss: 0.77,
-            brier_score: 0.43,
+            outcome_accuracy: 0.666666667,
+            log_loss: 0.874,
+            brier_score: 0.502,
             exact_top_scoreline_accuracy: 0.107,
             average_actual_outcome_probability: 0.51,
             quality_gate: {
@@ -154,11 +174,12 @@ describe('App', () => {
               clears_gate: true,
             },
             statistical_relevance: {
-              accuracy_confidence_interval_95: { low: 0.5285, high: 0.856 },
+              accuracy_confidence_interval_95: { low: 0.4878, high: 0.8077 },
               chance_baseline_accuracy: 0.333333333,
               chance_baseline_p_value: 0.00005,
               warning: 'sample',
             },
+            rows: [evaluationRow],
             note: 'sample',
           });
         }
@@ -187,10 +208,13 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
     expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
     expect(await screen.findByText(/Expected goals means the average goals/)).toBeInTheDocument();
-    expect(await screen.findByText(/20\/28 outcomes/)).toBeInTheDocument();
+    expect((await screen.findAllByText(/20\/30 outcomes/)).length).toBeGreaterThan(0);
     expect(screen.getByText(/95% confidence range/)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Actual Results' })).toBeInTheDocument();
-    expect(screen.getByText('2-0')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Past Predictions vs Actual Results' })).toBeInTheDocument();
+    expect(screen.getByText('Miss')).toBeInTheDocument();
+    expect(screen.getAllByText('31.0%').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByRole('heading', { name: /^Actual Results$/ })).toBeInTheDocument();
+    expect(screen.getAllByText('2-0').length).toBeGreaterThanOrEqual(2);
     expect(screen.getByText(/Broad sample/)).toBeInTheDocument();
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);

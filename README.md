@@ -38,3 +38,16 @@ npm run dev
 ```
 
 See `ROADMAP.md` for the planned vertical slices.
+
+## Forecast Workflow
+
+```bash
+./scripts/refresh_data.sh 2026-06-20
+./scripts/run_forecast.sh 2026-06-20
+make backend-test
+cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
+```
+
+The dashboard lets you select a team and inspect its next forecast matches with win/draw/loss
+probabilities, expected goals, and top predicted scorelines. These are baseline model estimates,
+not statistically significant claims.

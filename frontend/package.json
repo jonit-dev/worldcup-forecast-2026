@@ -7,6 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0"
   },
@@ -18,13 +19,19 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.61.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9.9.0",
+    "globals": "^15.15.0",
+    "jsdom": "^29.1.1",
     "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1",
     "vite": "^8.0.16",
     "vitest": "^4.1.9"
   }

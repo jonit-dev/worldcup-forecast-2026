@@ -9,10 +9,11 @@ from wc_forecast.models.poisson import outcome_probabilities, score_matrix, top_
 from wc_forecast.models.ratings import TeamRating, calculate_ratings
 
 
-MODEL_VERSION = "elo-form-calibrated-2026-06-20"
+MODEL_VERSION = "elo-form-calibrated-2026-06-20-recent40"
 PROBABILITY_TEMPERATURE = 1.3
 UNIFORM_SHRINKAGE = 0.25
 MAX_PUBLIC_PROBABILITY = 0.65
+RATING_TO_GOAL_SCALE = 1400
 
 
 @dataclass(frozen=True)
@@ -24,7 +25,9 @@ class ForecastInputs:
 def config_hash(as_of_date: date) -> str:
     payload = (
         f"{MODEL_VERSION}:{as_of_date.isoformat()}:max_goals=8:base_xg=1.35:"
-        "recent_goal_difference_matches=12:recent_goal_difference_elo=35:"
+        "recent_goal_difference_matches=12:recent_goal_difference_elo=15:"
+        "recent_goal_rate_matches=40:goal_rate_shrink_matches=20:"
+        f"rating_to_goal_scale={RATING_TO_GOAL_SCALE}:"
         f"temperature={PROBABILITY_TEMPERATURE}:shrink={UNIFORM_SHRINKAGE}:"
         f"max_public_probability={MAX_PUBLIC_PROBABILITY}"
     )
@@ -34,8 +37,18 @@ def config_hash(as_of_date: date) -> str:
 def expected_goals(home: TeamRating, away: TeamRating, neutral_site: bool) -> tuple[float, float]:
     rating_gap = home.rating - away.rating
     home_field = 0.0 if neutral_site else 0.16
-    home_xg = 1.35 * home.attack / max(away.defense, 0.35) * 10 ** ((rating_gap + home_field * 400) / 1800)
-    away_xg = 1.35 * away.attack / max(home.defense, 0.35) * 10 ** ((-rating_gap) / 1800)
+    home_xg = (
+        1.35
+        * home.attack
+        / max(away.defense, 0.35)
+        * 10 ** ((rating_gap + home_field * 400) / RATING_TO_GOAL_SCALE)
+    )
+    away_xg = (
+        1.35
+        * away.attack
+        / max(home.defense, 0.35)
+        * 10 ** ((-rating_gap) / RATING_TO_GOAL_SCALE)
+    )
     return round(max(0.15, min(4.5, home_xg)), 6), round(max(0.15, min(4.5, away_xg)), 6)
 
 

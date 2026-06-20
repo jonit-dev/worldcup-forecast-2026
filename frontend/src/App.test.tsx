@@ -135,7 +135,7 @@ describe('App', () => {
         }
         if (url.includes('/api/simulations')) {
           return Response.json({
-            model_version: 'elo-poisson-baseline-2026-06-20',
+            model_version: 'elo-form-calibrated-2026-06-20-recent40',
             config_hash: 'abc123',
             as_of_date: '2026-06-20',
             iterations: 1000,
@@ -161,10 +161,10 @@ describe('App', () => {
             completed_current_matches_used_for_training: 0,
             historical_result_rows_used_for_training: 12000,
             holdout_match_count: 30,
-            correct_outcomes: 20,
-            outcome_accuracy: 0.666666667,
-            log_loss: 0.874,
-            brier_score: 0.502,
+            correct_outcomes: 21,
+            outcome_accuracy: 0.7,
+            log_loss: 0.8589,
+            brier_score: 0.4925,
             exact_top_scoreline_accuracy: 0.107,
             average_actual_outcome_probability: 0.51,
             quality_gate: {
@@ -174,7 +174,7 @@ describe('App', () => {
               clears_gate: true,
             },
             statistical_relevance: {
-              accuracy_confidence_interval_95: { low: 0.4878, high: 0.8077 },
+              accuracy_confidence_interval_95: { low: 0.5212, high: 0.8334 },
               chance_baseline_accuracy: 0.333333333,
               chance_baseline_p_value: 0.00005,
               warning: 'sample',
@@ -208,7 +208,7 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
     expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
     expect(await screen.findByText(/Expected goals means the average goals/)).toBeInTheDocument();
-    expect((await screen.findAllByText(/20\/30 outcomes/)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/21\/30 outcomes/)).length).toBeGreaterThan(0);
     expect(screen.getByText(/95% confidence range/)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Past Predictions vs Actual Results' })).toBeInTheDocument();
     expect(screen.getByText('Miss')).toBeInTheDocument();

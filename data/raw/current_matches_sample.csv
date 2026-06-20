@@ -1,8 +1,8 @@
 match_id,match_date,stage,group_name,home_team_id,home_team,away_team_id,away_team,home_score,away_score,status,neutral_site
 2026-GA-001,2026-06-11,group,A,mexico,Mexico,south-africa,South Africa,2,0,complete,true
-2026-GA-002,2026-06-18,group,A,czechia,Czechia,south-korea,South Korea,1,1,complete,true
+2026-GA-002,2026-06-11,group,A,south-korea,South Korea,czechia,Czechia,2,1,complete,true
 2026-GA-003,2026-06-18,group,A,mexico,Mexico,south-korea,South Korea,1,0,complete,true
-2026-GA-004,2026-06-18,group,A,czechia,Czechia,south-africa,South Africa,2,1,complete,true
+2026-GA-004,2026-06-18,group,A,czechia,Czechia,south-africa,South Africa,1,1,complete,true
 2026-GA-005,2026-06-24,group,A,czechia,Czechia,mexico,Mexico,,,scheduled,true
 2026-GA-006,2026-06-24,group,A,south-africa,South Africa,south-korea,South Korea,,,scheduled,true
 2026-GB-001,2026-06-12,group,B,canada,Canada,qatar,Qatar,6,0,complete,true
@@ -33,14 +33,14 @@ match_id,match_date,stage,group_name,home_team_id,home_team,away_team_id,away_te
 2026-GF-002,2026-06-14,group,F,japan,Japan,sweden,Sweden,1,1,complete,true
 2026-GF-003,2026-06-20,group,F,netherlands,Netherlands,sweden,Sweden,,,scheduled,true
 2026-GF-004,2026-06-20,group,F,tunisia,Tunisia,japan,Japan,,,scheduled,true
-2026-GF-005,2026-06-25,group,F,japan,Japan,sweden,Sweden,,,scheduled,true
-2026-GF-006,2026-06-25,group,F,tunisia,Tunisia,netherlands,Netherlands,,,scheduled,true
+2026-GF-005,2026-06-25,group,F,japan,Japan,netherlands,Netherlands,,,scheduled,true
+2026-GF-006,2026-06-25,group,F,sweden,Sweden,tunisia,Tunisia,,,scheduled,true
 2026-GG-001,2026-06-15,group,G,belgium,Belgium,new-zealand,New Zealand,2,0,complete,true
 2026-GG-002,2026-06-15,group,G,egypt,Egypt,iran,Iran,1,1,complete,true
 2026-GG-003,2026-06-21,group,G,belgium,Belgium,iran,Iran,,,scheduled,true
 2026-GG-004,2026-06-21,group,G,new-zealand,New Zealand,egypt,Egypt,,,scheduled,true
-2026-GG-005,2026-06-26,group,G,egypt,Egypt,iran,Iran,,,scheduled,true
-2026-GG-006,2026-06-26,group,G,new-zealand,New Zealand,belgium,Belgium,,,scheduled,true
+2026-GG-005,2026-06-26,group,G,belgium,Belgium,egypt,Egypt,,,scheduled,true
+2026-GG-006,2026-06-26,group,G,iran,Iran,new-zealand,New Zealand,,,scheduled,true
 2026-GH-001,2026-06-15,group,H,spain,Spain,cabo-verde,Cabo Verde,3,0,complete,true
 2026-GH-002,2026-06-15,group,H,uruguay,Uruguay,saudi-arabia,Saudi Arabia,2,1,complete,true
 2026-GH-003,2026-06-21,group,H,uruguay,Uruguay,cabo-verde,Cabo Verde,,,scheduled,true

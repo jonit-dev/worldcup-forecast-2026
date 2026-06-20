@@ -5,6 +5,12 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Iterable
 
+RECENT_GOAL_MATCHES = 40
+RECENT_FORM_MATCHES = 12
+GOAL_RATE_SHRINK_MATCHES = 20
+AVERAGE_GOALS_PER_TEAM = 1.35
+FORM_ADJUSTMENT_PER_GOAL = 15.0
+
 
 @dataclass(frozen=True)
 class TeamRating:
@@ -89,11 +95,9 @@ def calculate_ratings(
 
     output: dict[str, TeamRating] = {}
     for team_id, rating in ratings.items():
-        played = max(matches_used.get(team_id, 0), 1)
-        attack = (goals_for.get(team_id, 1.2) / played) / 1.35
-        defense = (goals_against.get(team_id, 1.2) / played) / 1.35
+        attack, defense = calculate_recent_goal_rates(sorted_results, team_id, as_of_date)
         recent_goal_difference = calculate_recent_goal_difference(sorted_results, team_id, as_of_date)
-        form_adjustment = 35.0 * recent_goal_difference
+        form_adjustment = FORM_ADJUSTMENT_PER_GOAL * recent_goal_difference
         output[team_id] = TeamRating(
             team_id=team_id,
             rating=round(rating + form_adjustment, 6),
@@ -115,8 +119,34 @@ def calculate_recent_goal_difference(results: list[dict], team_id: str, as_of_da
             recent.append(int(row["home_score"]) - int(row["away_score"]))
         elif row["away_team_id"] == team_id:
             recent.append(int(row["away_score"]) - int(row["home_score"]))
-        if len(recent) == 12:
+        if len(recent) == RECENT_FORM_MATCHES:
             break
     if not recent:
         return 0.0
     return sum(recent) / len(recent)
+
+
+def calculate_recent_goal_rates(results: list[dict], team_id: str, as_of_date: date) -> tuple[float, float]:
+    goals_for: list[int] = []
+    goals_against: list[int] = []
+    for row in reversed(results):
+        if row["match_date"] > as_of_date:
+            continue
+        if row["home_team_id"] == team_id:
+            goals_for.append(int(row["home_score"]))
+            goals_against.append(int(row["away_score"]))
+        elif row["away_team_id"] == team_id:
+            goals_for.append(int(row["away_score"]))
+            goals_against.append(int(row["home_score"]))
+        if len(goals_for) == RECENT_GOAL_MATCHES:
+            break
+
+    if not goals_for:
+        return 1.0, 1.0
+
+    denominator = len(goals_for) + GOAL_RATE_SHRINK_MATCHES
+    shrunk_for = (sum(goals_for) + AVERAGE_GOALS_PER_TEAM * GOAL_RATE_SHRINK_MATCHES) / denominator
+    shrunk_against = (
+        sum(goals_against) + AVERAGE_GOALS_PER_TEAM * GOAL_RATE_SHRINK_MATCHES
+    ) / denominator
+    return shrunk_for / AVERAGE_GOALS_PER_TEAM, shrunk_against / AVERAGE_GOALS_PER_TEAM

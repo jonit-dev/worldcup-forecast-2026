@@ -122,7 +122,7 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/api/simulations?*', async (route) => {
     await route.fulfill({
       json: {
-        model_version: 'elo-poisson-baseline-2026-06-20',
+        model_version: 'elo-form-calibrated-2026-06-20-recent40',
         config_hash: 'abc123',
         as_of_date: '2026-06-20',
         iterations: 1000,
@@ -171,10 +171,10 @@ test.beforeEach(async ({ page }) => {
         completed_current_matches_used_for_training: 0,
         historical_result_rows_used_for_training: 12000,
         holdout_match_count: 30,
-        correct_outcomes: 20,
-        outcome_accuracy: 0.666666667,
-        log_loss: 0.874,
-        brier_score: 0.502,
+        correct_outcomes: 21,
+        outcome_accuracy: 0.7,
+        log_loss: 0.8589,
+        brier_score: 0.4925,
         exact_top_scoreline_accuracy: 0.107,
         average_actual_outcome_probability: 0.51,
         quality_gate: {
@@ -184,7 +184,7 @@ test.beforeEach(async ({ page }) => {
           clears_gate: true,
         },
         statistical_relevance: {
-          accuracy_confidence_interval_95: { low: 0.4878, high: 0.8077 },
+          accuracy_confidence_interval_95: { low: 0.5212, high: 0.8334 },
           chance_baseline_accuracy: 0.333333333,
           chance_baseline_p_value: 0.00005,
           warning: 'sample',
@@ -202,7 +202,7 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
   await expect(page.getByText('Forecast data loaded')).toBeVisible();
   await expect(page.getByLabel('Team')).toHaveValue('usa');
   await expect(page.getByText(/Expected goals means the average goals/)).toBeVisible();
-  await expect(page.getByText(/20\/30 outcomes/).first()).toBeVisible();
+  await expect(page.getByText(/21\/30 outcomes/).first()).toBeVisible();
   await expect(page.getByText(/95% confidence range/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Past Predictions vs Actual Results' })).toBeVisible();
   await expect(page.getByText('Miss')).toBeVisible();

@@ -1,0 +1,7 @@
+match_id,match_date,stage,group_name,home_team_id,home_team,away_team_id,away_team,home_score,away_score,status,neutral_site
+2026-GA-001,2026-06-11,group,A,mexico,Mexico,south-africa,South Africa,2,0,complete,true
+2026-GA-002,2026-06-15,group,A,south-africa,South Africa,canada,Canada,1,1,complete,true
+2026-GA-003,2026-06-20,group,A,canada,Canada,mexico,Mexico,,,scheduled,true
+2026-GB-001,2026-06-12,group,B,usa,United States,paraguay,Paraguay,4,1,complete,true
+2026-GB-002,2026-06-16,group,B,australia,Australia,turkiye,Turkiye,2,0,complete,true
+2026-GB-003,2026-06-21,group,B,usa,United States,australia,Australia,,,scheduled,true

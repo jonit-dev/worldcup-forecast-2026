@@ -26,3 +26,4 @@ data/external/*
 !data/**/.gitkeep
 !data/**/README.md
 !data/**/source_manifest.md
+!data/raw/*_sample.csv

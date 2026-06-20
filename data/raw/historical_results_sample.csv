@@ -1,0 +1,9 @@
+result_id,match_date,home_team_id,away_team_id,home_score,away_score,tournament,neutral_site
+hist-001,2022-11-21,usa,wales,1,1,FIFA World Cup,true
+hist-002,2022-11-26,argentina,mexico,2,0,FIFA World Cup,true
+hist-003,2022-12-03,netherlands,usa,3,1,FIFA World Cup,true
+hist-004,2023-09-12,mexico,australia,2,2,Friendly,true
+hist-005,2024-06-24,paraguay,colombia,1,2,Copa America,true
+hist-006,2024-07-06,canada,venezuela,1,1,Copa America,true
+hist-007,2025-03-23,usa,mexico,2,1,Concacaf Nations League,true
+hist-008,2025-06-10,australia,saudi-arabia,2,1,FIFA World Cup Qualifier,false

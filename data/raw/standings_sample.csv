@@ -1,0 +1,8 @@
+group_name,team_id,played,wins,draws,losses,goals_for,goals_against,points
+A,mexico,1,1,0,0,2,0,3
+A,south-africa,2,0,1,1,1,3,1
+A,canada,1,0,1,0,1,1,1
+B,usa,1,1,0,0,4,1,3
+B,australia,1,1,0,0,2,0,3
+B,paraguay,1,0,0,1,1,4,0
+B,turkiye,1,0,0,1,0,2,0

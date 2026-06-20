@@ -48,6 +48,19 @@ const forecast = {
   },
 };
 
+const completedForecast = {
+  ...forecast,
+  match_id: '2026-GD-004',
+  match_date: '2026-06-19',
+  home_team_id: 'usa',
+  away_team_id: 'australia',
+  home_team: 'United States',
+  away_team: 'Australia',
+  status: 'complete',
+  home_score: 2,
+  away_score: 0,
+};
+
 describe('App', () => {
   it('should display forecast details when a team is selected', async () => {
     vi.stubGlobal(
@@ -77,7 +90,7 @@ describe('App', () => {
           });
         }
         if (url.includes('/api/forecasts')) {
-          return Response.json({ forecasts: [forecast] });
+          return Response.json({ forecasts: [forecast, completedForecast] });
         }
         if (url.includes('/api/teams/usa/next-forecasts')) {
           return Response.json({ forecasts: [forecast] });
@@ -176,6 +189,8 @@ describe('App', () => {
     expect(await screen.findByText(/Expected goals means the average goals/)).toBeInTheDocument();
     expect(await screen.findByText(/20\/28 outcomes/)).toBeInTheDocument();
     expect(screen.getByText(/95% confidence range/)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Actual Results' })).toBeInTheDocument();
+    expect(screen.getByText('2-0')).toBeInTheDocument();
     expect(screen.getByText(/Broad sample/)).toBeInTheDocument();
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);

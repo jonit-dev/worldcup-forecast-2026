@@ -5,7 +5,7 @@ VENV_BIN := $(CURDIR)/.venv/bin
 backend-test:
 	cd backend && PYTHONPATH=src $(VENV_BIN)/python -m pytest
 
-backend-run:
+backend-run: ingest
 	cd backend && PYTHONPATH=src $(VENV_BIN)/flask --app wc_forecast.api.app run --debug
 
 ingest:

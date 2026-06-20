@@ -38,6 +38,8 @@ npm run dev
 ```
 
 See `ROADMAP.md` for the planned vertical slices.
+See `docs/data-warehouse-roadmap.md` for the source and schema plan behind the forecasting data
+warehouse.
 
 ## Forecast Workflow
 
@@ -48,9 +50,13 @@ make backend-test
 cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
 ```
 
+`make backend-run` ingests the local World Cup match snapshot before Flask starts, so completed
+scores in `data/raw/current_matches_sample.csv` are reflected in the API and dashboard on startup.
+
 The dashboard includes all 48 World Cup teams, lets you select a team, and explains its next
 forecast matches with win/draw/loss probabilities, expected goals, likely scorelines, and the sample
-size behind the forecast. Historical team form is refreshed from the Mart Jürisoo international
+size behind the forecast. It also shows the latest completed match results from the current
+World Cup snapshot. Historical team form is refreshed from the Mart Jürisoo international
 results dataset before ingestion when network access is available. The current baseline ingests
 12,112 historical results since 2000, with every World Cup team represented by at least 152
 historical/current matches. These are broad-sample model estimates, not statistically significant

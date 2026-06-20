@@ -33,6 +33,19 @@ const forecast = {
   },
 };
 
+const completedForecast = {
+  ...forecast,
+  match_id: '2026-GD-004',
+  match_date: '2026-06-19',
+  home_team_id: 'usa',
+  away_team_id: 'australia',
+  home_team: 'United States',
+  away_team: 'Australia',
+  status: 'complete',
+  home_score: 2,
+  away_score: 0,
+};
+
 test.beforeEach(async ({ page }) => {
   await page.route('**/api/summary', async (route) => {
     await route.fulfill({
@@ -61,7 +74,7 @@ test.beforeEach(async ({ page }) => {
     });
   });
   await page.route('**/api/forecasts', async (route) => {
-    await route.fulfill({ json: { forecasts: [forecast] } });
+    await route.fulfill({ json: { forecasts: [forecast, completedForecast] } });
   });
   await page.route('**/api/teams/*/next-forecasts?*', async (route) => {
     await route.fulfill({ json: { forecasts: [forecast] } });
@@ -170,6 +183,8 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
   await expect(page.getByText(/Expected goals means the average goals/)).toBeVisible();
   await expect(page.getByText(/20\/28 outcomes/)).toBeVisible();
   await expect(page.getByText(/95% confidence range/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Actual Results' })).toBeVisible();
+  await expect(page.getByText('2-0')).toBeVisible();
   await expect(page.getByText(/Broad sample/)).toBeVisible();
   await page.getByRole('button', { name: /United States.*Australia/ }).click();
   await expect(page.getByText('United States rating')).toBeVisible();

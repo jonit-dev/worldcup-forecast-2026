@@ -12,6 +12,7 @@ import {
   getTeams,
 } from './api/client';
 import type { MatchForecast } from './api/types';
+import { ActualResults } from './components/ActualResults';
 import { ForecastTable } from './components/ForecastTable';
 import { GroupStandings } from './components/GroupStandings';
 import { ModelInputsPanel } from './components/ModelInputsPanel';
@@ -60,6 +61,15 @@ export function App() {
 
   const upcomingForecasts = useMemo(
     () => (forecastsQuery.data ?? []).filter((forecast) => forecast.status !== 'complete'),
+    [forecastsQuery.data],
+  );
+  const actualResults = useMemo(
+    () =>
+      (forecastsQuery.data ?? [])
+        .filter((forecast) => forecast.status === 'complete')
+        .sort((left, right) =>
+          `${right.match_date}-${right.match_id}`.localeCompare(`${left.match_date}-${left.match_id}`),
+        ),
     [forecastsQuery.data],
   );
 
@@ -130,6 +140,14 @@ export function App() {
             standings={standingsQuery.data ?? []}
             simulationTeams={simulationQuery.data?.teams ?? []}
           />
+        </article>
+
+        <article className="panel">
+          <div className="panel-heading">
+            <Database size={20} aria-hidden="true" />
+            <h2>Actual Results</h2>
+          </div>
+          <ActualResults results={actualResults.slice(0, 12)} />
         </article>
 
         <article className="panel">

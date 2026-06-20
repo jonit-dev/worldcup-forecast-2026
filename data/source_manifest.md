@@ -20,12 +20,22 @@ As-of date for initial planning: 2026-06-20.
 - FIFA/Coca-Cola rankings snapshots for pre-tournament and tournament-period ratings.
 - Club Elo-style national team rating mirrors only if terms permit local derived use.
 
+## Planned Enrichment Sources
+
+- OpenFootball World Cup JSON for local development fixtures and test fallbacks.
+- World Football Elo snapshots for an independent team-strength signal.
+- Licensed odds snapshots for de-vigged market-implied probabilities.
+- Open-Meteo or Meteostat for venue weather snapshots.
+- A live football API for lineups, cards, injuries, player stats, and event-level expected-goals data.
+
 ## Freshness Policy
 
 - Every ingested row must retain `source_name`, `source_url`, `source_fetched_at`, and `as_of_date`.
 - Current tournament results must be refreshed before each forecast run.
 - Future fixtures may be stored, but scores and post-match stats must be null until the match is complete.
 - Model training cannot use any match result after the forecast `as_of_date`.
+- Model feature snapshots must be point-in-time; historical validation cannot reuse future ranking,
+  odds, lineup, or weather data.
 
 ## Initial June 20, 2026 Notes
 

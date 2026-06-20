@@ -13,6 +13,7 @@ As-of date for initial planning: 2026-06-20.
 ## Historical Data Candidates
 
 - Kaggle / Mart Jürisoo international football results dataset for match results since 1872.
+- GitHub mirror for Mart Jürisoo international football results: https://github.com/martj42/international_results
 - football-data.co.uk international results, if current licensing fits project use.
 - FIFA/Coca-Cola rankings snapshots for pre-tournament and tournament-period ratings.
 - Club Elo-style national team rating mirrors only if terms permit local derived use.

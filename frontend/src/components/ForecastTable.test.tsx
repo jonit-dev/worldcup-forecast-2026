@@ -51,7 +51,7 @@ describe('ForecastTable', () => {
     const onSelectMatch = vi.fn();
     render(<ForecastTable forecasts={[forecast]} onSelectMatch={onSelectMatch} />);
 
-    await userEvent.click(screen.getAllByRole('button', { name: /United States vs Australia/i })[0]);
+    await userEvent.click(screen.getAllByRole('button', { name: /United States.*Australia/i })[0]);
 
     expect(onSelectMatch).toHaveBeenCalledWith(forecast);
   });

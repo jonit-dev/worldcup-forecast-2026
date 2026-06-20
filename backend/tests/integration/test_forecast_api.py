@@ -46,9 +46,26 @@ def test_should_return_next_match_predictions_for_selected_team(monkeypatch, tmp
     forecasts = response.get_json()["forecasts"]
 
     assert response.status_code == 200
-    assert [forecast["match_id"] for forecast in forecasts] == ["2026-GB-003"]
+    assert [forecast["match_id"] for forecast in forecasts] == ["2026-GD-005"]
     assert forecasts[0]["expected_goals"]["home"] > 0
     assert "top_scorelines" in forecasts[0]
+
+
+def test_should_return_next_match_predictions_for_brazil(monkeypatch, tmp_path):
+    database_path = ingest_test_database(tmp_path)
+    monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))
+    monkeypatch.setenv("WC_FORECAST_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-20")
+
+    response = create_app().test_client().get("/api/teams/brazil/next-forecasts?limit=2")
+    forecasts = response.get_json()["forecasts"]
+
+    assert response.status_code == 200
+    assert forecasts
+    assert all(
+        forecast["home_team_id"] == "brazil" or forecast["away_team_id"] == "brazil"
+        for forecast in forecasts
+    )
 
 
 def test_should_return_seeded_simulation(monkeypatch, tmp_path):

@@ -34,7 +34,13 @@ def test_should_expose_loaded_summary_and_team_match_data(monkeypatch, tmp_path)
     standings = client.get("/api/standings").get_json()["standings"]
 
     assert summary["data_status"] == "loaded"
-    assert summary["match_count"] == 6
+    assert summary["match_count"] == 72
+    assert summary["team_count"] == 48
     assert any(team["team_id"] == "usa" for team in teams)
-    assert [match["match_id"] for match in usa_matches] == ["2026-GB-001", "2026-GB-003"]
-    assert {row["group_name"] for row in standings} == {"A", "B"}
+    assert [match["match_id"] for match in usa_matches] == [
+        "2026-GD-001",
+        "2026-GD-004",
+        "2026-GD-005",
+    ]
+    assert any(team["team_id"] == "brazil" for team in teams)
+    assert {row["group_name"] for row in standings} == set("ABCDEFGHIJKL")

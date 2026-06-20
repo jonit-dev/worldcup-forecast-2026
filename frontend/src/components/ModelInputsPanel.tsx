@@ -1,4 +1,5 @@
 import type { MatchForecast, ModelDiagnostics } from '../api/types';
+import { teamLabel } from '../utils/flags';
 
 type ModelInputsPanelProps = {
   forecast?: MatchForecast;
@@ -14,7 +15,8 @@ export function ModelInputsPanel({ forecast, diagnostics }: ModelInputsPanelProp
     <div className="detail-stack">
       <div>
         <h3>
-          {forecast.home_team} vs {forecast.away_team}
+          {teamLabel(forecast.home_team_id, forecast.home_team)} vs{' '}
+          {teamLabel(forecast.away_team_id, forecast.away_team)}
         </h3>
         <p className="muted">
           {forecast.model.version} · {forecast.model.config_hash}
@@ -22,19 +24,19 @@ export function ModelInputsPanel({ forecast, diagnostics }: ModelInputsPanelProp
       </div>
       <dl className="metric-grid">
         <div>
-          <dt>{forecast.home_team} rating</dt>
+          <dt>{teamLabel(forecast.home_team_id, forecast.home_team)} rating</dt>
           <dd>{forecast.model_inputs.home_rating.toFixed(1)}</dd>
         </div>
         <div>
-          <dt>{forecast.away_team} rating</dt>
+          <dt>{teamLabel(forecast.away_team_id, forecast.away_team)} rating</dt>
           <dd>{forecast.model_inputs.away_rating.toFixed(1)}</dd>
         </div>
         <div>
-          <dt>{forecast.home_team} attack</dt>
+          <dt>{teamLabel(forecast.home_team_id, forecast.home_team)} attack</dt>
           <dd>{forecast.model_inputs.home_attack.toFixed(2)}</dd>
         </div>
         <div>
-          <dt>{forecast.away_team} attack</dt>
+          <dt>{teamLabel(forecast.away_team_id, forecast.away_team)} attack</dt>
           <dd>{forecast.model_inputs.away_attack.toFixed(2)}</dd>
         </div>
       </dl>

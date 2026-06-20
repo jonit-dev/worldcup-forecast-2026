@@ -1,0 +1,58 @@
+const FLAGS: Record<string, string> = {
+  algeria: '🇩🇿',
+  argentina: '🇦🇷',
+  australia: '🇦🇺',
+  austria: '🇦🇹',
+  belgium: '🇧🇪',
+  'bosnia-herzegovina': '🇧🇦',
+  brazil: '🇧🇷',
+  'cabo-verde': '🇨🇻',
+  canada: '🇨🇦',
+  colombia: '🇨🇴',
+  'congo-dr': '🇨🇩',
+  croatia: '🇭🇷',
+  curacao: '🇨🇼',
+  czechia: '🇨🇿',
+  ecuador: '🇪🇨',
+  egypt: '🇪🇬',
+  england: '🏴',
+  france: '🇫🇷',
+  germany: '🇩🇪',
+  ghana: '🇬🇭',
+  haiti: '🇭🇹',
+  iran: '🇮🇷',
+  iraq: '🇮🇶',
+  'ivory-coast': '🇨🇮',
+  japan: '🇯🇵',
+  jordan: '🇯🇴',
+  mexico: '🇲🇽',
+  morocco: '🇲🇦',
+  netherlands: '🇳🇱',
+  'new-zealand': '🇳🇿',
+  norway: '🇳🇴',
+  panama: '🇵🇦',
+  paraguay: '🇵🇾',
+  portugal: '🇵🇹',
+  qatar: '🇶🇦',
+  'saudi-arabia': '🇸🇦',
+  scotland: '🏴',
+  senegal: '🇸🇳',
+  'south-africa': '🇿🇦',
+  'south-korea': '🇰🇷',
+  spain: '🇪🇸',
+  sweden: '🇸🇪',
+  switzerland: '🇨🇭',
+  tunisia: '🇹🇳',
+  turkiye: '🇹🇷',
+  usa: '🇺🇸',
+  uruguay: '🇺🇾',
+  uzbekistan: '🇺🇿',
+};
+
+export function teamFlag(teamId: string): string {
+  return FLAGS[teamId] ?? '🏳️';
+}
+
+export function teamLabel(teamId: string, teamName: string): string {
+  return `${teamFlag(teamId)} ${teamName}`.trim();
+}

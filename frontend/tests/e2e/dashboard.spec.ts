@@ -126,7 +126,7 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
 
   await expect(page.getByText('Forecast data loaded')).toBeVisible();
   await expect(page.getByLabel('Team')).toHaveValue('usa');
-  await expect(page.getByText('Predicted xG: 1.42-1.03')).toBeVisible();
-  await page.getByRole('button', { name: 'United States vs Australia' }).click();
+  await expect(page.getByText(/Expected goals means average goals/)).toBeVisible();
+  await page.getByRole('button', { name: /United States.*Australia/ }).click();
   await expect(page.getByText('United States rating')).toBeVisible();
 });

@@ -48,6 +48,7 @@ make backend-test
 cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
 ```
 
-The dashboard lets you select a team and inspect its next forecast matches with win/draw/loss
-probabilities, expected goals, and top predicted scorelines. These are baseline model estimates,
-not statistically significant claims.
+The dashboard includes all 48 World Cup teams, lets you select a team, and explains its next
+forecast matches with win/draw/loss probabilities, expected goals, and likely scorelines. Historical
+team form is refreshed from the Mart Jürisoo international results dataset before ingestion when
+network access is available. These are baseline model estimates, not statistically significant claims.

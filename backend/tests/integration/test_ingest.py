@@ -20,12 +20,14 @@ def test_should_load_sample_matches_when_source_files_exist(tmp_path):
         datetime(2026, 6, 20, 12, 0, tzinfo=timezone.utc),
     )
 
-    assert result.match_count == 6
-    assert result.historical_result_count == 8
-    assert result.team_count >= 8
+    assert result.match_count == 72
+    assert result.historical_result_count >= 700
+    assert result.team_count == 48
     connection = duckdb.connect(str(database_path))
     try:
-        assert connection.execute("select count(*) from matches").fetchone()[0] == 6
+        assert connection.execute("select count(*) from matches").fetchone()[0] == 72
+        assert connection.execute("select count(distinct group_name) from matches").fetchone()[0] == 12
+        assert connection.execute("select count(*) from teams").fetchone()[0] == 48
         assert connection.execute("select count(*) from source_snapshots").fetchone()[0] == 4
     finally:
         connection.close()
@@ -50,7 +52,7 @@ def test_should_be_idempotent_for_same_source_snapshot(tmp_path):
 
     connection = duckdb.connect(str(database_path))
     try:
-        assert connection.execute("select count(*) from matches").fetchone()[0] == 6
+        assert connection.execute("select count(*) from matches").fetchone()[0] == 72
         assert connection.execute("select count(*) from ingestion_runs").fetchone()[0] == 1
     finally:
         connection.close()

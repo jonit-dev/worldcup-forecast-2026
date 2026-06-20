@@ -119,6 +119,17 @@ def ingest_snapshots(
     validate_current_matches(current_matches, as_of_date)
     validate_historical_results(historical_results, as_of_date)
 
+    ranking_team_ids = {row["team_id"] for row in rankings}
+    standing_team_ids = {row["team_id"] for row in standings}
+    if len(ranking_team_ids) != 48:
+        raise DataValidationError(f"Expected 48 ranking teams, found {len(ranking_team_ids)}")
+    if standing_team_ids != ranking_team_ids:
+        missing = ranking_team_ids - standing_team_ids
+        extra = standing_team_ids - ranking_team_ids
+        raise DataValidationError(
+            f"Standings/rankings team mismatch. Missing: {sorted(missing)} Extra: {sorted(extra)}"
+        )
+
     team_ids = {
         row["home_team_id"] for row in current_matches + historical_results
     } | {row["away_team_id"] for row in current_matches + historical_results}

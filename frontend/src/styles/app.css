@@ -124,9 +124,11 @@ h3 {
 }
 
 .field-label {
+  display: block;
   color: #52615a;
   font-size: 0.8rem;
   font-weight: 700;
+  margin-bottom: 6px;
   text-transform: uppercase;
 }
 
@@ -143,13 +145,99 @@ select {
 .next-match-list {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .match-card {
   border: 1px solid #d6dfda;
   border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.team-picker-row {
+  align-items: end;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+}
+
+.interpretation-note,
+.plain-explainer {
+  color: #3e4d46;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+.selected-team-summary {
+  align-items: center;
+  background: #172026;
+  border-radius: 8px;
+  color: #ffffff;
+  display: flex;
+  gap: 14px;
   padding: 14px;
+}
+
+.selected-team-summary p {
+  color: #dbe5e0;
+  margin-bottom: 0;
+}
+
+.selected-team-flag {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.verdict {
+  background: #eef6f0;
+  border: 1px solid #cfe0d5;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+}
+
+.verdict strong {
+  color: #1f6d36;
+}
+
+.probability-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.probability-chip {
+  border: 1px solid #d6dfda;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+}
+
+.probability-chip span {
+  color: #52615a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.probability-chip strong {
+  font-size: 1.25rem;
+}
+
+.probability-chip.positive {
+  background: #eef8f1;
+}
+
+.probability-chip.neutral {
+  background: #f7f8ee;
+}
+
+.probability-chip.negative {
+  background: #fff3ef;
 }
 
 .muted,
@@ -283,6 +371,15 @@ dd {
   }
 
   .next-match-list {
+    grid-template-columns: 1fr;
+  }
+
+  .team-picker-row {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .probability-grid {
     grid-template-columns: 1fr;
   }
 

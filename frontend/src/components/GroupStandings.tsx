@@ -1,5 +1,6 @@
 import type { SimulationTeam, Standing } from '../api/types';
 import { formatPercent } from '../utils/format';
+import { teamLabel } from '../utils/flags';
 
 type GroupStandingsProps = {
   standings: Standing[];
@@ -27,7 +28,7 @@ export function GroupStandings({ standings, simulationTeams }: GroupStandingsPro
             return (
               <tr key={`${standing.group_name}-${standing.team_id}`}>
                 <td>{standing.group_name}</td>
-                <td>{standing.team_name}</td>
+                <td>{teamLabel(standing.team_id, standing.team_name)}</td>
                 <td>{standing.points}</td>
                 <td>{standing.goals_for - standing.goals_against}</td>
                 <td>{odds ? formatPercent(odds.advance_probability) : 'pending'}</td>

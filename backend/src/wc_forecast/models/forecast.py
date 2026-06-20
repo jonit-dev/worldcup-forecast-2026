@@ -50,6 +50,9 @@ def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
     home_xg, away_xg = expected_goals(home_rating, away_rating, bool(match["neutral_site"]))
     scorelines = score_matrix(home_xg, away_xg)
     probabilities = outcome_probabilities(scorelines)
+    rounded_home = round(probabilities["home_win"], 6)
+    rounded_draw = round(probabilities["draw"], 6)
+    rounded_away = round(1.0 - rounded_home - rounded_draw, 6)
     return {
         "match_id": match["match_id"],
         "match_date": match["match_date"],
@@ -64,9 +67,9 @@ def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
         "away_score": match.get("away_score"),
         "expected_goals": {"home": home_xg, "away": away_xg},
         "probabilities": {
-            "home_win": round(probabilities["home_win"], 6),
-            "draw": round(probabilities["draw"], 6),
-            "away_win": round(probabilities["away_win"], 6),
+            "home_win": rounded_home,
+            "draw": rounded_draw,
+            "away_win": rounded_away,
         },
         "top_scorelines": top_scorelines(scorelines),
         "model": {
@@ -90,4 +93,3 @@ def forecast_match(match: dict, inputs: ForecastInputs) -> dict:
 
 def forecast_matches(matches: Iterable[dict], inputs: ForecastInputs) -> list[dict]:
     return [forecast_match(match, inputs) for match in matches]
-

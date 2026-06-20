@@ -22,7 +22,7 @@ CURRENT_MATCHES_SOURCE = SourceFile(
 
 HISTORICAL_RESULTS_SOURCE = SourceFile(
     name="manual_historical_results_snapshot",
-    url="local:data/raw/historical_results_sample.csv",
+    url="https://raw.githubusercontent.com/martj42/international_results/master/results.csv",
     filename="historical_results_sample.csv",
 )
 
@@ -44,4 +44,3 @@ ALL_SOURCES = (
     RANKINGS_SOURCE,
     STANDINGS_SOURCE,
 )
-

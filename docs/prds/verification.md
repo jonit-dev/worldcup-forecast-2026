@@ -18,6 +18,9 @@ cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
 ## Evidence on 2026-06-20
 
 - Backend: `make backend-test` collected 15 tests and all passed.
+- Current tournament snapshot now validates 48 teams, 12 groups, and 72 group matches.
+- Historical performance snapshot contains recent pre-cutoff international results from the Mart
+  Jürisoo dataset when `FETCH_HISTORY=1` is enabled.
 - Backend lint: `python -m ruff check .` passed in `backend`.
 - Frontend unit tests: `npm test` ran 3 tests and all passed.
 - Frontend lint: `npm run lint` passed.

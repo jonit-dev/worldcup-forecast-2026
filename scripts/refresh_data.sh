@@ -3,6 +3,10 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 AS_OF_DATE="${1:-2026-06-20}"
+FETCH_HISTORY="${FETCH_HISTORY:-1}"
 
 cd "$ROOT_DIR/backend"
+if [[ "$FETCH_HISTORY" == "1" ]]; then
+  PYTHONPATH=src "$ROOT_DIR/.venv/bin/python" -m wc_forecast.data.fetch_historical --as-of "$AS_OF_DATE"
+fi
 PYTHONPATH=src "$ROOT_DIR/.venv/bin/python" -m wc_forecast.data.ingest --as-of "$AS_OF_DATE"

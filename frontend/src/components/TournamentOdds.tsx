@@ -1,5 +1,6 @@
 import type { SimulationTeam, Team } from '../api/types';
 import { formatPercent } from '../utils/format';
+import { teamLabel } from '../utils/flags';
 
 type TournamentOddsProps = {
   teams: Team[];
@@ -16,7 +17,7 @@ export function TournamentOdds({ teams, odds }: TournamentOddsProps) {
     <div className="odds-list">
       {topOdds.map((team) => (
         <div className="odds-row" key={team.team_id}>
-          <span>{names.get(team.team_id) ?? team.team_id}</span>
+          <span>{teamLabel(team.team_id, names.get(team.team_id) ?? team.team_id)}</span>
           <div className="bar-track">
             <span style={{ width: `${team.advance_probability * 100}%` }} />
           </div>

@@ -1,9 +1,744 @@
 result_id,match_date,home_team_id,away_team_id,home_score,away_score,tournament,neutral_site
-hist-001,2022-11-21,usa,wales,1,1,FIFA World Cup,true
-hist-002,2022-11-26,argentina,mexico,2,0,FIFA World Cup,true
-hist-003,2022-12-03,netherlands,usa,3,1,FIFA World Cup,true
-hist-004,2023-09-12,mexico,australia,2,2,Friendly,true
-hist-005,2024-06-24,paraguay,colombia,1,2,Copa America,true
-hist-006,2024-07-06,canada,venezuela,1,1,Copa America,true
-hist-007,2025-03-23,usa,mexico,2,1,Concacaf Nations League,true
-hist-008,2025-06-10,australia,saudi-arabia,2,1,FIFA World Cup Qualifier,false
+hist-28c863192e2d,2020-09-03,germany,spain,1,1,UEFA Nations League,false
+hist-8e046643f2f7,2020-09-04,norway,austria,1,2,UEFA Nations League,false
+hist-759a7bef9319,2020-09-05,portugal,croatia,4,1,UEFA Nations League,false
+hist-e6cb667e8c0d,2020-09-05,sweden,france,0,1,UEFA Nations League,false
+hist-2f25ef29b862,2020-09-06,switzerland,germany,1,1,UEFA Nations League,false
+hist-5bafa53ed5d2,2020-09-07,czechia,scotland,1,2,UEFA Nations League,false
+hist-0984b84bc1a0,2020-09-08,sweden,portugal,0,2,UEFA Nations League,false
+hist-ef335889091d,2020-09-08,france,croatia,4,2,UEFA Nations League,false
+hist-2997520acec0,2020-10-07,germany,turkiye,3,3,Friendly,false
+hist-ad4e8deb8d24,2020-10-07,switzerland,croatia,1,2,Friendly,false
+hist-b8bcf64aa335,2020-10-07,netherlands,mexico,0,1,Friendly,false
+hist-f96916c73fbe,2020-10-07,portugal,spain,0,0,Friendly,false
+hist-4542cb8b3737,2020-10-08,argentina,ecuador,1,0,FIFA World Cup qualification,false
+hist-c74f9c50d5b2,2020-10-08,belgium,ivory-coast,1,1,Friendly,false
+hist-d8526bbf65b8,2020-10-08,uzbekistan,iran,1,2,Friendly,false
+hist-6f259a68491c,2020-10-09,morocco,senegal,3,1,Friendly,false
+hist-5441c56011db,2020-10-10,spain,switzerland,1,0,UEFA Nations League,false
+hist-2ac49a075c81,2020-10-11,france,portugal,0,0,UEFA Nations League,false
+hist-68ef6ce51891,2020-10-11,croatia,sweden,2,1,UEFA Nations League,false
+hist-9850d025a9f2,2020-10-11,bosnia-herzegovina,netherlands,0,0,UEFA Nations League,false
+hist-c91c84245964,2020-10-11,england,belgium,2,1,UEFA Nations League,false
+hist-2a5e76c4c661,2020-10-12,ghana,qatar,5,1,Friendly,true
+hist-0b2ae7bc1a3c,2020-10-13,germany,switzerland,3,3,UEFA Nations League,false
+hist-9e92f8995eba,2020-10-13,japan,ivory-coast,1,0,Friendly,true
+hist-e7784adee74b,2020-10-13,ecuador,uruguay,4,2,FIFA World Cup qualification,false
+hist-ed1ecf09cb21,2020-10-13,mexico,algeria,2,2,Friendly,true
+hist-03cd80b84449,2020-10-14,croatia,france,1,2,UEFA Nations League,false
+hist-8b075e1059eb,2020-10-14,scotland,czechia,1,0,UEFA Nations League,false
+hist-d630c35f83bb,2020-10-14,portugal,sweden,3,0,UEFA Nations League,false
+hist-62e324448730,2020-11-11,netherlands,spain,1,1,Friendly,false
+hist-be4de1faf111,2020-11-11,belgium,switzerland,2,1,Friendly,false
+hist-d052d93277fd,2020-11-11,turkiye,croatia,3,3,Friendly,false
+hist-d7f48e196f34,2020-11-11,germany,czechia,1,0,Friendly,false
+hist-4f7b511f2a55,2020-11-12,jordan,iraq,0,0,Friendly,true
+hist-5cbc8f620bd5,2020-11-12,argentina,paraguay,1,1,FIFA World Cup qualification,false
+hist-624ab75eb06a,2020-11-12,bosnia-herzegovina,iran,0,2,Friendly,false
+hist-bb9534f1819b,2020-11-13,japan,panama,1,0,Friendly,true
+hist-ca6583094f68,2020-11-13,colombia,uruguay,0,3,FIFA World Cup qualification,false
+hist-8b7ea3d361d3,2020-11-14,switzerland,spain,1,1,UEFA Nations League,false
+hist-9a371c80024d,2020-11-14,mexico,south-korea,3,2,Friendly,true
+hist-a47073317db9,2020-11-14,sweden,croatia,2,1,UEFA Nations League,false
+hist-c4bd6a565352,2020-11-14,portugal,france,0,1,UEFA Nations League,false
+hist-5dd7ac9aa444,2020-11-15,netherlands,bosnia-herzegovina,3,1,UEFA Nations League,false
+hist-6fbc55aded9b,2020-11-15,belgium,england,2,0,UEFA Nations League,false
+hist-59327d342fc6,2020-11-16,usa,panama,6,2,Friendly,true
+hist-0fb0f197c6cf,2020-11-17,ecuador,colombia,6,1,FIFA World Cup qualification,false
+hist-15f3f933ea3d,2020-11-17,japan,mexico,0,2,Friendly,true
+hist-21492144dbf0,2020-11-17,south-korea,qatar,2,1,Friendly,true
+hist-284360247122,2020-11-17,croatia,portugal,2,3,UEFA Nations League,false
+hist-8b98a99c8024,2020-11-17,spain,germany,6,0,UEFA Nations League,false
+hist-a06748e161d7,2020-11-17,france,sweden,4,2,UEFA Nations League,false
+hist-ef1da485032a,2020-11-17,uzbekistan,iraq,1,2,Friendly,true
+hist-fce11dc387a9,2020-11-17,uruguay,brazil,0,2,FIFA World Cup qualification,false
+hist-16012dbce6dd,2020-11-18,austria,norway,1,1,UEFA Nations League,false
+hist-052f1d0a53f6,2021-02-15,jordan,uzbekistan,0,2,Friendly,true
+hist-cce01a933fd7,2021-03-24,turkiye,netherlands,4,2,FIFA World Cup qualification,false
+hist-08b13c87ff69,2021-03-25,scotland,austria,2,2,FIFA World Cup qualification,false
+hist-bfba84f69eec,2021-03-25,south-africa,ghana,1,1,African Cup of Nations qualification,false
+hist-cd8b2b0d1f93,2021-03-25,japan,south-korea,3,0,Friendly,false
+hist-3258ce10bc01,2021-03-27,czechia,belgium,1,1,FIFA World Cup qualification,false
+hist-8b86bf8ea135,2021-03-27,norway,turkiye,0,3,FIFA World Cup qualification,true
+hist-1aa0850681da,2021-03-29,uzbekistan,iraq,0,1,Friendly,false
+hist-e68b8ef2a36b,2021-03-31,bosnia-herzegovina,france,0,1,FIFA World Cup qualification,false
+hist-18312d238713,2021-05-30,switzerland,usa,2,1,Friendly,false
+hist-04275676b558,2021-06-02,england,austria,1,0,Friendly,false
+hist-e6b9aeafc83f,2021-06-02,netherlands,scotland,2,2,Friendly,true
+hist-6425613e4d38,2021-06-03,uruguay,paraguay,0,0,FIFA World Cup qualification,false
+hist-475e9b99b5de,2021-06-04,spain,portugal,0,0,Friendly,false
+hist-c491a831a608,2021-06-04,brazil,ecuador,2,0,FIFA World Cup qualification,false
+hist-50da5be7b766,2021-06-06,usa,mexico,3,2,CONCACAF Nations League,false
+hist-b557ab888f48,2021-06-06,belgium,croatia,1,0,Friendly,false
+hist-33fae929aa3c,2021-06-08,morocco,ghana,1,0,Friendly,false
+hist-f4e8a8589f75,2021-06-08,colombia,argentina,2,2,FIFA World Cup qualification,false
+hist-f90e434772e8,2021-06-08,paraguay,brazil,0,2,FIFA World Cup qualification,false
+hist-eb66b0fa738b,2021-06-11,tunisia,algeria,0,2,Friendly,false
+hist-0d55d1885faa,2021-06-12,panama,curacao,2,1,FIFA World Cup qualification,false
+hist-7303d5040a18,2021-06-12,haiti,canada,0,1,FIFA World Cup qualification,false
+hist-8f6e86ed520e,2021-06-12,ghana,ivory-coast,0,0,Friendly,false
+hist-42dcb4a9dd25,2021-06-13,colombia,ecuador,1,0,Copa América,true
+hist-d918247b13e7,2021-06-13,england,croatia,1,0,UEFA Euro,false
+hist-93aad8de5510,2021-06-14,spain,sweden,0,0,UEFA Euro,false
+hist-9d9b7efabe56,2021-06-14,scotland,czechia,0,2,UEFA Euro,false
+hist-0007e4c1daec,2021-06-15,germany,france,0,1,UEFA Euro,false
+hist-0f243ee2b6d7,2021-06-15,canada,haiti,3,0,FIFA World Cup qualification,true
+hist-65063b213af4,2021-06-15,iran,iraq,1,0,FIFA World Cup qualification,false
+hist-a044bc429825,2021-06-15,australia,jordan,1,0,FIFA World Cup qualification,true
+hist-c0aab9bbabf1,2021-06-15,saudi-arabia,uzbekistan,3,0,FIFA World Cup qualification,false
+hist-f0cb4a40e034,2021-06-15,curacao,panama,0,0,FIFA World Cup qualification,false
+hist-a7b1fea39da9,2021-06-17,netherlands,austria,2,0,UEFA Euro,false
+hist-484a63167680,2021-06-18,croatia,czechia,1,1,UEFA Euro,true
+hist-e7763ce474f5,2021-06-18,england,scotland,0,0,UEFA Euro,false
+hist-e9760b11be7c,2021-06-18,argentina,uruguay,1,0,Copa América,true
+hist-af68714774df,2021-06-19,germany,portugal,4,2,UEFA Euro,false
+hist-4e525b072b43,2021-06-20,switzerland,turkiye,3,1,UEFA Euro,true
+hist-28a740a7a9a7,2021-06-21,argentina,paraguay,1,0,Copa América,true
+hist-d6d40fbb1252,2021-06-22,england,czechia,1,0,UEFA Euro,false
+hist-d74cd19c6181,2021-06-22,scotland,croatia,1,3,UEFA Euro,false
+hist-39b7c16dacf6,2021-06-23,brazil,colombia,2,1,Copa América,false
+hist-4a4cf703a5ae,2021-06-23,portugal,france,2,2,UEFA Euro,true
+hist-6a2d77466bfb,2021-06-27,brazil,ecuador,1,1,Copa América,false
+hist-95a49298d201,2021-06-27,belgium,portugal,1,0,UEFA Euro,true
+hist-e726f9e52b69,2021-06-27,netherlands,czechia,0,2,UEFA Euro,true
+hist-17d496d3c72c,2021-06-28,france,switzerland,3,3,UEFA Euro,true
+hist-4205dc1d68c7,2021-06-28,uruguay,paraguay,1,0,Copa América,true
+hist-a6d07aca504a,2021-06-28,croatia,spain,3,5,UEFA Euro,true
+hist-273c1b2528ce,2021-06-29,england,germany,2,0,UEFA Euro,false
+hist-f10952103f22,2021-06-30,mexico,panama,3,0,Friendly,true
+hist-357e3498f374,2021-07-02,switzerland,spain,1,1,UEFA Euro,true
+hist-5ed9e8bc9603,2021-07-03,uruguay,colombia,0,0,Copa América,true
+hist-f13bfc9b7ece,2021-07-03,argentina,ecuador,3,0,Copa América,true
+hist-42c8ee5998ee,2021-07-06,argentina,colombia,1,1,Copa América,true
+hist-ab00da4a5a7f,2021-07-10,brazil,argentina,0,1,Copa América,false
+hist-3f5dcc63077a,2021-07-11,usa,haiti,1,0,Gold Cup,false
+hist-909c1f0afd08,2021-07-13,qatar,panama,3,3,Gold Cup,true
+hist-efaa8a53741a,2021-07-15,haiti,canada,1,4,Gold Cup,true
+hist-4eb8b0884c30,2021-07-18,usa,canada,1,0,Gold Cup,false
+hist-c01d23a5b126,2021-07-18,south-africa,senegal,0,0,COSAFA Cup,false
+hist-9322585c3747,2021-07-29,mexico,canada,2,1,Gold Cup,true
+hist-c3dba3e86229,2021-07-29,usa,qatar,1,0,Gold Cup,false
+hist-038f7d0e0685,2021-08-01,usa,mexico,1,0,Gold Cup,false
+hist-0697f53d928b,2021-09-01,norway,netherlands,1,1,FIFA World Cup qualification,false
+hist-9627283b6d28,2021-09-01,france,bosnia-herzegovina,1,1,FIFA World Cup qualification,false
+hist-17af2e3197cc,2021-09-02,sweden,spain,2,1,FIFA World Cup qualification,false
+hist-3863936443d5,2021-09-02,south-korea,iraq,0,0,FIFA World Cup qualification,false
+hist-4b1c5218a7be,2021-09-02,ecuador,paraguay,2,0,FIFA World Cup qualification,false
+hist-c20ee36d88b4,2021-09-04,haiti,jordan,2,0,Friendly,true
+hist-eaf06959e9c8,2021-09-04,qatar,portugal,1,3,Friendly,true
+hist-0230a2b23afa,2021-09-05,belgium,czechia,3,0,FIFA World Cup qualification,false
+hist-34fa2383f771,2021-09-05,paraguay,colombia,1,1,FIFA World Cup qualification,false
+hist-8168f057c68e,2021-09-05,sweden,uzbekistan,2,1,Friendly,false
+hist-881031b35f01,2021-09-05,usa,canada,1,1,FIFA World Cup qualification,false
+hist-4b55e10f7af8,2021-09-06,south-africa,ghana,1,0,FIFA World Cup qualification,false
+hist-2574de45ebf7,2021-09-07,iraq,iran,0,3,FIFA World Cup qualification,true
+hist-386ff8fd9a01,2021-09-07,austria,scotland,0,1,FIFA World Cup qualification,false
+hist-71aa3be6781d,2021-09-07,netherlands,turkiye,6,1,FIFA World Cup qualification,false
+hist-2a620a8d38f0,2021-09-08,panama,mexico,1,1,FIFA World Cup qualification,false
+hist-b99074727443,2021-09-09,uruguay,ecuador,1,0,FIFA World Cup qualification,false
+hist-167b730cdf54,2021-10-07,paraguay,argentina,0,0,FIFA World Cup qualification,false
+hist-18687df63413,2021-10-07,belgium,france,2,3,UEFA Nations League,true
+hist-3678b7a33ed2,2021-10-07,saudi-arabia,japan,1,0,FIFA World Cup qualification,false
+hist-9699d6ab0596,2021-10-07,mexico,canada,1,1,FIFA World Cup qualification,false
+hist-b966984cba53,2021-10-07,uruguay,colombia,0,0,FIFA World Cup qualification,false
+hist-356295eb09d7,2021-10-08,turkiye,norway,1,1,FIFA World Cup qualification,false
+hist-24722f705299,2021-10-09,curacao,new-zealand,1,2,Friendly,true
+hist-a3fba34d661f,2021-10-09,portugal,qatar,3,0,Friendly,false
+hist-48ee4c055b92,2021-10-10,colombia,brazil,0,0,FIFA World Cup qualification,false
+hist-629391dfd5b5,2021-10-10,spain,france,1,2,UEFA Nations League,true
+hist-a52c09d13cfc,2021-10-10,panama,usa,1,0,FIFA World Cup qualification,false
+hist-ecb8c411602b,2021-10-10,argentina,uruguay,3,0,FIFA World Cup qualification,false
+hist-c51fa1a5fe1b,2021-10-12,japan,australia,2,1,FIFA World Cup qualification,false
+hist-c6417bd5d042,2021-10-12,jordan,uzbekistan,3,0,Friendly,false
+hist-ddd4172fdef6,2021-10-12,iran,south-korea,1,1,FIFA World Cup qualification,false
+hist-e7dccd7c5dd2,2021-10-13,canada,panama,4,1,FIFA World Cup qualification,false
+hist-99bcf44fa6cd,2021-10-14,brazil,uruguay,4,1,FIFA World Cup qualification,false
+hist-9fbf72ddb977,2021-10-14,colombia,ecuador,0,0,FIFA World Cup qualification,false
+hist-513d8613e47e,2021-10-27,mexico,ecuador,2,3,Friendly,true
+hist-ba9046346fe9,2021-11-11,brazil,colombia,1,0,FIFA World Cup qualification,false
+hist-d095dd08ef8c,2021-11-11,australia,saudi-arabia,0,0,FIFA World Cup qualification,false
+hist-1dcd4129169b,2021-11-12,usa,mexico,2,0,FIFA World Cup qualification,false
+hist-710453464c85,2021-11-12,uruguay,argentina,0,1,FIFA World Cup qualification,false
+hist-16497418c4ce,2021-11-14,spain,sweden,1,0,FIFA World Cup qualification,false
+hist-8cb590877455,2021-11-14,ghana,south-africa,1,0,FIFA World Cup qualification,false
+hist-69264652d765,2021-11-16,argentina,brazil,0,0,FIFA World Cup qualification,false
+hist-741894280a60,2021-11-16,colombia,paraguay,0,0,FIFA World Cup qualification,false
+hist-9823f7160c9f,2021-11-16,canada,mexico,2,1,FIFA World Cup qualification,false
+hist-98affdb66c83,2021-11-16,netherlands,norway,2,0,FIFA World Cup qualification,false
+hist-d90d2c6ddd0b,2021-11-16,iraq,south-korea,0,3,FIFA World Cup qualification,true
+hist-79f9468cbdb4,2021-12-01,saudi-arabia,jordan,0,1,Arab Cup,true
+hist-0cc22f5430cb,2021-12-04,jordan,morocco,0,4,Arab Cup,true
+hist-3693cf0fac1d,2021-12-06,qatar,iraq,3,0,Arab Cup,false
+hist-1fb8b91a282a,2021-12-07,algeria,egypt,1,1,Arab Cup,true
+hist-ed6b78fda90b,2021-12-07,morocco,saudi-arabia,1,0,Arab Cup,true
+hist-007b14fee87e,2021-12-11,egypt,jordan,3,1,Arab Cup,true
+hist-38f063d8c5da,2021-12-11,morocco,algeria,2,2,Arab Cup,true
+hist-61a0f5d8b4e3,2021-12-15,qatar,algeria,1,2,Arab Cup,false
+hist-9b5ee0802814,2021-12-15,tunisia,egypt,1,0,Arab Cup,true
+hist-640feccaf943,2021-12-18,qatar,egypt,0,0,Arab Cup,false
+hist-737ac03dff5f,2021-12-18,usa,bosnia-herzegovina,1,0,Friendly,false
+hist-8c115aed335b,2021-12-18,tunisia,algeria,0,2,Arab Cup,true
+hist-7be10f739f51,2022-01-05,algeria,ghana,3,0,Friendly,true
+hist-d14d6c9d915f,2022-01-10,morocco,ghana,1,0,African Cup of Nations,true
+hist-6ad3b9eef038,2022-01-20,ivory-coast,algeria,3,1,African Cup of Nations,true
+hist-a3f70fb8a0b8,2022-01-26,ivory-coast,egypt,0,0,African Cup of Nations,true
+hist-7b50835fe4c1,2022-01-27,paraguay,uruguay,0,1,FIFA World Cup qualification,false
+hist-c614598e8e02,2022-01-27,iran,iraq,1,0,FIFA World Cup qualification,false
+hist-efbb8cdaf240,2022-01-27,ecuador,brazil,1,1,FIFA World Cup qualification,false
+hist-225a5e8aa811,2022-01-28,jordan,new-zealand,3,1,Friendly,true
+hist-2613857796b6,2022-01-30,canada,usa,2,0,FIFA World Cup qualification,false
+hist-857a6dc2d0a8,2022-01-30,egypt,morocco,2,1,African Cup of Nations,true
+hist-11088277cee9,2022-02-01,japan,saudi-arabia,2,0,FIFA World Cup qualification,false
+hist-85ba8449c9b2,2022-02-01,argentina,colombia,1,0,FIFA World Cup qualification,false
+hist-f7ec0ed0ba9b,2022-02-01,brazil,paraguay,4,0,FIFA World Cup qualification,false
+hist-6a174e293651,2022-02-02,mexico,panama,1,0,FIFA World Cup qualification,false
+hist-3a638e534a14,2022-02-06,senegal,egypt,0,0,African Cup of Nations,true
+hist-76bd534c0498,2022-03-24,portugal,turkiye,3,1,FIFA World Cup qualification,false
+hist-869c6953058e,2022-03-24,paraguay,ecuador,3,1,FIFA World Cup qualification,false
+hist-8c320938f9e2,2022-03-24,south-korea,iran,2,0,FIFA World Cup qualification,false
+hist-9770ab98c756,2022-03-24,sweden,czechia,1,0,FIFA World Cup qualification,false
+hist-9dbdaaab5593,2022-03-24,mexico,usa,0,0,FIFA World Cup qualification,false
+hist-e0f961b49feb,2022-03-24,australia,japan,0,2,FIFA World Cup qualification,false
+hist-d7a324bfd283,2022-03-25,egypt,senegal,1,0,FIFA World Cup qualification,false
+hist-dfaef24e7046,2022-03-25,france,ivory-coast,2,1,Friendly,false
+hist-b7f090c06f1f,2022-03-26,england,switzerland,2,1,Friendly,false
+hist-04030c5600dd,2022-03-27,usa,panama,5,1,FIFA World Cup qualification,false
+hist-277156f6d1a8,2022-03-29,france,south-africa,5,0,Friendly,false
+hist-2cd423af3688,2022-03-29,austria,scotland,2,2,Friendly,false
+hist-40e46b625a66,2022-03-29,england,ivory-coast,3,0,Friendly,false
+hist-6f177cac16ac,2022-03-29,saudi-arabia,australia,1,0,FIFA World Cup qualification,false
+hist-93095863fb8a,2022-03-29,netherlands,germany,1,1,Friendly,false
+hist-c4e41890eed7,2022-03-29,ecuador,argentina,1,1,FIFA World Cup qualification,false
+hist-cdbbf4f87270,2022-03-29,senegal,egypt,1,0,FIFA World Cup qualification,false
+hist-c1ea53814400,2022-03-30,panama,canada,1,0,FIFA World Cup qualification,false
+hist-39f7805a595d,2022-06-01,usa,morocco,3,0,Friendly,false
+hist-503b40486838,2022-06-01,australia,jordan,2,1,Friendly,true
+hist-1fa338f0dac2,2022-06-02,mexico,uruguay,0,3,Friendly,true
+hist-2232365102ac,2022-06-02,japan,paraguay,4,1,Friendly,false
+hist-537262d285e3,2022-06-02,south-korea,brazil,1,5,Friendly,false
+hist-977714f10148,2022-06-02,czechia,switzerland,2,1,UEFA Nations League,false
+hist-e331e1cb3105,2022-06-02,spain,portugal,1,1,UEFA Nations League,false
+hist-4c2b459120fb,2022-06-03,croatia,austria,0,3,UEFA Nations League,false
+hist-f38aedcec25e,2022-06-03,belgium,netherlands,1,4,UEFA Nations League,false
+hist-0ddba105c6c6,2022-06-05,portugal,switzerland,4,0,UEFA Nations League,false
+hist-101c661a0ff1,2022-06-05,czechia,spain,2,2,UEFA Nations League,false
+hist-20fc97661afa,2022-06-05,saudi-arabia,colombia,0,1,Friendly,true
+hist-47d12769ebef,2022-06-05,usa,uruguay,0,0,Friendly,false
+hist-70c2534d6d0e,2022-06-05,mexico,ecuador,0,0,Friendly,true
+hist-a06039749de0,2022-06-05,sweden,norway,1,2,UEFA Nations League,false
+hist-b56482acc663,2022-06-06,japan,brazil,0,1,Friendly,false
+hist-ca25aae20cb2,2022-06-06,croatia,france,1,1,UEFA Nations League,false
+hist-e5a7102cbbea,2022-06-07,germany,england,1,1,UEFA Nations League,false
+hist-288f398b91da,2022-06-09,switzerland,spain,0,1,UEFA Nations League,false
+hist-657d30ff725c,2022-06-09,morocco,south-africa,2,1,African Cup of Nations qualification,false
+hist-67a5ff3b674c,2022-06-09,portugal,czechia,2,0,UEFA Nations League,false
+hist-7c52a89a08da,2022-06-09,canada,curacao,4,0,CONCACAF Nations League,false
+hist-439562dbef32,2022-06-10,south-korea,paraguay,2,2,Friendly,false
+hist-49d0ef30a42b,2022-06-10,japan,ghana,4,1,Kirin Cup,false
+hist-ac99b3ed2104,2022-06-10,austria,france,1,1,UEFA Nations League,false
+hist-f8a673db594c,2022-06-11,uruguay,panama,5,0,Friendly,false
+hist-b9623a327398,2022-06-12,norway,sweden,3,2,UEFA Nations League,false
+hist-cf53b7eab340,2022-06-12,spain,czechia,2,0,UEFA Nations League,false
+hist-d1e6dacd3865,2022-06-12,iran,algeria,1,2,Friendly,true
+hist-e85e609bdf91,2022-06-12,switzerland,portugal,1,0,UEFA Nations League,false
+hist-3d4455e0a48b,2022-06-13,france,croatia,0,1,UEFA Nations League,false
+hist-4325b900c0c3,2022-06-14,south-korea,egypt,4,1,Friendly,false
+hist-d49f28b8c3d2,2022-06-14,japan,tunisia,0,3,Kirin Cup,false
+hist-84fc0e81d7f5,2022-07-27,japan,south-korea,3,0,EAFF Championship,false
+hist-7761e6ad21e0,2022-08-31,mexico,paraguay,0,1,Friendly,true
+hist-74f6454e951b,2022-09-22,france,austria,2,0,UEFA Nations League,false
+hist-8d5197770319,2022-09-22,australia,new-zealand,1,0,Friendly,false
+hist-1138c6d03bb6,2022-09-23,canada,qatar,2,0,Friendly,true
+hist-2ca8e99dc10b,2022-09-23,iran,uruguay,1,0,Friendly,true
+hist-56667c124402,2022-09-23,japan,usa,2,0,Kirin Challenge Cup,true
+hist-8af6ac2b12eb,2022-09-23,brazil,ghana,3,0,Friendly,true
+hist-e3abc18b0499,2022-09-23,saudi-arabia,ecuador,0,0,Friendly,true
+hist-22c3cab3e88e,2022-09-24,spain,switzerland,1,2,UEFA Nations League,false
+hist-e6e07bf0670d,2022-09-24,czechia,portugal,0,4,UEFA Nations League,false
+hist-823a75390591,2022-09-25,austria,croatia,1,3,UEFA Nations League,false
+hist-cc03388eee11,2022-09-25,netherlands,belgium,1,0,UEFA Nations League,false
+hist-e059f188d90d,2022-09-25,new-zealand,australia,0,2,Friendly,false
+hist-ce63b17eacea,2022-09-26,england,germany,3,3,UEFA Nations League,false
+hist-07d3a0380fe2,2022-09-27,ecuador,japan,0,0,Kirin Challenge Cup,true
+hist-105ff697fdb1,2022-09-27,saudi-arabia,usa,0,0,Friendly,true
+hist-2012deeff700,2022-09-27,brazil,tunisia,5,1,Friendly,true
+hist-227125359810,2022-09-27,iran,senegal,1,1,Friendly,true
+hist-2a21726fb3f9,2022-09-27,switzerland,czechia,2,1,UEFA Nations League,false
+hist-4ab7358ce569,2022-09-27,paraguay,morocco,0,0,Friendly,true
+hist-7968aabd408f,2022-09-27,canada,uruguay,0,2,Friendly,true
+hist-907def10b0f0,2022-09-27,portugal,spain,0,1,UEFA Nations League,false
+hist-d06736bbb583,2022-09-27,mexico,colombia,2,3,Friendly,true
+hist-e5d06a29ad65,2022-11-07,qatar,panama,2,1,Friendly,true
+hist-914ef53409b0,2022-11-09,mexico,iraq,4,0,Friendly,true
+hist-f5804b8429cc,2022-11-10,saudi-arabia,panama,1,1,Friendly,true
+hist-fb6730a72fa7,2022-11-12,iraq,ecuador,0,0,Friendly,true
+hist-3141fc1efad1,2022-11-16,saudi-arabia,croatia,0,1,Friendly,false
+hist-863f454e03e5,2022-11-16,iran,tunisia,0,2,Friendly,true
+hist-8a1a1a8a1961,2022-11-16,turkiye,scotland,2,1,Friendly,false
+hist-8f658836987e,2022-11-16,mexico,sweden,1,2,Friendly,true
+hist-147628ea3ed3,2022-11-17,japan,canada,1,2,Friendly,true
+hist-7502a38573f6,2022-11-17,switzerland,ghana,0,2,Friendly,true
+hist-9987f119a4a5,2022-11-17,jordan,spain,1,3,Friendly,false
+hist-981e2edc3778,2022-11-18,egypt,belgium,2,1,Friendly,true
+hist-66f5425105de,2022-11-19,colombia,paraguay,2,0,Friendly,true
+hist-9a0e54f8e15a,2022-11-19,turkiye,czechia,2,1,Friendly,false
+hist-faacef07b522,2022-11-19,sweden,algeria,2,0,Friendly,false
+hist-bd97bb363f33,2022-11-20,qatar,ecuador,0,2,FIFA World Cup,false
+hist-0a54d42a9ca9,2022-11-21,england,iran,6,2,FIFA World Cup,true
+hist-3e821da15b5e,2022-11-21,senegal,netherlands,0,2,FIFA World Cup,true
+hist-ca6852977591,2022-11-22,argentina,saudi-arabia,1,2,FIFA World Cup,true
+hist-d0a093ea288f,2022-11-22,france,australia,4,1,FIFA World Cup,true
+hist-26206c4f5666,2022-11-23,germany,japan,1,2,FIFA World Cup,true
+hist-a241a11185be,2022-11-23,morocco,croatia,0,0,FIFA World Cup,true
+hist-c571239d2a01,2022-11-23,belgium,canada,1,0,FIFA World Cup,true
+hist-71781aea3491,2022-11-24,uruguay,south-korea,0,0,FIFA World Cup,true
+hist-92e9189c8054,2022-11-24,portugal,ghana,3,2,FIFA World Cup,true
+hist-27ce3e8f029f,2022-11-25,england,usa,0,0,FIFA World Cup,true
+hist-72c6a98ab390,2022-11-25,netherlands,ecuador,1,1,FIFA World Cup,true
+hist-cf240e887376,2022-11-25,qatar,senegal,1,3,FIFA World Cup,false
+hist-7fe8e2cd35e8,2022-11-26,tunisia,australia,0,1,FIFA World Cup,true
+hist-d472ada09373,2022-11-26,argentina,mexico,2,0,FIFA World Cup,true
+hist-61ddbad3abbd,2022-11-27,spain,germany,1,1,FIFA World Cup,true
+hist-73fcf22b6b6b,2022-11-27,croatia,canada,4,1,FIFA World Cup,true
+hist-b64391df5d5d,2022-11-27,belgium,morocco,0,2,FIFA World Cup,true
+hist-4347f521063b,2022-11-28,portugal,uruguay,2,0,FIFA World Cup,true
+hist-4b6ef0cfd7c3,2022-11-28,south-korea,ghana,2,3,FIFA World Cup,true
+hist-bc2056f0e503,2022-11-28,brazil,switzerland,1,0,FIFA World Cup,true
+hist-75b8338634ae,2022-11-29,qatar,netherlands,0,2,FIFA World Cup,false
+hist-b76df49d2982,2022-11-29,iran,usa,0,1,FIFA World Cup,true
+hist-c2742f25a250,2022-11-29,ecuador,senegal,1,2,FIFA World Cup,true
+hist-7146f3eec684,2022-11-30,saudi-arabia,mexico,1,2,FIFA World Cup,true
+hist-ee6aebfb411e,2022-11-30,tunisia,france,1,0,FIFA World Cup,true
+hist-00384437f4e8,2022-12-01,croatia,belgium,0,0,FIFA World Cup,true
+hist-22699b3abb91,2022-12-01,canada,morocco,1,2,FIFA World Cup,true
+hist-535ff7c6ec7a,2022-12-01,japan,spain,2,1,FIFA World Cup,true
+hist-04b2647a0eaf,2022-12-02,ghana,uruguay,0,2,FIFA World Cup,true
+hist-af9882edb810,2022-12-02,south-korea,portugal,2,1,FIFA World Cup,true
+hist-038cc2f8b352,2022-12-03,netherlands,usa,3,1,FIFA World Cup,true
+hist-4d72e3ce8c85,2022-12-03,argentina,australia,2,1,FIFA World Cup,true
+hist-696be1446042,2022-12-04,england,senegal,3,0,FIFA World Cup,true
+hist-8adebb14cfac,2022-12-05,brazil,south-korea,4,1,FIFA World Cup,true
+hist-bb762b6c44fd,2022-12-05,japan,croatia,1,1,FIFA World Cup,true
+hist-aa22931ec5db,2022-12-06,morocco,spain,0,0,FIFA World Cup,true
+hist-d3971969128a,2022-12-06,portugal,switzerland,6,1,FIFA World Cup,true
+hist-b906f093e41d,2022-12-09,netherlands,argentina,2,2,FIFA World Cup,true
+hist-ff1a0e5c925f,2022-12-09,croatia,brazil,1,1,FIFA World Cup,true
+hist-14aa073987c6,2022-12-10,england,france,1,2,FIFA World Cup,true
+hist-390578ff6fda,2022-12-10,morocco,portugal,1,0,FIFA World Cup,true
+hist-3936ba571645,2022-12-13,argentina,croatia,3,0,FIFA World Cup,true
+hist-e59773aa0ebd,2022-12-14,france,morocco,2,0,FIFA World Cup,true
+hist-05b3242448c0,2022-12-17,croatia,morocco,2,1,FIFA World Cup,true
+hist-7f52d6e298dd,2022-12-18,argentina,france,3,3,FIFA World Cup,true
+hist-deca285586f1,2023-01-09,iraq,saudi-arabia,2,0,Gulf Cup,false
+hist-8005ec3e9404,2023-01-16,iraq,qatar,2,1,Gulf Cup,false
+hist-485dbca7b88d,2023-01-28,usa,colombia,0,0,Friendly,false
+hist-62251aa63b84,2023-03-23,argentina,panama,2,0,Friendly,false
+hist-062f4e4ee649,2023-03-24,japan,uruguay,1,1,Friendly,false
+hist-51cbbf2bb021,2023-03-24,france,netherlands,4,0,UEFA Euro qualification,false
+hist-7542bec8a078,2023-03-24,sweden,belgium,0,3,UEFA Euro qualification,false
+hist-b3bc4f758860,2023-03-24,south-korea,colombia,2,2,Friendly,false
+hist-de9238417b8a,2023-03-24,australia,ecuador,3,1,Friendly,false
+hist-12b023eb3f00,2023-03-25,spain,norway,3,0,UEFA Euro qualification,false
+hist-52a0d6caff21,2023-03-25,curacao,canada,0,2,CONCACAF Nations League,false
+hist-d537670f0067,2023-03-25,morocco,brazil,2,1,Friendly,false
+hist-03f6bb32cb67,2023-03-28,turkiye,croatia,0,2,UEFA Euro qualification,false
+hist-17d2497360a7,2023-03-28,japan,colombia,1,2,Friendly,false
+hist-55c2270b04d6,2023-03-28,scotland,spain,2,0,UEFA Euro qualification,false
+hist-a3c7e043bbda,2023-03-28,australia,ecuador,1,2,Friendly,false
+hist-c64d7b9db4ca,2023-03-28,south-korea,uruguay,1,2,Friendly,false
+hist-eb428edf17e6,2023-03-28,argentina,curacao,7,0,Friendly,false
+hist-f20a293e8bd5,2023-03-28,germany,belgium,2,3,Friendly,false
+hist-5a30271284e2,2023-04-19,usa,mexico,1,1,Friendly,false
+hist-f702e197ca8b,2023-06-14,netherlands,croatia,2,4,UEFA Nations League,false
+hist-48fe5803d714,2023-06-15,usa,mexico,3,0,CONCACAF Nations League,false
+hist-6ff0e3f88ec8,2023-06-15,argentina,australia,2,0,Friendly,true
+hist-bdd5339cb1f0,2023-06-15,panama,canada,0,2,CONCACAF Nations League,true
+hist-426248e3fe36,2023-06-16,sweden,new-zealand,4,1,Friendly,false
+hist-a1f747c7b5f9,2023-06-16,colombia,iraq,1,0,Friendly,true
+hist-9c25c2cf0f52,2023-06-17,south-africa,morocco,2,1,African Cup of Nations qualification,false
+hist-af78f68699d0,2023-06-17,norway,scotland,1,2,UEFA Euro qualification,false
+hist-bfcd536e41f3,2023-06-17,belgium,austria,1,1,UEFA Euro qualification,false
+hist-e767ce11f099,2023-06-17,portugal,bosnia-herzegovina,3,0,UEFA Euro qualification,false
+hist-8580f63129f0,2023-06-18,usa,canada,2,0,CONCACAF Nations League,false
+hist-bf855ba97e84,2023-06-18,panama,mexico,0,1,CONCACAF Nations League,true
+hist-d04037672e52,2023-06-18,croatia,spain,0,0,UEFA Nations League,true
+hist-3b94af4cd879,2023-06-20,austria,sweden,2,0,UEFA Euro qualification,false
+hist-41f6c2d044b7,2023-06-20,germany,colombia,0,2,Friendly,false
+hist-6d4c7065fa14,2023-06-20,uzbekistan,iran,0,1,CAFA Nations Cup,false
+hist-d996d47fc534,2023-06-20,algeria,tunisia,1,1,Friendly,false
+hist-e2bffe776fd2,2023-06-20,brazil,senegal,2,4,Friendly,true
+hist-e1ed7b17c3eb,2023-06-25,haiti,qatar,2,1,Gold Cup,true
+hist-f23b16061f45,2023-06-29,haiti,mexico,1,3,Gold Cup,true
+hist-29cd33b312b4,2023-07-02,mexico,qatar,0,1,Gold Cup,true
+hist-9554943cc71b,2023-07-08,panama,qatar,4,0,Gold Cup,true
+hist-39c80e524247,2023-07-09,usa,canada,2,2,Gold Cup,false
+hist-20027b380bce,2023-07-12,usa,panama,1,1,Gold Cup,false
+hist-f7d1f7b92e43,2023-07-16,mexico,panama,1,0,Gold Cup,true
+hist-817cf38395ad,2023-09-07,norway,jordan,6,0,Friendly,false
+hist-a478eac85c67,2023-09-07,argentina,ecuador,1,0,FIFA World Cup qualification,false
+hist-6c70b08033c7,2023-09-09,usa,uzbekistan,3,0,Friendly,false
+hist-a1080a2456d4,2023-09-09,germany,japan,1,4,Friendly,false
+hist-be4cbd98142c,2023-09-09,mexico,australia,2,2,Friendly,true
+hist-083289138c68,2023-09-12,egypt,tunisia,1,3,Friendly,false
+hist-39e9929bb9b1,2023-09-12,germany,france,2,1,Friendly,false
+hist-5944a6fe92a9,2023-09-12,japan,turkiye,4,2,Friendly,true
+hist-687186fc8314,2023-09-12,scotland,england,1,3,Friendly,false
+hist-a07dd424dc98,2023-09-12,mexico,uzbekistan,3,3,Friendly,true
+hist-a8104d534028,2023-09-12,sweden,austria,1,3,UEFA Euro qualification,false
+hist-a95508561c93,2023-09-12,senegal,algeria,0,1,Friendly,false
+hist-e2e65394f972,2023-09-12,south-korea,saudi-arabia,1,0,Friendly,true
+hist-e63439fe9233,2023-09-12,ecuador,uruguay,2,1,FIFA World Cup qualification,false
+hist-508446f9b353,2023-10-12,colombia,uruguay,2,2,FIFA World Cup qualification,false
+hist-525d6bd5ceb5,2023-10-12,croatia,turkiye,0,1,UEFA Euro qualification,false
+hist-62618a48fdf7,2023-10-12,spain,scotland,2,0,UEFA Euro qualification,false
+hist-a48bac81fbf2,2023-10-12,argentina,paraguay,1,0,FIFA World Cup qualification,false
+hist-177052a69978,2023-10-13,south-korea,tunisia,4,0,Friendly,false
+hist-2e3222757399,2023-10-13,austria,belgium,2,3,UEFA Euro qualification,false
+hist-3ac5b1c5cd0f,2023-10-13,netherlands,france,1,2,UEFA Euro qualification,false
+hist-5b229295d566,2023-10-13,curacao,panama,1,2,CONCACAF Nations League,false
+hist-7b437d03355f,2023-10-13,england,australia,1,0,Friendly,false
+hist-d03d472c6648,2023-10-13,japan,canada,4,1,Friendly,false
+hist-d98a461812d7,2023-10-13,iraq,qatar,0,0,Friendly,true
+hist-0e3e043d294a,2023-10-14,mexico,ghana,2,0,Friendly,true
+hist-8afdfca6648c,2023-10-14,usa,germany,1,3,Friendly,false
+hist-e80ed68f5fc2,2023-10-14,ivory-coast,morocco,1,1,Friendly,false
+hist-7b06dd2d7589,2023-10-15,norway,spain,0,1,UEFA Euro qualification,false
+hist-3b09f3067050,2023-10-16,bosnia-herzegovina,portugal,0,5,UEFA Euro qualification,false
+hist-77bbab9ae548,2023-10-16,belgium,sweden,1,1,UEFA Euro qualification,false
+hist-ef9b23cfc266,2023-10-16,algeria,egypt,1,1,Friendly,true
+hist-0c2370de97c6,2023-10-17,france,scotland,4,1,Friendly,false
+hist-0d4376d715bb,2023-10-17,ecuador,colombia,0,0,FIFA World Cup qualification,false
+hist-58d86b602367,2023-10-17,usa,ghana,4,0,Friendly,false
+hist-7226f881d119,2023-10-17,ivory-coast,south-africa,1,1,Friendly,false
+hist-939a7f965ca9,2023-10-17,australia,new-zealand,2,0,Soccer Ashes,true
+hist-c1ac91eefada,2023-10-17,uruguay,brazil,2,0,FIFA World Cup qualification,false
+hist-ee0e371a6446,2023-10-17,mexico,germany,2,2,Friendly,true
+hist-3e679ce0bfa4,2023-11-16,colombia,brazil,2,1,FIFA World Cup qualification,false
+hist-aa444938e97f,2023-11-16,argentina,uruguay,0,2,FIFA World Cup qualification,false
+hist-9cc0c2b05a4d,2023-11-18,germany,turkiye,2,3,Friendly,false
+hist-a137d4681bce,2023-11-19,scotland,norway,3,3,UEFA Euro qualification,false
+hist-45382f6b5fdc,2023-11-21,paraguay,colombia,0,1,FIFA World Cup qualification,false
+hist-513e9ea0d6c5,2023-11-21,brazil,argentina,0,1,FIFA World Cup qualification,false
+hist-974dec221be9,2023-11-21,austria,germany,2,0,Friendly,false
+hist-c2a545face17,2023-11-21,uzbekistan,iran,2,2,FIFA World Cup qualification,false
+hist-d2606b224209,2023-11-21,jordan,saudi-arabia,0,2,FIFA World Cup qualification,false
+hist-9d2408e8765f,2023-12-16,mexico,colombia,2,3,Friendly,true
+hist-f34d5fa8ca31,2024-01-05,qatar,jordan,1,2,Friendly,false
+hist-07ed3ae77915,2024-01-06,iraq,south-korea,0,1,Friendly,true
+hist-dfbe2e830b2c,2024-01-09,japan,jordan,6,1,Friendly,true
+hist-6d521fba70b3,2024-01-18,egypt,ghana,2,2,African Cup of Nations,true
+hist-2d97775d4d2a,2024-01-19,iraq,japan,2,1,AFC Asian Cup,true
+hist-8b8d5c494358,2024-01-20,jordan,south-korea,2,2,AFC Asian Cup,true
+hist-29da81fc426c,2024-01-23,australia,uzbekistan,1,1,AFC Asian Cup,true
+hist-2d482047d802,2024-01-24,south-africa,tunisia,0,0,African Cup of Nations,true
+hist-32726503d1a2,2024-01-29,ivory-coast,senegal,1,1,African Cup of Nations,false
+hist-59efd5d5502c,2024-01-29,iraq,jordan,2,3,AFC Asian Cup,true
+hist-188a51367c39,2024-01-30,morocco,south-africa,0,2,African Cup of Nations,true
+hist-9f37deadc654,2024-01-30,saudi-arabia,south-korea,1,1,AFC Asian Cup,true
+hist-15bc65ed616e,2024-02-02,australia,south-korea,1,2,AFC Asian Cup,true
+hist-27abb453bf46,2024-02-03,qatar,uzbekistan,1,1,AFC Asian Cup,false
+hist-680bdc5930f4,2024-02-03,iran,japan,2,1,AFC Asian Cup,true
+hist-6123035d2c3d,2024-02-06,jordan,south-korea,2,0,AFC Asian Cup,true
+hist-dc41db76472e,2024-02-07,qatar,iran,3,2,AFC Asian Cup,false
+hist-c115a332fb9a,2024-02-10,qatar,jordan,3,1,AFC Asian Cup,false
+hist-bb9d5f2abbc7,2024-03-21,portugal,sweden,5,2,Friendly,false
+hist-c3f3392a3754,2024-03-21,panama,mexico,0,3,CONCACAF Nations League,true
+hist-6bcc992ee80b,2024-03-22,norway,czechia,1,2,Friendly,false
+hist-8bf785c899d6,2024-03-22,egypt,new-zealand,1,0,FIFA Series,false
+hist-bf9a0b639a92,2024-03-22,netherlands,scotland,4,0,Friendly,false
+hist-f288448ee069,2024-03-22,spain,colombia,0,1,Friendly,true
+hist-093384b13ce1,2024-03-23,france,germany,0,2,Friendly,false
+hist-2a59de188d84,2024-03-23,england,brazil,0,1,Friendly,false
+hist-3972d1bf74a4,2024-03-23,tunisia,croatia,0,0,FIFA Series,true
+hist-be0f39784d42,2024-03-24,usa,mexico,2,0,CONCACAF Nations League,false
+hist-284ae460e2ec,2024-03-26,algeria,south-africa,3,3,FIFA Series,false
+hist-667f793e2555,2024-03-26,egypt,croatia,2,4,FIFA Series,false
+hist-842faf87bf6c,2024-03-26,ivory-coast,uruguay,2,1,Friendly,true
+hist-87ad1daa0318,2024-03-26,austria,turkiye,6,1,Friendly,false
+hist-a1a54ab55c0f,2024-03-26,spain,brazil,3,3,Friendly,false
+hist-a71b250218f9,2024-03-26,new-zealand,tunisia,0,0,FIFA Series,true
+hist-acf067326848,2024-03-26,england,belgium,2,2,Friendly,false
+hist-be21badcd645,2024-03-26,germany,netherlands,2,1,Friendly,false
+hist-0641fd4ae4ed,2024-06-03,england,bosnia-herzegovina,3,0,Friendly,false
+hist-cce06c42f468,2024-06-05,mexico,uruguay,0,4,Friendly,true
+hist-647c80ea9c55,2024-06-06,netherlands,canada,4,0,Friendly,false
+hist-2a68cf284216,2024-06-08,mexico,brazil,2,3,Friendly,true
+hist-98dbbd5ffa02,2024-06-08,switzerland,austria,1,1,Friendly,false
+hist-d10fd322df86,2024-06-08,usa,colombia,1,5,Friendly,false
+hist-f173c751a197,2024-06-08,portugal,croatia,1,2,Friendly,false
+hist-1a4795cfbd86,2024-06-09,argentina,ecuador,1,0,Friendly,true
+hist-e981602ac28d,2024-06-09,france,canada,0,0,Friendly,false
+hist-c25afd6751c5,2024-06-11,iran,uzbekistan,0,0,FIFA World Cup qualification,false
+hist-d66fd8565259,2024-06-11,saudi-arabia,jordan,1,2,FIFA World Cup qualification,false
+hist-58b23886078e,2024-06-12,usa,brazil,1,1,Friendly,false
+hist-c799c494c1d2,2024-06-14,germany,scotland,5,1,UEFA Euro,false
+hist-d6c3852f7504,2024-06-15,spain,croatia,3,0,UEFA Euro,true
+hist-fe5908ac545a,2024-06-16,panama,paraguay,0,1,Friendly,false
+hist-0b2762e8f421,2024-06-17,austria,france,0,1,UEFA Euro,true
+hist-cde7b3289707,2024-06-18,portugal,czechia,2,1,UEFA Euro,true
+hist-8a30a9ff8cad,2024-06-19,scotland,switzerland,1,1,UEFA Euro,true
+hist-8f6ed5fd1ec9,2024-06-20,argentina,canada,2,0,Copa América,true
+hist-61a6dd1ae6e7,2024-06-21,netherlands,france,0,0,UEFA Euro,true
+hist-b890e322b645,2024-06-22,turkiye,portugal,0,3,UEFA Euro,true
+hist-4ea3cfe68d63,2024-06-23,germany,switzerland,1,1,UEFA Euro,false
+hist-5e8e95c1810f,2024-06-23,uruguay,panama,3,1,Copa América,true
+hist-91dc7491e05c,2024-06-24,colombia,paraguay,2,1,Copa América,true
+hist-fdec16a73a40,2024-06-25,netherlands,austria,2,3,UEFA Euro,true
+hist-782ebba481c8,2024-06-26,czechia,turkiye,1,2,UEFA Euro,true
+hist-85b4ca8ce5f8,2024-06-27,usa,panama,1,2,Copa América,false
+hist-552d7e6cd39a,2024-06-28,paraguay,brazil,1,4,Copa América,true
+hist-7f020ae7c5bb,2024-06-30,mexico,ecuador,0,0,Copa América,true
+hist-79bbc5f00f9e,2024-07-01,france,belgium,1,0,UEFA Euro,true
+hist-80e2665da8d2,2024-07-01,usa,uruguay,0,1,Copa América,false
+hist-1d3a0f3bd8ea,2024-07-02,austria,turkiye,1,2,UEFA Euro,true
+hist-5d21aa20e7de,2024-07-02,brazil,colombia,1,1,Copa América,true
+hist-c6ff101775f5,2024-07-04,argentina,ecuador,1,1,Copa América,true
+hist-20b32a632521,2024-07-05,portugal,france,0,0,UEFA Euro,true
+hist-c03d1780a394,2024-07-05,germany,spain,1,2,UEFA Euro,false
+hist-711186498a8e,2024-07-06,netherlands,turkiye,2,1,UEFA Euro,true
+hist-7f58bdc5f340,2024-07-06,england,switzerland,1,1,UEFA Euro,true
+hist-99bd08464e6c,2024-07-06,colombia,panama,5,0,Copa América,true
+hist-ed3eb7735593,2024-07-06,uruguay,brazil,0,0,Copa América,true
+hist-b8c6a479b915,2024-07-09,argentina,canada,2,0,Copa América,true
+hist-d7a5ad780cec,2024-07-09,spain,france,2,1,UEFA Euro,true
+hist-795904282c2a,2024-07-10,netherlands,england,1,2,UEFA Euro,true
+hist-edc2ad06e172,2024-07-10,uruguay,colombia,0,1,Copa América,true
+hist-bf1cac1ecf44,2024-07-13,canada,uruguay,2,2,Copa América,true
+hist-07a263808468,2024-07-14,argentina,colombia,1,0,Copa América,true
+hist-3db47060cbed,2024-07-14,spain,england,2,1,UEFA Euro,true
+hist-a3d3b09ba594,2024-09-05,portugal,croatia,2,1,UEFA Nations League,false
+hist-49b458976f22,2024-09-06,brazil,ecuador,1,0,FIFA World Cup qualification,false
+hist-7fbebd9b0960,2024-09-06,uruguay,paraguay,0,0,FIFA World Cup qualification,false
+hist-4d74c3ab0837,2024-09-07,netherlands,bosnia-herzegovina,5,2,UEFA Nations League,false
+hist-76b44b55386c,2024-09-07,mexico,new-zealand,3,0,Friendly,true
+hist-89ded836e034,2024-09-07,usa,canada,1,2,Friendly,false
+hist-6309a9d8f40d,2024-09-08,portugal,scotland,2,1,UEFA Nations League,false
+hist-8d3b7acba83b,2024-09-08,switzerland,spain,1,4,UEFA Nations League,false
+hist-15c05919d0fc,2024-09-09,france,belgium,2,0,UEFA Nations League,false
+hist-94d7af22ea16,2024-09-09,norway,austria,2,1,UEFA Nations League,false
+hist-1a96ccebd103,2024-09-10,colombia,argentina,2,1,FIFA World Cup qualification,false
+hist-609d92d5f868,2024-09-10,mexico,canada,0,0,Friendly,true
+hist-82c4cdcc1767,2024-09-10,paraguay,brazil,1,0,FIFA World Cup qualification,false
+hist-d4843d16998d,2024-09-10,usa,new-zealand,1,1,Friendly,false
+hist-fe53a3b52a99,2024-09-10,netherlands,germany,2,2,UEFA Nations League,false
+hist-1c092e3805c4,2024-10-10,jordan,south-korea,0,2,FIFA World Cup qualification,false
+hist-37a811863c63,2024-10-10,ecuador,paraguay,0,0,FIFA World Cup qualification,false
+hist-7890a9e9b86c,2024-10-10,saudi-arabia,japan,0,2,FIFA World Cup qualification,false
+hist-e5a8cf002ef8,2024-10-10,uzbekistan,iran,0,0,FIFA World Cup qualification,false
+hist-645e8205985d,2024-10-11,bosnia-herzegovina,germany,1,2,UEFA Nations League,false
+hist-a7d4f719ba01,2024-10-12,croatia,scotland,2,1,UEFA Nations League,false
+hist-b07261b2ceb5,2024-10-12,usa,panama,2,0,Friendly,false
+hist-73aa162e75f3,2024-10-13,austria,norway,5,1,UEFA Nations League,false
+hist-21e2293bad69,2024-10-14,belgium,france,1,2,UEFA Nations League,false
+hist-ccca0460a3c7,2024-10-14,germany,netherlands,1,0,UEFA Nations League,false
+hist-1d55730a39a4,2024-10-15,japan,australia,1,1,FIFA World Cup qualification,false
+hist-24be7bd0f66b,2024-10-15,scotland,portugal,0,0,UEFA Nations League,false
+hist-36c02fc569b3,2024-10-15,south-korea,iraq,3,2,FIFA World Cup qualification,false
+hist-696ce00b2658,2024-10-15,uruguay,ecuador,0,0,FIFA World Cup qualification,false
+hist-6da3e7bfdd05,2024-10-15,iran,qatar,4,1,FIFA World Cup qualification,true
+hist-7f9920b5b6a6,2024-10-15,mexico,usa,2,0,Friendly,false
+hist-f27525207c30,2024-10-15,canada,panama,2,1,Friendly,false
+hist-2aa818c9a73c,2024-11-14,qatar,uzbekistan,3,2,FIFA World Cup qualification,false
+hist-2b54007cf22e,2024-11-14,iraq,jordan,0,0,FIFA World Cup qualification,false
+hist-64da9ec484b3,2024-11-14,australia,saudi-arabia,0,0,FIFA World Cup qualification,false
+hist-657e0fc57834,2024-11-14,paraguay,argentina,2,1,FIFA World Cup qualification,false
+hist-93190ad72c28,2024-11-15,scotland,croatia,1,0,UEFA Nations League,false
+hist-eb734bed70ec,2024-11-15,uruguay,colombia,3,2,FIFA World Cup qualification,false
+hist-4274431718fb,2024-11-16,germany,bosnia-herzegovina,7,0,UEFA Nations League,false
+hist-4f9462d0548f,2024-11-18,croatia,portugal,1,1,UEFA Nations League,false
+hist-90280de6c17c,2024-11-18,spain,switzerland,3,2,UEFA Nations League,false
+hist-3928a86ad242,2024-11-19,bosnia-herzegovina,netherlands,1,1,UEFA Nations League,false
+hist-6436ef50ee4c,2024-11-19,colombia,ecuador,0,1,FIFA World Cup qualification,false
+hist-a21f43dadae6,2024-11-19,brazil,uruguay,1,1,FIFA World Cup qualification,false
+hist-0e01937e08df,2024-12-28,iraq,saudi-arabia,1,3,Gulf Cup,true
+hist-024bf96853cf,2025-01-22,uzbekistan,jordan,0,0,Friendly,true
+hist-3b50143c62cb,2025-03-20,canada,mexico,0,2,CONCACAF Nations League,true
+hist-522c47af927f,2025-03-20,netherlands,spain,2,2,UEFA Nations League,false
+hist-b7b61da34ca7,2025-03-20,brazil,colombia,2,1,FIFA World Cup qualification,false
+hist-bd88008351cb,2025-03-20,usa,panama,0,1,CONCACAF Nations League,false
+hist-ed2e3ec9c2b3,2025-03-20,croatia,france,2,0,UEFA Nations League,false
+hist-d237ce2b63b9,2025-03-21,uruguay,argentina,0,1,FIFA World Cup qualification,false
+hist-0750a8032869,2025-03-23,spain,netherlands,3,3,UEFA Nations League,false
+hist-2e71ec146382,2025-03-23,panama,mexico,1,2,CONCACAF Nations League,true
+hist-a769aa87aed7,2025-03-23,france,croatia,2,0,UEFA Nations League,false
+hist-ef28330048cf,2025-03-23,usa,canada,1,2,CONCACAF Nations League,false
+hist-2120a3b495ca,2025-03-25,south-korea,jordan,1,1,FIFA World Cup qualification,false
+hist-23db0ccf41bc,2025-03-25,argentina,brazil,4,1,FIFA World Cup qualification,false
+hist-51baef0c3c6b,2025-03-25,japan,saudi-arabia,0,0,FIFA World Cup qualification,false
+hist-9b4a33b8cc82,2025-03-25,colombia,paraguay,2,2,FIFA World Cup qualification,false
+hist-a059801cea5e,2025-03-25,iran,uzbekistan,2,2,FIFA World Cup qualification,false
+hist-5fdfd3bd965e,2025-05-30,saudi-arabia,jordan,2,0,Friendly,false
+hist-ca8d3a46344c,2025-06-04,germany,portugal,1,2,UEFA Nations League,false
+hist-3634c2af2228,2025-06-05,australia,japan,1,0,FIFA World Cup qualification,false
+hist-5aae9142af33,2025-06-05,ecuador,brazil,0,0,FIFA World Cup qualification,false
+hist-5b67624c3a5c,2025-06-05,qatar,iran,1,0,FIFA World Cup qualification,false
+hist-7357e3323c5b,2025-06-05,spain,france,5,4,UEFA Nations League,true
+hist-784aff1000d0,2025-06-05,paraguay,uruguay,2,0,FIFA World Cup qualification,false
+hist-bbb954289359,2025-06-05,iraq,south-korea,0,2,FIFA World Cup qualification,false
+hist-8b1022ddbf1d,2025-06-06,morocco,tunisia,2,0,Friendly,false
+hist-4b60ccec42b0,2025-06-07,mexico,switzerland,2,4,Friendly,true
+hist-c3992187a00b,2025-06-07,usa,turkiye,1,2,Friendly,false
+hist-dc799a194d01,2025-06-07,ivory-coast,new-zealand,0,1,Canadian Shield,true
+hist-63708077a370,2025-06-08,portugal,spain,2,2,UEFA Nations League,true
+hist-dc095bd8b4be,2025-06-08,germany,france,0,2,UEFA Nations League,false
+hist-557919817a88,2025-06-09,croatia,czechia,5,1,FIFA World Cup qualification,false
+hist-021504735059,2025-06-10,england,senegal,1,3,Friendly,false
+hist-0498c1eb26d6,2025-06-10,canada,ivory-coast,0,0,Canadian Shield,false
+hist-27523187e11e,2025-06-10,uzbekistan,qatar,3,0,FIFA World Cup qualification,false
+hist-388ff15faaea,2025-06-10,sweden,algeria,4,3,Friendly,false
+hist-57ca30289314,2025-06-10,brazil,paraguay,1,0,FIFA World Cup qualification,false
+hist-8a530717c04d,2025-06-10,argentina,colombia,1,1,FIFA World Cup qualification,false
+hist-92842742c535,2025-06-10,haiti,curacao,1,5,FIFA World Cup qualification,true
+hist-a83bfb287267,2025-06-10,mexico,turkiye,1,0,Friendly,true
+hist-cecf3517e2f2,2025-06-10,jordan,iraq,0,1,FIFA World Cup qualification,false
+hist-d97ab3a3f4e1,2025-06-10,saudi-arabia,australia,1,2,FIFA World Cup qualification,false
+hist-e6b646c62803,2025-06-10,usa,switzerland,0,4,Friendly,false
+hist-773bb6bb7044,2025-06-15,haiti,saudi-arabia,0,1,Gold Cup,true
+hist-7508bc760685,2025-06-19,usa,saudi-arabia,1,0,Gold Cup,false
+hist-6a145db527ef,2025-06-21,curacao,canada,1,1,Gold Cup,true
+hist-7d886174df3a,2025-06-22,usa,haiti,2,1,Gold Cup,false
+hist-585fb53f112c,2025-06-28,mexico,saudi-arabia,2,0,Gold Cup,true
+hist-544870bada0e,2025-07-06,usa,mexico,1,2,Gold Cup,false
+hist-629d1c3edc1b,2025-09-04,paraguay,ecuador,0,0,FIFA World Cup qualification,false
+hist-8367586d79bd,2025-09-05,australia,new-zealand,1,0,Soccer Ashes,false
+hist-50d2ffd073c0,2025-09-06,usa,south-korea,0,2,Friendly,false
+hist-e01eb57da2aa,2025-09-06,mexico,japan,0,0,Friendly,true
+hist-4eabd6ec9256,2025-09-07,turkiye,spain,0,6,FIFA World Cup qualification,false
+hist-da227ec52df8,2025-09-08,czechia,saudi-arabia,1,1,Friendly,false
+hist-668866d9cf66,2025-09-09,new-zealand,australia,1,3,Soccer Ashes,false
+hist-7a200ec85474,2025-09-09,bosnia-herzegovina,austria,1,2,FIFA World Cup qualification,false
+hist-c20888432618,2025-09-09,usa,japan,2,0,Friendly,false
+hist-d945ad6707ff,2025-09-09,mexico,south-korea,2,2,Friendly,true
+hist-e73f37bff2ce,2025-09-09,ecuador,argentina,1,0,FIFA World Cup qualification,false
+hist-b836a9f876fb,2025-10-09,czechia,croatia,0,0,FIFA World Cup qualification,false
+hist-1c692c5c5307,2025-10-10,japan,paraguay,2,2,Kirin Cup,false
+hist-21a4e347e395,2025-10-10,usa,ecuador,1,1,Friendly,false
+hist-7948ad74e044,2025-10-10,canada,australia,0,1,Friendly,false
+hist-cea4fb1138b3,2025-10-10,south-korea,brazil,0,5,Friendly,false
+hist-db41f3ee9417,2025-10-10,sweden,switzerland,0,2,FIFA World Cup qualification,false
+hist-3a7e84c0b0a2,2025-10-11,mexico,colombia,0,4,Friendly,true
+hist-4a6f39a8ebca,2025-10-13,uzbekistan,uruguay,1,2,Friendly,true
+hist-399d9dece0cb,2025-10-14,mexico,ecuador,1,1,Friendly,false
+hist-46dda61a5a85,2025-10-14,south-korea,paraguay,2,0,Friendly,false
+hist-651f83c35e43,2025-10-14,canada,colombia,0,0,Friendly,true
+hist-655d35a62f7d,2025-10-14,usa,australia,2,1,Friendly,false
+hist-77ee303ddb52,2025-10-14,norway,new-zealand,1,1,Friendly,false
+hist-9f07759ff795,2025-10-14,saudi-arabia,iraq,0,0,FIFA World Cup qualification,false
+hist-a15a9f6faafd,2025-10-14,japan,brazil,3,2,Kirin Cup,false
+hist-c551d43a78bb,2025-11-13,canada,ecuador,0,0,Friendly,false
+hist-542ce6fe64cb,2025-11-14,saudi-arabia,ivory-coast,1,0,Friendly,false
+hist-a2ea3bfee81a,2025-11-14,japan,ghana,2,0,Kirin Cup,false
+hist-a6394185df8b,2025-11-14,tunisia,jordan,3,2,Friendly,false
+hist-ac1b7e9b8b75,2025-11-14,uzbekistan,egypt,2,0,Al Ain International Cup,true
+hist-8c02b005b719,2025-11-15,colombia,new-zealand,2,1,Friendly,true
+hist-8edf76d1e478,2025-11-15,usa,paraguay,2,1,Friendly,false
+hist-a28c32273914,2025-11-15,mexico,uruguay,0,0,Friendly,false
+hist-ab1f4dd9c11e,2025-11-15,switzerland,sweden,4,1,FIFA World Cup qualification,false
+hist-e40854646c00,2025-11-15,brazil,senegal,2,0,Friendly,true
+hist-130d8180d17e,2025-11-18,austria,bosnia-herzegovina,1,1,FIFA World Cup qualification,false
+hist-243acfae08d6,2025-11-18,mexico,paraguay,1,2,Friendly,true
+hist-2dbc7f40cbd6,2025-11-18,usa,uruguay,5,1,Friendly,false
+hist-331db6c034b7,2025-11-18,saudi-arabia,algeria,0,2,Friendly,false
+hist-4f93f0319297,2025-11-18,colombia,australia,3,0,Friendly,true
+hist-516175857e9c,2025-11-18,iran,uzbekistan,0,0,Al Ain International Cup,true
+hist-683d6fe6c9b9,2025-11-18,south-korea,ghana,1,0,Friendly,false
+hist-82af17b7216b,2025-11-18,ecuador,new-zealand,2,0,Friendly,true
+hist-8faee25894eb,2025-11-18,brazil,tunisia,1,1,Friendly,true
+hist-c986ef9aa05a,2025-11-18,spain,turkiye,2,2,FIFA World Cup qualification,false
+hist-7f802ca07d3b,2025-12-07,qatar,tunisia,0,3,Arab Cup,false
+hist-c74c20f5c6a7,2025-12-08,morocco,saudi-arabia,1,0,Arab Cup,true
+hist-78c52ef9cf69,2025-12-09,egypt,jordan,0,3,Arab Cup,true
+hist-f296d25fc362,2025-12-09,algeria,iraq,2,0,Arab Cup,true
+hist-e51686192389,2025-12-12,jordan,iraq,1,0,Arab Cup,true
+hist-4afca017fb72,2025-12-15,saudi-arabia,jordan,0,1,Arab Cup,true
+hist-087519be900e,2025-12-18,jordan,morocco,2,3,Arab Cup,true
+hist-59d1ab691ed9,2025-12-26,egypt,south-africa,1,0,African Cup of Nations,true
+hist-61cf0fb8e85a,2026-01-10,egypt,ivory-coast,3,2,African Cup of Nations,true
+hist-5284b6945152,2026-01-14,senegal,egypt,1,0,African Cup of Nations,true
+hist-3115e1355cd9,2026-01-18,morocco,senegal,3,0,African Cup of Nations,false
+hist-617d3374ab33,2026-01-22,panama,mexico,0,1,Friendly,false
+hist-735687083829,2026-03-26,colombia,croatia,1,2,Friendly,true
+hist-a01f14d4f1ce,2026-03-26,brazil,france,1,2,Friendly,true
+hist-139ee00defc2,2026-03-27,saudi-arabia,egypt,0,4,Friendly,false
+hist-82349b370dfa,2026-03-27,austria,ghana,5,1,Friendly,false
+hist-95b4d60cd00d,2026-03-27,switzerland,germany,3,4,Friendly,false
+hist-ae84e1d9d2a9,2026-03-27,netherlands,norway,2,1,Friendly,false
+hist-d0b288ec5f34,2026-03-27,south-africa,panama,1,1,Friendly,false
+hist-dfd1569c3473,2026-03-27,england,uruguay,1,1,Friendly,false
+hist-eed545e119d6,2026-03-27,morocco,ecuador,1,1,Friendly,true
+hist-47ccf756a0f5,2026-03-28,scotland,japan,0,1,Friendly,false
+hist-63fe794d04be,2026-03-28,haiti,tunisia,0,1,Friendly,true
+hist-cba25dd265b1,2026-03-28,usa,belgium,2,5,Friendly,false
+hist-d8a991d05b7a,2026-03-28,mexico,portugal,0,0,Friendly,false
+hist-f2b897247ef7,2026-03-28,ivory-coast,south-korea,4,0,Friendly,true
+hist-fa2533ee04d0,2026-03-29,colombia,france,1,3,Friendly,true
+hist-662dfab238a0,2026-03-30,germany,ghana,2,1,Friendly,false
+hist-025220758bd2,2026-03-31,england,japan,0,1,Friendly,false
+hist-2d7dceaffbf2,2026-03-31,norway,switzerland,0,0,Friendly,false
+hist-36f8bc510e07,2026-03-31,south-africa,panama,1,2,Friendly,false
+hist-493a0e1e607d,2026-03-31,ivory-coast,scotland,1,0,Friendly,true
+hist-653fafa18979,2026-03-31,spain,egypt,0,0,Friendly,false
+hist-857da780e61c,2026-03-31,usa,portugal,0,2,Friendly,false
+hist-a7684f8248a8,2026-03-31,canada,tunisia,0,0,Friendly,false
+hist-aef2eb2de2b6,2026-03-31,morocco,paraguay,2,1,Friendly,true
+hist-b692b0bd0031,2026-03-31,austria,south-korea,1,0,Friendly,false
+hist-bae53b0394e9,2026-03-31,netherlands,ecuador,1,1,Friendly,false
+hist-db55d5268c83,2026-03-31,algeria,uruguay,0,0,Friendly,true
+hist-dc90f6cb95e6,2026-03-31,mexico,belgium,1,1,Friendly,true
+hist-de082e92cfb4,2026-03-31,brazil,croatia,3,1,Friendly,true
+hist-f95d636c80b9,2026-03-31,australia,curacao,5,1,FIFA Series,false
+hist-33b832248644,2026-05-22,mexico,ghana,2,0,Friendly,false
+hist-5b8d41c268a1,2026-05-30,ecuador,saudi-arabia,2,1,Friendly,true
+hist-75dd07e9a9a6,2026-05-30,mexico,australia,1,0,Friendly,true
+hist-8149d9aced78,2026-05-30,scotland,curacao,4,1,Friendly,false
+hist-32739d1cd7cb,2026-05-31,usa,senegal,3,2,Friendly,false
+hist-5223778a99f0,2026-05-31,brazil,panama,6,2,Friendly,false
+hist-b0d62cd83086,2026-05-31,switzerland,jordan,4,1,Friendly,false
+hist-23f0b1d92c0a,2026-06-01,austria,tunisia,1,0,Friendly,false
+hist-b5a467fe9a4b,2026-06-01,norway,sweden,3,1,Friendly,false
+hist-ec80f22299f5,2026-06-01,canada,uzbekistan,2,0,Friendly,false
+hist-5b2170165d7e,2026-06-02,croatia,belgium,0,2,Friendly,false
+hist-b8340d751c45,2026-06-02,haiti,new-zealand,4,0,Friendly,true
+hist-90d3202d66e1,2026-06-03,netherlands,algeria,0,1,Friendly,false
+hist-9a0412ccda5a,2026-06-04,france,ivory-coast,1,2,Friendly,false
+hist-a7526039736d,2026-06-04,spain,iraq,1,1,Friendly,false
+hist-07c1c33e2dc0,2026-06-06,usa,germany,1,2,Friendly,false
+hist-0978659ad0fb,2026-06-06,panama,bosnia-herzegovina,1,1,Friendly,true
+hist-149e16dd19b0,2026-06-06,england,new-zealand,1,0,Friendly,true
+hist-39cb6aa5083f,2026-06-06,australia,switzerland,1,1,Friendly,true
+hist-91261f609be6,2026-06-06,belgium,tunisia,5,0,Friendly,false
+hist-b3b61b7673c4,2026-06-06,brazil,egypt,2,1,Friendly,true
+hist-07ecb6868599,2026-06-07,jordan,colombia,0,2,Friendly,true
+hist-96a2fd5dcefc,2026-06-07,morocco,norway,1,1,Friendly,true
+hist-605ce0cbb986,2026-06-08,netherlands,uzbekistan,2,1,Friendly,true
+hist-21fc409829d0,2026-06-09,saudi-arabia,senegal,0,0,Friendly,true
+hist-8608748c6afc,2026-06-11,mexico,south-africa,2,0,FIFA World Cup,false
+hist-ae06d5969689,2026-06-11,south-korea,czechia,2,1,FIFA World Cup,true
+hist-73e7bea30c4a,2026-06-12,usa,paraguay,4,1,FIFA World Cup,false
+hist-89007a042b8d,2026-06-12,canada,bosnia-herzegovina,1,1,FIFA World Cup,false
+hist-205088aefe57,2026-06-13,australia,turkiye,2,0,FIFA World Cup,true
+hist-753893f3ce97,2026-06-13,qatar,switzerland,1,1,FIFA World Cup,true
+hist-da116ae31eb5,2026-06-13,brazil,morocco,1,1,FIFA World Cup,true
+hist-f724de6328a7,2026-06-13,haiti,scotland,0,1,FIFA World Cup,true
+hist-14d5ab888308,2026-06-14,germany,curacao,7,1,FIFA World Cup,true
+hist-c12c41e60ad8,2026-06-14,sweden,tunisia,5,1,FIFA World Cup,true
+hist-d950b9379db6,2026-06-14,ivory-coast,ecuador,1,0,FIFA World Cup,true
+hist-dca22625d3f5,2026-06-14,netherlands,japan,2,2,FIFA World Cup,true
+hist-19f46fe8de9a,2026-06-15,saudi-arabia,uruguay,1,1,FIFA World Cup,true
+hist-74fae8bfa8c0,2026-06-15,iran,new-zealand,2,2,FIFA World Cup,true
+hist-a5844996df7d,2026-06-15,belgium,egypt,1,1,FIFA World Cup,true
+hist-73dcbd96c454,2026-06-16,argentina,algeria,3,0,FIFA World Cup,true
+hist-77e949e7c7ed,2026-06-16,iraq,norway,1,4,FIFA World Cup,true
+hist-c64626e44d7e,2026-06-16,austria,jordan,3,1,FIFA World Cup,true
+hist-ced39f011257,2026-06-16,france,senegal,3,1,FIFA World Cup,true
+hist-ad6443537f97,2026-06-17,england,croatia,4,2,FIFA World Cup,true
+hist-cf78d8ad4726,2026-06-17,uzbekistan,colombia,1,3,FIFA World Cup,true
+hist-ff5041b8a8f9,2026-06-17,ghana,panama,1,0,FIFA World Cup,true
+hist-611dcbf6714c,2026-06-18,switzerland,bosnia-herzegovina,4,1,FIFA World Cup,true
+hist-7e54451801e3,2026-06-18,czechia,south-africa,1,1,FIFA World Cup,true
+hist-b486d7b849ce,2026-06-18,canada,qatar,6,0,FIFA World Cup,false
+hist-da12c2b57c17,2026-06-18,mexico,south-korea,1,0,FIFA World Cup,false
+hist-3318285231d5,2026-06-19,usa,australia,2,0,FIFA World Cup,false
+hist-992c66bcd3d7,2026-06-19,scotland,morocco,0,1,FIFA World Cup,true
+hist-d0f7fb754557,2026-06-19,turkiye,paraguay,0,1,FIFA World Cup,true
+hist-dd38a991cbfe,2026-06-19,brazil,haiti,3,0,FIFA World Cup,true

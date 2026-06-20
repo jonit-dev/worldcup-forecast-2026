@@ -33,7 +33,9 @@ export function App() {
 
   useEffect(() => {
     if (!selectedTeamId && teamsQuery.data?.length) {
-      setSelectedTeamId(teamsQuery.data[0].team_id);
+      setSelectedTeamId(
+        teamsQuery.data.find((team) => team.team_id === 'brazil')?.team_id ?? teamsQuery.data[0].team_id,
+      );
     }
   }, [selectedTeamId, teamsQuery.data]);
 
@@ -93,6 +95,7 @@ export function App() {
             teams={teamsQuery.data ?? []}
             selectedTeamId={selectedTeamId}
             forecasts={nextForecastsQuery.data ?? []}
+            isLoading={nextForecastsQuery.isFetching}
             onTeamChange={(teamId) => {
               setSelectedTeamId(teamId);
               setSelectedMatch(undefined);

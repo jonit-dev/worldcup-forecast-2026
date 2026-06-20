@@ -133,8 +133,8 @@ describe('App', () => {
     renderApp();
 
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
-    expect(screen.getAllByText('United States vs Australia').length).toBeGreaterThan(0);
-    expect(await screen.findByText(/Predicted xG: 1.42-1.03/)).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
+    expect(await screen.findByText(/Expected goals means average goals/)).toBeInTheDocument();
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);
   });

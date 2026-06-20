@@ -1,5 +1,6 @@
 import type { MatchForecast } from '../api/types';
 import { formatPercent } from '../utils/format';
+import { teamLabel } from '../utils/flags';
 
 type ForecastTableProps = {
   forecasts: MatchForecast[];
@@ -30,7 +31,8 @@ export function ForecastTable({ forecasts, selectedMatchId, onSelectMatch }: For
               <td>{forecast.match_date}</td>
               <td>
                 <button className="link-button" onClick={() => onSelectMatch(forecast)} type="button">
-                  {forecast.home_team} vs {forecast.away_team}
+                  {teamLabel(forecast.home_team_id, forecast.home_team)} vs{' '}
+                  {teamLabel(forecast.away_team_id, forecast.away_team)}
                 </button>
               </td>
               <td>{formatPercent(forecast.probabilities.home_win)}</td>

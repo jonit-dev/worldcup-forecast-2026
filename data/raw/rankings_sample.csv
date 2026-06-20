@@ -1,14 +1,49 @@
 ranking_date,team_id,team_name,rank,rating_points
 2026-06-01,argentina,Argentina,1,1886.16
+2026-06-01,france,France,2,1852.71
+2026-06-01,spain,Spain,3,1817.09
+2026-06-01,england,England,4,1794.90
+2026-06-01,brazil,Brazil,5,1784.09
+2026-06-01,portugal,Portugal,6,1768.20
+2026-06-01,netherlands,Netherlands,7,1747.55
+2026-06-01,belgium,Belgium,8,1735.12
+2026-06-01,germany,Germany,9,1725.40
+2026-06-01,croatia,Croatia,10,1711.80
+2026-06-01,uruguay,Uruguay,11,1706.18
+2026-06-01,colombia,Colombia,12,1702.35
 2026-06-01,mexico,Mexico,14,1689.24
 2026-06-01,usa,United States,15,1676.52
+2026-06-01,switzerland,Switzerland,16,1664.18
+2026-06-01,morocco,Morocco,18,1648.70
+2026-06-01,japan,Japan,20,1623.31
+2026-06-01,iran,Iran,21,1614.84
+2026-06-01,senegal,Senegal,22,1605.18
+2026-06-01,austria,Austria,23,1597.35
 2026-06-01,australia,Australia,24,1588.90
-2026-06-01,canada,Canada,31,1524.18
-2026-06-01,paraguay,Paraguay,47,1478.33
-2026-06-01,south-africa,South Africa,56,1424.71
 2026-06-01,turkiye,Turkiye,26,1558.22
-2026-06-01,wales,Wales,33,1510.00
-2026-06-01,netherlands,Netherlands,7,1747.55
-2026-06-01,colombia,Colombia,12,1702.35
-2026-06-01,venezuela,Venezuela,42,1489.40
+2026-06-01,sweden,Sweden,29,1540.11
+2026-06-01,canada,Canada,31,1524.18
+2026-06-01,scotland,Scotland,32,1516.20
+2026-06-01,egypt,Egypt,34,1506.42
+2026-06-01,algeria,Algeria,35,1501.30
+2026-06-01,czechia,Czechia,36,1498.88
+2026-06-01,norway,Norway,37,1495.21
+2026-06-01,ecuador,Ecuador,39,1492.50
+2026-06-01,south-korea,South Korea,40,1490.60
+2026-06-01,ivory-coast,Ivory Coast,41,1489.90
+2026-06-01,paraguay,Paraguay,47,1478.33
+2026-06-01,ghana,Ghana,48,1466.00
+2026-06-01,bosnia-herzegovina,Bosnia and Herzegovina,52,1448.15
+2026-06-01,south-africa,South Africa,56,1424.71
 2026-06-01,saudi-arabia,Saudi Arabia,58,1418.02
+2026-06-01,qatar,Qatar,61,1402.11
+2026-06-01,panama,Panama,62,1398.19
+2026-06-01,iraq,Iraq,63,1392.44
+2026-06-01,uzbekistan,Uzbekistan,64,1388.75
+2026-06-01,jordan,Jordan,65,1384.00
+2026-06-01,congo-dr,Congo DR,66,1379.22
+2026-06-01,new-zealand,New Zealand,75,1338.46
+2026-06-01,cabo-verde,Cabo Verde,77,1329.20
+2026-06-01,curacao,Curacao,82,1298.40
+2026-06-01,haiti,Haiti,83,1291.22
+2026-06-01,tunisia,Tunisia,46,1480.15

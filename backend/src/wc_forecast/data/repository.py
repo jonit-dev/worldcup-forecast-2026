@@ -160,3 +160,30 @@ def list_team_history(database_path: Path, as_of_date: date, team_id: str) -> li
         [as_of_date, team_id, team_id],
     )
 
+
+def list_historical_results(database_path: Path, as_of_date: date) -> list[dict[str, Any]]:
+    return query_rows(
+        database_path,
+        """
+        select *
+        from historical_results
+        where as_of_date = ?
+          and match_date <= ?
+        order by match_date
+        """,
+        [as_of_date, as_of_date],
+    )
+
+
+def list_rankings(database_path: Path, as_of_date: date) -> list[dict[str, Any]]:
+    return query_rows(
+        database_path,
+        """
+        select *
+        from rankings
+        where as_of_date = ?
+          and ranking_date <= ?
+        order by ranking_date desc, rank
+        """,
+        [as_of_date, as_of_date],
+    )

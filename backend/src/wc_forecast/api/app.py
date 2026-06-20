@@ -10,6 +10,12 @@ from flask_cors import CORS
 from wc_forecast import __version__
 from wc_forecast.config.settings import load_settings
 from wc_forecast.data.repository import list_matches, list_standings, list_team_history, list_teams, load_summary
+from wc_forecast.services.forecast_service import (
+    load_forecasts,
+    load_next_team_forecasts,
+    load_simulation,
+    model_diagnostics,
+)
 
 
 def json_ready(value: Any) -> Any:
@@ -95,6 +101,50 @@ def create_app() -> Flask:
                 ),
             }
         )
+
+    @app.get("/api/forecasts")
+    def forecasts():
+        settings = load_settings()
+        team_id = request.args.get("team_id")
+        return jsonify(
+            {
+                "forecasts": json_ready(
+                    load_forecasts(settings.database_path, settings.as_of_date, team_id)
+                )
+            }
+        )
+
+    @app.get("/api/teams/<team_id>/next-forecasts")
+    def team_next_forecasts(team_id: str):
+        settings = load_settings()
+        limit = int(request.args.get("limit", "3"))
+        return jsonify(
+            {
+                "team_id": team_id,
+                "forecasts": json_ready(
+                    load_next_team_forecasts(
+                        settings.database_path,
+                        settings.as_of_date,
+                        team_id,
+                        limit=limit,
+                    )
+                ),
+            }
+        )
+
+    @app.get("/api/simulations")
+    def simulations():
+        settings = load_settings()
+        iterations = int(request.args.get("iterations", "1000"))
+        seed = int(request.args.get("seed", "20260620"))
+        return jsonify(
+            json_ready(load_simulation(settings.database_path, settings.as_of_date, iterations, seed))
+        )
+
+    @app.get("/api/model/diagnostics")
+    def diagnostics():
+        settings = load_settings()
+        return jsonify(json_ready(model_diagnostics(settings.database_path, settings.as_of_date)))
 
     return app
 

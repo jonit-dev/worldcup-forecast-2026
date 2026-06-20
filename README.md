@@ -49,6 +49,9 @@ cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
 ```
 
 The dashboard includes all 48 World Cup teams, lets you select a team, and explains its next
-forecast matches with win/draw/loss probabilities, expected goals, and likely scorelines. Historical
-team form is refreshed from the Mart Jürisoo international results dataset before ingestion when
-network access is available. These are baseline model estimates, not statistically significant claims.
+forecast matches with win/draw/loss probabilities, expected goals, likely scorelines, and the sample
+size behind the forecast. Historical team form is refreshed from the Mart Jürisoo international
+results dataset before ingestion when network access is available. The current baseline ingests
+12,112 historical results since 2000, with every World Cup team represented by at least 152
+historical/current matches. These are broad-sample model estimates, not statistically significant
+claims.

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import re
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -13,7 +14,7 @@ from wc_forecast.data.sources import HISTORICAL_RESULTS_SOURCE, RANKINGS_SOURCE
 
 
 RAW_RESULTS_URL = "https://raw.githubusercontent.com/martj42/international_results/master/results.csv"
-DEFAULT_START_DATE = date(2020, 1, 1)
+DEFAULT_START_DATE = date(2000, 1, 1)
 
 TEAM_NAME_TO_ID = {
     "Algeria": "algeria",
@@ -24,9 +25,12 @@ TEAM_NAME_TO_ID = {
     "Bosnia and Herzegovina": "bosnia-herzegovina",
     "Brazil": "brazil",
     "Cabo Verde": "cabo-verde",
+    "Cape Verde": "cabo-verde",
     "Canada": "canada",
     "Colombia": "colombia",
     "Congo DR": "congo-dr",
+    "DR Congo": "congo-dr",
+    "Democratic Republic of Congo": "congo-dr",
     "Croatia": "croatia",
     "Curaçao": "curacao",
     "Curacao": "curacao",
@@ -67,10 +71,21 @@ TEAM_NAME_TO_ID = {
     "Türkiye": "turkiye",
     "Turkiye": "turkiye",
     "United States": "usa",
+    "United States of America": "usa",
     "USA": "usa",
     "Uruguay": "uruguay",
     "Uzbekistan": "uzbekistan",
 }
+
+
+def slug_team_name(team_name: str) -> str:
+    normalized = team_name.lower().replace("&", "and")
+    normalized = re.sub(r"[^a-z0-9]+", "-", normalized)
+    return normalized.strip("-")
+
+
+def team_id_for_name(team_name: str) -> str:
+    return TEAM_NAME_TO_ID.get(team_name, slug_team_name(team_name))
 
 
 def tournament_team_ids(raw_dir: Path) -> set[str]:
@@ -110,9 +125,9 @@ def transform_results(
             continue
         if not row["home_score"].isdigit() or not row["away_score"].isdigit():
             continue
-        home_team_id = TEAM_NAME_TO_ID.get(row["home_team"])
-        away_team_id = TEAM_NAME_TO_ID.get(row["away_team"])
-        if home_team_id not in team_ids or away_team_id not in team_ids:
+        home_team_id = team_id_for_name(row["home_team"])
+        away_team_id = team_id_for_name(row["away_team"])
+        if home_team_id not in team_ids and away_team_id not in team_ids:
             continue
         transformed.append(
             {

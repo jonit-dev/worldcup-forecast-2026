@@ -43,8 +43,8 @@ const forecast = {
     away_attack: 1,
     home_defense: 0.9,
     away_defense: 1,
-    home_matches_used: 10,
-    away_matches_used: 10,
+    home_matches_used: 425,
+    away_matches_used: 298,
   },
 };
 
@@ -64,7 +64,7 @@ describe('App', () => {
             source_count: 4,
             team_count: 2,
             match_count: 1,
-            historical_result_count: 8,
+            historical_result_count: 12112,
             next_steps: [],
           });
         }
@@ -123,9 +123,17 @@ describe('App', () => {
           config_hash: 'abc123',
           as_of_date: '2026-06-20',
           ranking_rows: 2,
-          historical_result_rows: 8,
+          historical_result_rows: 12112,
           current_completed_matches: 1,
-          limitations: ['Small sample data.'],
+          coverage_threshold: 150,
+          team_coverage: {
+            team_count: 48,
+            min_matches: 151,
+            median_matches: 320,
+            max_matches: 475,
+            teams_below_threshold: [],
+          },
+          limitations: ['Historical coverage is broad.'],
         });
       }),
     );
@@ -135,6 +143,7 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
     expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
     expect(await screen.findByText(/Expected goals means average goals/)).toBeInTheDocument();
+    expect(screen.getByText(/Broad sample/)).toBeInTheDocument();
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);
   });

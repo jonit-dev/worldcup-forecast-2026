@@ -28,9 +28,8 @@ def load_summary(database_path: Path, as_of_date: date) -> dict[str, Any]:
             "match_count": 0,
             "historical_result_count": 0,
         }
-    connection = connect(database_path)
+    connection = connect(database_path, read_only=True)
     try:
-        initialize_schema(connection)
         run = connection.execute(
             """
             select source_fetched_at, match_count, historical_result_count, team_count
@@ -68,9 +67,8 @@ def load_summary(database_path: Path, as_of_date: date) -> dict[str, Any]:
 def query_rows(database_path: Path, query: str, parameters: list[Any]) -> list[dict[str, Any]]:
     if not database_path.exists():
         return []
-    connection = connect(database_path)
+    connection = connect(database_path, read_only=True)
     try:
-        initialize_schema(connection)
         result = connection.execute(query, parameters)
         columns = [column[0] for column in result.description]
         return [dict(zip(columns, row, strict=True)) for row in result.fetchall()]
@@ -82,10 +80,11 @@ def list_teams(database_path: Path, as_of_date: date) -> list[dict[str, Any]]:
     return query_rows(
         database_path,
         """
-        select team_id, team_name, confederation, source_name, source_fetched_at, as_of_date
-        from teams
-        where as_of_date = ?
-        order by team_name
+        select t.team_id, t.team_name, t.confederation, t.source_name, t.source_fetched_at, t.as_of_date
+        from teams t
+        join rankings r on r.team_id = t.team_id and r.as_of_date = t.as_of_date
+        where t.as_of_date = ?
+        order by t.team_name
         """,
         [as_of_date],
     )

@@ -19,8 +19,9 @@ cd frontend && npm test && npm run lint && npm run build && npm run test:e2e
 
 - Backend: `make backend-test` collected 15 tests and all passed.
 - Current tournament snapshot now validates 48 teams, 12 groups, and 72 group matches.
-- Historical performance snapshot contains recent pre-cutoff international results from the Mart
-  Jürisoo dataset when `FETCH_HISTORY=1` is enabled.
+- Historical performance snapshot contains 12,112 pre-cutoff international results from the Mart
+  Jürisoo dataset when `FETCH_HISTORY=1` is enabled, covering every World Cup team with at least
+  152 historical/current matches.
 - Backend lint: `python -m ruff check .` passed in `backend`.
 - Frontend unit tests: `npm test` ran 3 tests and all passed.
 - Frontend lint: `npm run lint` passed.

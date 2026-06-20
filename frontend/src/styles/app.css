@@ -164,10 +164,18 @@ select {
 }
 
 .interpretation-note,
-.plain-explainer {
+.plain-explainer,
+.sample-note {
   color: #3e4d46;
   line-height: 1.45;
   margin-bottom: 0;
+}
+
+.sample-note {
+  background: #f6faf8;
+  border: 1px solid #d6dfda;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .selected-team-summary {

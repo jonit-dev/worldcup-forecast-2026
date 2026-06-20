@@ -28,8 +28,8 @@ const forecast = {
     away_attack: 1,
     home_defense: 0.9,
     away_defense: 1,
-    home_matches_used: 10,
-    away_matches_used: 10,
+    home_matches_used: 425,
+    away_matches_used: 298,
   },
 };
 
@@ -45,7 +45,7 @@ test.beforeEach(async ({ page }) => {
         source_count: 4,
         team_count: 2,
         match_count: 1,
-        historical_result_count: 8,
+        historical_result_count: 12112,
         next_steps: [],
       },
     });
@@ -113,9 +113,17 @@ test.beforeEach(async ({ page }) => {
         config_hash: 'abc123',
         as_of_date: '2026-06-20',
         ranking_rows: 2,
-        historical_result_rows: 8,
+        historical_result_rows: 12112,
         current_completed_matches: 1,
-        limitations: ['Small sample data.'],
+        coverage_threshold: 150,
+        team_coverage: {
+          team_count: 48,
+          min_matches: 151,
+          median_matches: 320,
+          max_matches: 475,
+          teams_below_threshold: [],
+        },
+        limitations: ['Historical coverage is broad.'],
       },
     });
   });
@@ -127,6 +135,7 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
   await expect(page.getByText('Forecast data loaded')).toBeVisible();
   await expect(page.getByLabel('Team')).toHaveValue('usa');
   await expect(page.getByText(/Expected goals means average goals/)).toBeVisible();
+  await expect(page.getByText(/Broad sample/)).toBeVisible();
   await page.getByRole('button', { name: /United States.*Australia/ }).click();
   await expect(page.getByText('United States rating')).toBeVisible();
 });

@@ -36,6 +36,7 @@ def test_should_expose_loaded_summary_and_team_match_data(monkeypatch, tmp_path)
     assert summary["data_status"] == "loaded"
     assert summary["match_count"] == 72
     assert summary["team_count"] == 48
+    assert summary["historical_result_count"] >= 12000
     assert any(team["team_id"] == "usa" for team in teams)
     assert [match["match_id"] for match in usa_matches] == [
         "2026-GD-001",

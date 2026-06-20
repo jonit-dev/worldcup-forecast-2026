@@ -42,6 +42,14 @@ export function ModelInputsPanel({ forecast, diagnostics }: ModelInputsPanelProp
       </dl>
       <p className="warning">{forecast.model.note}</p>
       {diagnostics ? <p className="muted">{diagnostics.limitations[0]}</p> : null}
+      {diagnostics ? (
+        <p className="sample-note">
+          Tournament coverage: {diagnostics.team_coverage.team_count} teams, minimum{' '}
+          {diagnostics.team_coverage.min_matches} matches per team, median{' '}
+          {diagnostics.team_coverage.median_matches}, maximum{' '}
+          {diagnostics.team_coverage.max_matches}.
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -131,12 +131,12 @@ def ingest_snapshots(
         )
 
     team_ids = {
-        row["home_team_id"] for row in current_matches + historical_results
-    } | {row["away_team_id"] for row in current_matches + historical_results}
-    team_ids |= {row["team_id"] for row in rankings + standings}
+        row["home_team_id"] for row in current_matches
+    } | {row["away_team_id"] for row in current_matches}
+    team_ids |= ranking_team_ids | standing_team_ids
 
     missing_team_ids = {
-        team_id for row in current_matches + historical_results for team_id in (
+        team_id for row in current_matches for team_id in (
             row["home_team_id"],
             row["away_team_id"],
         )

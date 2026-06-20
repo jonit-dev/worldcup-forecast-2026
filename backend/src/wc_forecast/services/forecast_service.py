@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 from datetime import date
 from pathlib import Path
 
@@ -62,6 +63,25 @@ def model_diagnostics(database_path: Path, as_of_date: date) -> dict:
     rankings = list_rankings(database_path, as_of_date)
     historical_results = list_historical_results(database_path, as_of_date)
     completed_matches = [match for match in matches if match["status"] == "complete"]
+    tournament_team_ids = {row["team_id"] for row in rankings}
+    coverage = Counter()
+    for row in historical_results:
+        if row["home_team_id"] in tournament_team_ids:
+            coverage[row["home_team_id"]] += 1
+        if row["away_team_id"] in tournament_team_ids:
+            coverage[row["away_team_id"]] += 1
+    for row in completed_matches:
+        if row["home_team_id"] in tournament_team_ids:
+            coverage[row["home_team_id"]] += 1
+        if row["away_team_id"] in tournament_team_ids:
+            coverage[row["away_team_id"]] += 1
+    counts = sorted(coverage[team_id] for team_id in tournament_team_ids)
+    median_index = len(counts) // 2
+    median_count = (
+        int((counts[median_index - 1] + counts[median_index]) / 2)
+        if len(counts) % 2 == 0
+        else counts[median_index]
+    )
     return {
         "model_version": MODEL_VERSION,
         "config_hash": config_hash(as_of_date),
@@ -69,9 +89,19 @@ def model_diagnostics(database_path: Path, as_of_date: date) -> dict:
         "ranking_rows": len(rankings),
         "historical_result_rows": len(historical_results),
         "current_completed_matches": len(completed_matches),
+        "coverage_threshold": 150,
+        "team_coverage": {
+            "team_count": len(tournament_team_ids),
+            "min_matches": counts[0] if counts else 0,
+            "median_matches": median_count if counts else 0,
+            "max_matches": counts[-1] if counts else 0,
+            "teams_below_threshold": [
+                team_id for team_id in sorted(tournament_team_ids) if coverage[team_id] < 150
+            ],
+        },
         "limitations": [
-            "Small checked-in sample data is for local reproducibility, not public forecast quality.",
-            "Probabilities are point estimates and should not be described as statistically significant.",
+            "Historical coverage is broad, but football outcomes remain noisy and forecasts are not statistical proof.",
+            "Probabilities are calibrated point estimates and should not be described as statistically significant.",
             "Knockout paths are deferred until full bracket pairing rules and live data are ingested.",
         ],
     }

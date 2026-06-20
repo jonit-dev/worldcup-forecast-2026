@@ -21,7 +21,7 @@ def test_should_load_sample_matches_when_source_files_exist(tmp_path):
     )
 
     assert result.match_count == 72
-    assert result.historical_result_count >= 700
+    assert result.historical_result_count >= 12000
     assert result.team_count == 48
     connection = duckdb.connect(str(database_path))
     try:

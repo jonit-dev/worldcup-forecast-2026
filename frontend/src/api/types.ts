@@ -82,5 +82,13 @@ export type ModelDiagnostics = {
   ranking_rows: number;
   historical_result_rows: number;
   current_completed_matches: number;
+  coverage_threshold: number;
+  team_coverage: {
+    team_count: number;
+    min_matches: number;
+    median_matches: number;
+    max_matches: number;
+    teams_below_threshold: string[];
+  };
   limitations: string[];
 };

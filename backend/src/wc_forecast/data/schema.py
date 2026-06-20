@@ -5,9 +5,9 @@ from pathlib import Path
 import duckdb
 
 
-def connect(database_path: Path) -> duckdb.DuckDBPyConnection:
+def connect(database_path: Path, read_only: bool = False) -> duckdb.DuckDBPyConnection:
     database_path.parent.mkdir(parents=True, exist_ok=True)
-    return duckdb.connect(str(database_path))
+    return duckdb.connect(str(database_path), read_only=read_only)
 
 
 def initialize_schema(connection: duckdb.DuckDBPyConnection) -> None:
@@ -122,4 +122,3 @@ def initialize_schema(connection: duckdb.DuckDBPyConnection) -> None:
         )
         """
     )
-

@@ -14,6 +14,8 @@ As-of date for initial planning: 2026-06-20.
 
 - Kaggle / Mart Jürisoo international football results dataset for match results since 1872.
 - GitHub mirror for Mart Jürisoo international football results: https://github.com/martj42/international_results
+- Local refresh default uses results from 2000-01-01 through the configured `as_of_date`, keeping
+  matches where at least one 2026 World Cup team participated.
 - football-data.co.uk international results, if current licensing fits project use.
 - FIFA/Coca-Cola rankings snapshots for pre-tournament and tournament-period ratings.
 - Club Elo-style national team rating mirrors only if terms permit local derived use.

@@ -158,6 +158,10 @@ export function App() {
               <dt>Matches</dt>
               <dd>{summaryQuery.data?.match_count ?? 0}</dd>
             </div>
+            <div>
+              <dt>History</dt>
+              <dd>{summaryQuery.data?.historical_result_count ?? 0}</dd>
+            </div>
           </dl>
           <p className="path-text">{summaryQuery.data?.database_path ?? 'DuckDB target pending'}</p>
         </article>

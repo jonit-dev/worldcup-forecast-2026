@@ -7,6 +7,6 @@ FETCH_HISTORY="${FETCH_HISTORY:-1}"
 
 cd "$ROOT_DIR/backend"
 if [[ "$FETCH_HISTORY" == "1" ]]; then
-  PYTHONPATH=src "$ROOT_DIR/.venv/bin/python" -m wc_forecast.data.fetch_historical --as-of "$AS_OF_DATE"
+  PYTHONPATH=src "$ROOT_DIR/.venv/bin/python" -m wc_forecast.data.fetch_historical --as-of "$AS_OF_DATE" --start-date "${HISTORY_START_DATE:-2000-01-01}"
 fi
 PYTHONPATH=src "$ROOT_DIR/.venv/bin/python" -m wc_forecast.data.ingest --as-of "$AS_OF_DATE"

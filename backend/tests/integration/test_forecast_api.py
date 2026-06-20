@@ -81,3 +81,18 @@ def test_should_return_seeded_simulation(monkeypatch, tmp_path):
     assert body["iterations"] == 25
     assert body["seed"] == 3
     assert body["teams"]
+
+
+def test_should_report_broad_historical_coverage(monkeypatch, tmp_path):
+    database_path = ingest_test_database(tmp_path)
+    monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))
+    monkeypatch.setenv("WC_FORECAST_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-20")
+
+    response = create_app().test_client().get("/api/model/diagnostics")
+    body = response.get_json()
+
+    assert response.status_code == 200
+    assert body["team_coverage"]["team_count"] == 48
+    assert body["team_coverage"]["min_matches"] >= body["coverage_threshold"]
+    assert body["team_coverage"]["teams_below_threshold"] == []

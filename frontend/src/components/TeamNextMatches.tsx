@@ -90,6 +90,14 @@ export function TeamNextMatches({
           const likelyScore = forecast.top_scorelines[0];
           const likelySelectedScore = isHome ? likelyScore.home_score : likelyScore.away_score;
           const likelyOpponentScore = isHome ? likelyScore.away_score : likelyScore.home_score;
+          const selectedSample = isHome
+            ? forecast.model_inputs.home_matches_used
+            : forecast.model_inputs.away_matches_used;
+          const opponentSample = isHome
+            ? forecast.model_inputs.away_matches_used
+            : forecast.model_inputs.home_matches_used;
+          const coverageLabel =
+            selectedSample >= 150 && opponentSample >= 150 ? 'Broad sample' : 'Thin sample';
           return (
             <article className="match-card" key={forecast.match_id}>
               <div className="match-card-title">
@@ -133,6 +141,11 @@ export function TeamNextMatches({
               <p className="plain-explainer">
                 Expected goals means average goals if this match were replayed many times. Here:
                 {` ${selectedTeamName} ${selectedExpectedGoals.toFixed(2)} xG, ${opponentName} ${opponentExpectedGoals.toFixed(2)} xG.`}
+              </p>
+              <p className="sample-note">
+                {coverageLabel}: {selectedTeamName} has {selectedSample} prior/current matches in
+                this model; {opponentName} has {opponentSample}. More history improves stability,
+                but it still does not make the prediction certain.
               </p>
             </article>
           );

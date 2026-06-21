@@ -84,6 +84,24 @@ def test_should_return_seeded_simulation(monkeypatch, tmp_path):
     assert body["teams"]
 
 
+def test_should_return_tournament_overview_for_dedicated_pages(monkeypatch, tmp_path):
+    database_path = ingest_test_database(tmp_path)
+    monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))
+    monkeypatch.setenv("WC_FORECAST_DATA_DIR", str(tmp_path))
+    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-20")
+
+    response = create_app().test_client().get("/api/tournament/overview")
+    body = response.get_json()
+
+    assert response.status_code == 200
+    assert body["match_counts"]["upcoming"] > 0
+    assert body["team_count"] == 48
+    assert body["title_leader"]["team_id"]
+    assert body["champion_odds"]
+    assert body["featured_matches"]
+    assert body["group_leaders"]
+
+
 def test_should_report_broad_historical_coverage(monkeypatch, tmp_path):
     database_path = ingest_test_database(tmp_path)
     monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))

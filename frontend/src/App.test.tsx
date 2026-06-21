@@ -112,8 +112,40 @@ describe('App', () => {
         if (url.includes('/api/forecasts')) {
           return Response.json({ forecasts: [forecast, completedForecast] });
         }
+        if (url.endsWith('/api/tournament/overview')) {
+          return Response.json({
+            model_version: 'elo-form-calibrated-2026-06-20-recent40',
+            config_hash: 'abc123',
+            as_of_date: '2026-06-20',
+            match_counts: { upcoming: 1, completed: 1, total: 2 },
+            team_count: 2,
+            group_count: 1,
+            title_leader: { team_id: 'usa', team_name: 'United States', rating: 1700, probability: 0.62 },
+            strongest_attack: { team_id: 'usa', team_name: 'United States', value: 1.1 },
+            strongest_defense: { team_id: 'australia', team_name: 'Australia', value: 1 },
+            featured_matches: [forecast],
+            champion_odds: [
+              { team_id: 'usa', team_name: 'United States', rating: 1700, probability: 0.62 },
+              { team_id: 'australia', team_name: 'Australia', rating: 1600, probability: 0.38 },
+            ],
+            group_leaders: [
+              {
+                team_id: 'usa',
+                team_name: 'United States',
+                group_name: 'B',
+                group_win_probability: 0.6,
+                advance_probability: 0.8,
+              },
+            ],
+            teams: [],
+            note: 'sample',
+          });
+        }
         if (url.includes('/api/teams/usa/next-forecasts')) {
           return Response.json({ forecasts: [forecast] });
+        }
+        if (url.includes('/history')) {
+          return Response.json({ history: [] });
         }
         if (url.endsWith('/api/standings')) {
           return Response.json({
@@ -206,17 +238,25 @@ describe('App', () => {
     renderApp();
 
     await waitFor(() => expect(screen.getByText('Forecast data loaded')).toBeInTheDocument());
+    expect(screen.getByRole('heading', { name: 'Tournament Overview' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Team')).toHaveValue('');
     expect(screen.getAllByRole('button', { name: /United States.*Australia/i }).length).toBeGreaterThan(0);
-    expect(await screen.findByText(/Expected goals means the average goals/)).toBeInTheDocument();
+    expect(screen.getByText('Backtest quality')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: '70.0% outcome accuracy' })).toBeInTheDocument();
+
+    await userEvent.click(screen.getAllByRole('button', { name: /Inspect.*United States.*Australia/i })[0]);
+    expect(screen.getByRole('heading', { name: 'All Upcoming Forecasts' })).toBeInTheDocument();
+    expect(await screen.findByText(/United States rating/)).toBeInTheDocument();
     expect((await screen.findAllByText(/21\/30 outcomes/)).length).toBeGreaterThan(0);
     expect(screen.getByText(/95% confidence range/)).toBeInTheDocument();
+    expect(screen.getByText(/Historical coverage is broad/)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Data' }));
     expect(screen.getByRole('heading', { name: 'Past Predictions vs Actual Results' })).toBeInTheDocument();
     expect(screen.getByText('Miss')).toBeInTheDocument();
-    expect(screen.getAllByText('31.0%').length).toBeGreaterThanOrEqual(2);
     expect(screen.getByRole('heading', { name: /^Actual Results$/ })).toBeInTheDocument();
-    expect(screen.getAllByText('2-0').length).toBeGreaterThanOrEqual(2);
-    expect(screen.getByText(/Broad sample/)).toBeInTheDocument();
+    expect(screen.getAllByText('2-0').length).toBeGreaterThanOrEqual(1);
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
-    expect(screen.getAllByText('80.0%').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText('Back to Dashboard')).toBeInTheDocument();
+    expect(screen.getAllByText('80.0%').length).toBeGreaterThan(0);
   });
 });

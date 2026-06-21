@@ -15,6 +15,7 @@ from wc_forecast.services.forecast_service import (
     load_forecasts,
     load_next_team_forecasts,
     load_simulation,
+    load_tournament_overview,
     model_diagnostics,
 )
 
@@ -114,6 +115,11 @@ def create_app() -> Flask:
                 )
             }
         )
+
+    @app.get("/api/tournament/overview")
+    def tournament_overview():
+        settings = load_settings()
+        return jsonify(json_ready(load_tournament_overview(settings.database_path, settings.as_of_date)))
 
     @app.get("/api/teams/<team_id>/next-forecasts")
     def team_next_forecasts(team_id: str):

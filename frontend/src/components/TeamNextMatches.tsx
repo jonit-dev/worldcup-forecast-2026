@@ -9,6 +9,9 @@ type TeamNextMatchesProps = {
   forecasts: MatchForecast[];
   isLoading: boolean;
   onTeamChange: (teamId: string) => void;
+  onSelectMatch?: (match: MatchForecast) => void;
+  selectedMatchId?: string;
+  showTeamPicker?: boolean;
 };
 
 export function TeamNextMatches({
@@ -17,33 +20,38 @@ export function TeamNextMatches({
   forecasts,
   isLoading,
   onTeamChange,
+  onSelectMatch,
+  selectedMatchId,
+  showTeamPicker = true,
 }: TeamNextMatchesProps) {
   const selectedTeam = teams.find((team) => team.team_id === selectedTeamId);
 
   return (
     <div className="detail-stack">
-      <div className="team-picker-row">
-        <div>
-          <label className="field-label" htmlFor="team-select">
-            Team
-          </label>
-          <select
-            id="team-select"
-            value={selectedTeamId}
-            onChange={(event) => onTeamChange(event.target.value)}
-          >
-            {teams.map((team) => (
-              <option key={team.team_id} value={team.team_id}>
-                {teamLabel(team.team_id, team.team_name)}
-              </option>
-            ))}
-          </select>
+      {showTeamPicker ? (
+        <div className="team-picker-row">
+          <div>
+            <label className="field-label" htmlFor="team-select">
+              Team
+            </label>
+            <select
+              id="team-select"
+              value={selectedTeamId}
+              onChange={(event) => onTeamChange(event.target.value)}
+            >
+              {teams.map((team) => (
+                <option key={team.team_id} value={team.team_id}>
+                  {teamLabel(team.team_id, team.team_name)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <p className="interpretation-note">
+            Read each card left to right: chance to win, chance to draw, chance to lose, likely score,
+            then expected goals. “Expected goals” is the model’s average goal estimate for the match.
+          </p>
         </div>
-        <p className="interpretation-note">
-          Read each card left to right: chance to win, chance to draw, chance to lose, likely score,
-          then expected goals. “Expected goals” is the model’s average goal estimate for the match.
-        </p>
-      </div>
+      ) : null}
 
       {selectedTeam ? (
         <div className="selected-team-summary">
@@ -52,10 +60,7 @@ export function TeamNextMatches({
           </span>
           <div>
             <strong>{selectedTeam.team_name}</strong>
-            <p>
-              Showing this team&apos;s upcoming group matches. Win and lose probabilities are from
-              this team&apos;s point of view.
-            </p>
+            <p>Future matches and probabilities are shown from this team&apos;s point of view.</p>
           </div>
         </div>
       ) : null}
@@ -99,12 +104,28 @@ export function TeamNextMatches({
           const coverageLabel =
             selectedSample >= 150 && opponentSample >= 150 ? 'Broad sample' : 'Thin sample';
           return (
-            <article className="match-card" key={forecast.match_id}>
+            <article
+              className={forecast.match_id === selectedMatchId ? 'match-card selected-match-card' : 'match-card'}
+              key={forecast.match_id}
+            >
               <div className="match-card-title">
                 <Target size={18} aria-hidden="true" />
                 <h3>
-                  {teamLabel(forecast.home_team_id, forecast.home_team)} vs{' '}
-                  {teamLabel(forecast.away_team_id, forecast.away_team)}
+                  <button
+                    className="team-name-button"
+                    onClick={() => onTeamChange(forecast.home_team_id)}
+                    type="button"
+                  >
+                    {teamLabel(forecast.home_team_id, forecast.home_team)}
+                  </button>
+                  <span>vs</span>
+                  <button
+                    className="team-name-button"
+                    onClick={() => onTeamChange(forecast.away_team_id)}
+                    type="button"
+                  >
+                    {teamLabel(forecast.away_team_id, forecast.away_team)}
+                  </button>
                 </h3>
               </div>
               <p className="muted">
@@ -148,6 +169,11 @@ export function TeamNextMatches({
                 this model; {opponentName} has {opponentSample}. More history improves stability,
                 but it still does not make the prediction certain.
               </p>
+              {onSelectMatch ? (
+                <button className="secondary-action" onClick={() => onSelectMatch(forecast)} type="button">
+                  Inspect model inputs
+                </button>
+              ) : null}
             </article>
           );
         })}

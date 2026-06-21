@@ -38,12 +38,14 @@ const forecast: MatchForecast = {
 };
 
 describe('ForecastTable', () => {
-  it('should render probability columns when forecasts are present', () => {
+  it('should render compact probabilities when forecasts are present', () => {
     render(<ForecastTable forecasts={[forecast]} onSelectMatch={() => undefined} />);
 
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Draw')).toBeInTheDocument();
-    expect(screen.getByText('Away')).toBeInTheDocument();
+    expect(screen.getByText('Probabilities')).toBeInTheDocument();
+    expect(screen.getByText('xG')).toBeInTheDocument();
+    expect(screen.getByText('H')).toBeInTheDocument();
+    expect(screen.getByText('D')).toBeInTheDocument();
+    expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('51.2%')).toBeInTheDocument();
   });
 

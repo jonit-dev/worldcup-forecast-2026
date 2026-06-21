@@ -9,9 +9,50 @@ from wc_forecast.data.repository import (
     list_matches,
     list_rankings,
     list_standings,
+    list_teams,
 )
 from wc_forecast.models.forecast import MODEL_VERSION, build_inputs, config_hash, forecast_matches
 from wc_forecast.models.simulate import simulate_group_paths
+
+
+def _champion_odds_from_forecasts(forecasts: list[dict], team_names: dict[str, str]) -> list[dict]:
+    ratings: dict[str, float] = {}
+    for forecast in forecasts:
+        ratings[forecast["home_team_id"]] = max(
+            ratings.get(forecast["home_team_id"], 0),
+            forecast["model_inputs"]["home_rating"],
+        )
+        ratings[forecast["away_team_id"]] = max(
+            ratings.get(forecast["away_team_id"], 0),
+            forecast["model_inputs"]["away_rating"],
+        )
+
+    weighted = []
+    for team_id, rating in ratings.items():
+        title_weight = 10 ** (((rating - 1500) / 400) * 1.8)
+        weighted.append(
+            {
+                "team_id": team_id,
+                "team_name": team_names.get(team_id, team_id),
+                "rating": rating,
+                "title_weight": title_weight,
+            }
+        )
+
+    total_weight = sum(team["title_weight"] for team in weighted)
+    return sorted(
+        [
+            {
+                "team_id": team["team_id"],
+                "team_name": team["team_name"],
+                "rating": team["rating"],
+                "probability": 0 if total_weight == 0 else team["title_weight"] / total_weight,
+            }
+            for team in weighted
+        ],
+        key=lambda team: team["probability"],
+        reverse=True,
+    )
 
 
 def load_forecasts(database_path: Path, as_of_date: date, team_id: str | None = None) -> list[dict]:
@@ -55,6 +96,107 @@ def load_simulation(database_path: Path, as_of_date: date, iterations: int, seed
         "seed": result.seed,
         "teams": result.teams,
         "note": "Simulation uses current sample group data and is not a statistically significant claim.",
+    }
+
+
+def load_tournament_overview(database_path: Path, as_of_date: date) -> dict:
+    rankings = list_rankings(database_path, as_of_date)
+    teams = list_teams(database_path, as_of_date)
+    standings = list_standings(database_path, as_of_date)
+    forecasts = load_forecasts(database_path, as_of_date)
+    upcoming = [
+        forecast
+        for forecast in forecasts
+        if forecast["status"] != "complete" and forecast["match_date"] >= as_of_date
+    ]
+    completed = [forecast for forecast in forecasts if forecast["status"] == "complete"]
+    rankings_by_team = {team["team_id"]: team for team in rankings}
+    team_names = {team["team_id"]: team["team_name"] for team in teams}
+    champion_odds = _champion_odds_from_forecasts(forecasts, team_names)
+    simulation = load_simulation(database_path, as_of_date, iterations=1000, seed=20260620)
+    simulation_by_team = {team["team_id"]: team for team in simulation["teams"]}
+
+    strongest_attack = max(
+        (
+            {
+                "team_id": forecast["home_team_id"],
+                "team_name": forecast["home_team"],
+                "value": forecast["model_inputs"]["home_attack"],
+            }
+            for forecast in forecasts
+        ),
+        key=lambda row: row["value"],
+        default=None,
+    )
+    strongest_defense = min(
+        (
+            {
+                "team_id": forecast["home_team_id"],
+                "team_name": forecast["home_team"],
+                "value": forecast["model_inputs"]["home_defense"],
+            }
+            for forecast in forecasts
+        ),
+        key=lambda row: row["value"],
+        default=None,
+    )
+
+    title_leader = champion_odds[0] if champion_odds else None
+    group_leaders = sorted(
+        [
+            {
+                **team,
+                "team_name": team_names.get(team["team_id"], team["team_id"]),
+            }
+            for team in simulation["teams"]
+        ],
+        key=lambda team: team["group_win_probability"],
+        reverse=True,
+    )[:8]
+
+    return {
+        "model_version": MODEL_VERSION,
+        "config_hash": config_hash(as_of_date),
+        "as_of_date": as_of_date,
+        "match_counts": {
+            "upcoming": len(upcoming),
+            "completed": len(completed),
+            "total": len(forecasts),
+        },
+        "team_count": len(teams),
+        "group_count": len({standing["group_name"] for standing in standings}),
+        "title_leader": title_leader,
+        "strongest_attack": strongest_attack,
+        "strongest_defense": strongest_defense,
+        "featured_matches": sorted(
+            upcoming,
+            key=lambda forecast: (
+                forecast["match_date"],
+                -max(
+                    forecast["probabilities"]["home_win"],
+                    forecast["probabilities"]["away_win"],
+                ),
+            ),
+        )[:6],
+        "champion_odds": champion_odds[:16],
+        "group_leaders": group_leaders,
+        "teams": [
+            {
+                "team_id": team["team_id"],
+                "team_name": team["team_name"],
+                "confederation": team["confederation"],
+                "rating": rankings_by_team.get(team["team_id"], {}).get("rating"),
+                "group_name": simulation_by_team.get(team["team_id"], {}).get("group_name"),
+                "advance_probability": simulation_by_team.get(team["team_id"], {}).get(
+                    "advance_probability"
+                ),
+                "group_win_probability": simulation_by_team.get(team["team_id"], {}).get(
+                    "group_win_probability"
+                ),
+            }
+            for team in teams
+        ],
+        "note": "Tournament overview combines current match forecasts, ranking-derived title weights, and group path simulation.",
     }
 
 

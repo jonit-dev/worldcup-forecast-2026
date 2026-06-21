@@ -96,6 +96,40 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/api/forecasts', async (route) => {
     await route.fulfill({ json: { forecasts: [forecast, completedForecast] } });
   });
+  await page.route('**/api/tournament/overview', async (route) => {
+    await route.fulfill({
+      json: {
+        model_version: 'elo-form-calibrated-2026-06-20-recent40',
+        config_hash: 'abc123',
+        as_of_date: '2026-06-20',
+        match_counts: { upcoming: 1, completed: 1, total: 2 },
+        team_count: 2,
+        group_count: 1,
+        title_leader: { team_id: 'usa', team_name: 'United States', rating: 1700, probability: 0.62 },
+        strongest_attack: { team_id: 'usa', team_name: 'United States', value: 1.1 },
+        strongest_defense: { team_id: 'australia', team_name: 'Australia', value: 1 },
+        featured_matches: [forecast],
+        champion_odds: [
+          { team_id: 'usa', team_name: 'United States', rating: 1700, probability: 0.62 },
+          { team_id: 'australia', team_name: 'Australia', rating: 1600, probability: 0.38 },
+        ],
+        group_leaders: [
+          {
+            team_id: 'usa',
+            team_name: 'United States',
+            group_name: 'B',
+            group_win_probability: 0.6,
+            advance_probability: 0.8,
+          },
+        ],
+        teams: [],
+        note: 'sample',
+      },
+    });
+  });
+  await page.route('**/api/teams/*/history', async (route) => {
+    await route.fulfill({ json: { history: [] } });
+  });
   await page.route('**/api/teams/*/next-forecasts?*', async (route) => {
     await route.fulfill({ json: { forecasts: [forecast] } });
   });
@@ -200,16 +234,22 @@ test('should load dashboard and select a match forecast', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByText('Forecast data loaded')).toBeVisible();
-  await expect(page.getByLabel('Team')).toHaveValue('usa');
-  await expect(page.getByText(/Expected goals means the average goals/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tournament Overview' })).toBeVisible();
+  await expect(page.locator('#team-select')).toHaveValue('');
+  await expect(page.getByText('Backtest quality')).toBeVisible();
+  await expect(page.getByRole('heading', { name: '70.0% outcome accuracy' })).toBeVisible();
+  await page.getByRole('button', { name: /Inspect.*United States.*Australia/ }).first().click();
+  await expect(page.getByRole('heading', { name: 'All Upcoming Forecasts' })).toBeVisible();
   await expect(page.getByText(/21\/30 outcomes/).first()).toBeVisible();
   await expect(page.getByText(/95% confidence range/)).toBeVisible();
+  await expect(page.getByText(/Historical coverage is broad/)).toBeVisible();
+  await expect(page.getByText(/United States rating/)).toBeVisible();
+  await page.getByRole('button', { name: 'Data' }).click();
   await expect(page.getByRole('heading', { name: 'Past Predictions vs Actual Results' })).toBeVisible();
   await expect(page.getByText('Miss')).toBeVisible();
-  await expect(page.getByText('31.0%').first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Actual Results', exact: true })).toBeVisible();
   await expect(page.getByText('2-0').first()).toBeVisible();
-  await expect(page.getByText(/Broad sample/)).toBeVisible();
-  await page.getByRole('button', { name: /United States.*Australia/ }).click();
-  await expect(page.getByText('United States rating')).toBeVisible();
+  await page.locator('#team-select').selectOption('usa');
+  await expect(page.getByText('Back to Dashboard')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Upcoming Forecasted Matches' })).toBeVisible();
 });

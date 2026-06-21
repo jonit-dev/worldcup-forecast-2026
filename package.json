@@ -1,0 +1,14 @@
+{
+  "name": "worldcup-forecast-2026",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm dev:ingest && concurrently -k -n api,web -c cyan,blue \"pnpm dev:api\" \"pnpm dev:web\"",
+    "dev:api": "PYTHONPATH=backend/src WC_FORECAST_DATA_DIR=data ./.venv/bin/flask --app wc_forecast.api.app run --debug",
+    "dev:ingest": "PYTHONPATH=backend/src WC_FORECAST_DATA_DIR=data ./.venv/bin/python -m wc_forecast.data.ingest --as-of 2026-06-20",
+    "dev:refresh": "./scripts/refresh_data.sh 2026-06-20",
+    "dev:web": "pnpm --dir frontend exec vite --host 0.0.0.0 --port 5173"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -17,6 +17,13 @@ export type Team = {
   confederation: string;
 };
 
+export type ChampionOdd = {
+  team_id: string;
+  team_name: string;
+  rating: number;
+  probability: number;
+};
+
 export type MatchForecast = {
   match_id: string;
   match_date: string;
@@ -72,6 +79,41 @@ export type Simulation = {
   iterations: number;
   seed: number;
   teams: SimulationTeam[];
+  note: string;
+};
+
+export type TournamentOverview = {
+  model_version: string;
+  config_hash: string;
+  as_of_date: string;
+  match_counts: {
+    upcoming: number;
+    completed: number;
+    total: number;
+  };
+  team_count: number;
+  group_count: number;
+  title_leader: ChampionOdd | null;
+  strongest_attack: { team_id: string; team_name: string; value: number } | null;
+  strongest_defense: { team_id: string; team_name: string; value: number } | null;
+  featured_matches: MatchForecast[];
+  champion_odds: ChampionOdd[];
+  group_leaders: Array<{
+    team_id: string;
+    team_name: string;
+    group_name: string;
+    group_win_probability: number;
+    advance_probability: number;
+  }>;
+  teams: Array<{
+    team_id: string;
+    team_name: string;
+    confederation: string;
+    rating: number;
+    group_name: string | null;
+    advance_probability: number | null;
+    group_win_probability: number | null;
+  }>;
   note: string;
 };
 
@@ -142,4 +184,16 @@ export type EvaluationRow = {
   expected_goals: { home: number; away: number };
   top_scoreline: { home_score: number; away_score: number; probability: number };
   top_scoreline_correct: boolean;
+};
+
+export type TeamHistoryMatch = {
+  match_date: string;
+  home_team_id: string;
+  away_team_id: string;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
+  tournament: string;
+  neutral_site: boolean;
 };

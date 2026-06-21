@@ -1,4 +1,13 @@
-import type { MatchForecast, ModelDiagnostics, ModelEvaluation, Simulation, Standing, Summary, Team } from './types';
+import type {
+  MatchForecast,
+  ModelDiagnostics,
+  ModelEvaluation,
+  Simulation,
+  Standing,
+  Summary,
+  Team,
+  TournamentOverview,
+} from './types';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000';
 
@@ -15,6 +24,10 @@ export async function getForecasts(teamId?: string): Promise<MatchForecast[]> {
   const query = teamId ? `?team_id=${encodeURIComponent(teamId)}` : '';
   const response = await getJson<{ forecasts: MatchForecast[] }>(`/api/forecasts${query}`);
   return response.forecasts;
+}
+
+export async function getTournamentOverview(): Promise<TournamentOverview> {
+  return getJson<TournamentOverview>('/api/tournament/overview');
 }
 
 export async function getNextForecasts(teamId: string): Promise<MatchForecast[]> {
@@ -39,6 +52,13 @@ export async function getModelDiagnostics(): Promise<ModelDiagnostics> {
 
 export async function getModelEvaluation(): Promise<ModelEvaluation> {
   return getJson<ModelEvaluation>('/api/model/evaluation');
+}
+
+export async function getTeamHistory(teamId: string): Promise<import('./types').TeamHistoryMatch[]> {
+  const response = await getJson<{ history: import('./types').TeamHistoryMatch[] }>(
+    `/api/teams/${encodeURIComponent(teamId)}/history`
+  );
+  return response.history;
 }
 
 async function getJson<T>(path: string): Promise<T> {

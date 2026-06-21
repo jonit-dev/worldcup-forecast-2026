@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, Calendar, Sparkles, TrendingUp, Trophy } from 'lucide-react';
+import { ArrowLeft, Calendar, Sparkles, Target, TrendingUp, Trophy } from 'lucide-react';
 import { getTeamHistory, getNextForecasts } from '../api/client';
-import type { SimulationTeam, Standing, Team } from '../api/types';
+import type { MatchForecast, SimulationTeam, Standing, Team } from '../api/types';
 import { TeamFlag, teamWithFlag } from '../utils/flags';
 import { formatPercent } from '../utils/format';
 
@@ -13,6 +13,27 @@ type TeamDetailPageProps = {
   onBack: () => void;
   onSelectTeam: (teamId: string) => void;
 };
+
+function formatMatchDate(value: string) {
+  return new Intl.DateTimeFormat('en', {
+    month: 'short',
+    day: 'numeric',
+  }).format(new Date(`${value}T12:00:00`));
+}
+
+function likelyOutcomeLabel(match: MatchForecast, teamId: string) {
+  const isHome = match.home_team_id === teamId;
+  const teamWin = isHome ? match.probabilities.home_win : match.probabilities.away_win;
+  const teamLoss = isHome ? match.probabilities.away_win : match.probabilities.home_win;
+  const draw = match.probabilities.draw;
+  const outcomes = [
+    { label: 'Win', probability: teamWin, className: 'forecast-win' },
+    { label: 'Draw', probability: draw, className: 'forecast-draw' },
+    { label: 'Loss', probability: teamLoss, className: 'forecast-loss' },
+  ].sort((a, b) => b.probability - a.probability);
+
+  return outcomes[0];
+}
 
 export function TeamDetailPage({
   team,
@@ -203,12 +224,19 @@ export function TeamDetailPage({
                   const winProb = isHome ? match.probabilities.home_win : match.probabilities.away_win;
                   const drawProb = match.probabilities.draw;
                   const lossProb = isHome ? match.probabilities.away_win : match.probabilities.home_win;
+                  const likelyOutcome = likelyOutcomeLabel(match, teamId);
+                  const topScoreline = match.top_scorelines[0];
+                  const teamExpectedGoals = isHome ? match.expected_goals.home : match.expected_goals.away;
+                  const opponentExpectedGoals = isHome ? match.expected_goals.away : match.expected_goals.home;
+                  const scorelineLabel = topScoreline
+                    ? `${match.home_team} ${topScoreline.home_score}-${topScoreline.away_score} ${match.away_team}`
+                    : `${match.home_team} vs ${match.away_team}`;
 
                   return (
                     <div className="upcoming-item-card" key={match.match_id}>
                       <div className="upcoming-item-header">
                         <span className="match-tag">Group {match.group_name || match.stage}</span>
-                        <span className="match-date-tag">{match.match_date}</span>
+                        <span className="match-date-tag">{formatMatchDate(match.match_date)}</span>
                       </div>
                       
                       <div className="upcoming-teams-row">
@@ -225,6 +253,22 @@ export function TeamDetailPage({
                         </button>
                       </div>
 
+                      <div className="forecast-callout">
+                        <div className="forecast-callout-icon">
+                          <Target size={16} />
+                        </div>
+                        <div>
+                          <span className={`forecast-outcome ${likelyOutcome.className}`}>
+                            Likely {likelyOutcome.label} · {formatPercent(likelyOutcome.probability)}
+                          </span>
+                          <strong>{scorelineLabel}</strong>
+                          <span>
+                            Expected goals: {team.team_name} {teamExpectedGoals.toFixed(1)} · {opponentName}{' '}
+                            {opponentExpectedGoals.toFixed(1)}
+                          </span>
+                        </div>
+                      </div>
+
                       {/* Probabilities bar */}
                       <div className="match-probability-bar">
                         <div className="prob-segment fill-win" style={{ width: `${winProb * 100}%` }} title={`Win: ${formatPercent(winProb)}`}>
@@ -238,9 +282,7 @@ export function TeamDetailPage({
                         </div>
                       </div>
 
-                      <div className="upcoming-goals-hint">
-                        Expected goals: {match.expected_goals.home.toFixed(1)} - {match.expected_goals.away.toFixed(1)}
-                      </div>
+                      <div className="upcoming-goals-hint">W/D/L from {team.team_name}'s perspective</div>
                     </div>
                   );
                 })

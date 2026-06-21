@@ -6,9 +6,16 @@
     "dev:api": "PYTHONPATH=backend/src WC_FORECAST_DATA_DIR=data ./.venv/bin/flask --app wc_forecast.api.app run --debug",
     "dev:ingest": "PYTHONPATH=backend/src WC_FORECAST_DATA_DIR=data ./.venv/bin/python -m wc_forecast.data.ingest --as-of 2026-06-20",
     "dev:refresh": "./scripts/refresh_data.sh 2026-06-20",
-    "dev:web": "pnpm --dir frontend exec vite --host 0.0.0.0 --port 5173"
+    "dev:web": "pnpm --dir frontend exec vite --host 0.0.0.0 --port 5173",
+    "cf:snapshot": "PYTHONPATH=backend/src WC_FORECAST_DATA_DIR=data WC_FORECAST_AS_OF_DATE=2026-06-20 ./.venv/bin/python scripts/export_cloudflare_snapshot.py",
+    "cf:build": "pnpm cf:snapshot && pnpm --dir frontend build",
+    "cf:dev": "pnpm cf:build && wrangler dev",
+    "cf:deploy": "pnpm cf:build && wrangler deploy"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@cloudflare/workers-types": "4.20260621.1",
+    "concurrently": "^9.2.1",
+    "typescript": "^6.0.3",
+    "wrangler": "4.80.0"
   }
 }

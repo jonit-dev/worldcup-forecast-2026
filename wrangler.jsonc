@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "worldcup-forecast-2026",
+  "main": "cloudflare/worker/src/index.ts",
+  "compatibility_date": "2026-06-21",
+  "assets": {
+    "directory": "./frontend/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  }
+}

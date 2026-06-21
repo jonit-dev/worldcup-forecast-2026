@@ -129,7 +129,7 @@ def test_should_backtest_as_if_tournament_had_not_started(monkeypatch, tmp_path)
     assert response.status_code == 200
     assert body["training_cutoff"] == "2026-06-10"
     assert body["completed_current_matches_used_for_training"] == 0
-    assert body["holdout_match_count"] == 30
+    assert body["holdout_match_count"] == 31
     assert body["correct_outcomes"] >= 15
     assert body["outcome_accuracy"] >= body["quality_gate"]["accuracy_threshold"]
     assert body["quality_gate"]["clears_gate"] is True

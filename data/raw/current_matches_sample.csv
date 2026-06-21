@@ -32,7 +32,7 @@ match_id,match_date,stage,group_name,home_team_id,home_team,away_team_id,away_te
 2026-GF-001,2026-06-14,group,F,netherlands,Netherlands,tunisia,Tunisia,2,0,complete,true
 2026-GF-002,2026-06-14,group,F,japan,Japan,sweden,Sweden,1,1,complete,true
 2026-GF-003,2026-06-20,group,F,netherlands,Netherlands,sweden,Sweden,,,scheduled,true
-2026-GF-004,2026-06-20,group,F,tunisia,Tunisia,japan,Japan,,,scheduled,true
+2026-GF-004,2026-06-20,group,F,tunisia,Tunisia,japan,Japan,0,4,complete,true
 2026-GF-005,2026-06-25,group,F,japan,Japan,netherlands,Netherlands,,,scheduled,true
 2026-GF-006,2026-06-25,group,F,sweden,Sweden,tunisia,Tunisia,,,scheduled,true
 2026-GG-001,2026-06-15,group,G,belgium,Belgium,new-zealand,New Zealand,2,0,complete,true

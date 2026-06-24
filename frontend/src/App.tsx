@@ -9,7 +9,7 @@ import {
   Target,
   Trophy,
 } from 'lucide-react';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -46,6 +46,7 @@ const navItems = [
   { label: 'Overview', icon: Home, view: 'overview' },
   { label: 'Team Forecast', icon: Target, view: 'team-detail' },
   { label: 'All Forecasts', icon: LineChart, view: 'forecasts' },
+  { label: 'Prediction Audit', icon: BarChart3, view: 'prediction-audit' },
   { label: 'Champion Odds', icon: Trophy, view: 'champion-odds' },
   { label: 'Knockout Bracket', icon: LineChart, view: 'knockout-bracket' },
   { label: 'Group Stage', icon: ShieldCheck, view: 'group-stage' },
@@ -282,6 +283,10 @@ export function App() {
           />
         ) : null}
 
+        {viewMode === 'prediction-audit' ? (
+          <PredictionAuditPage evaluation={evaluationQuery.data} />
+        ) : null}
+
         {viewMode === 'knockout-bracket' ? (
           <BracketPage championOdds={championOdds} onSelectTeam={selectTeam} selectedTeamId={selectedTeamId} />
         ) : null}
@@ -371,7 +376,11 @@ function OverviewPage({
         <ChampionProbabilityList odds={championOdds} selectedTeamId={selectedTeamId} onSelectTeam={onSelectTeam} />
       </Panel>
 
-      <div className="page-card span-7 backtest-card">
+      <Panel className="span-7 bracket-panel overview-bracket-panel" icon={<Trophy size={18} />} title="Knockout Bracket Forecast">
+        <BracketPreview teams={championOdds} selectedTeamId={selectedTeamId} onSelectTeam={onSelectTeam} />
+      </Panel>
+
+      <div className="page-card span-full backtest-card">
         <p className="eyebrow">Backtest quality</p>
         <h2>{evaluation?.outcome_accuracy == null ? 'Waiting for evaluation' : `${formatPercent(evaluation.outcome_accuracy)} outcome accuracy`}</h2>
         <dl className="overview-metrics">
@@ -424,6 +433,28 @@ function ForecastsPage({
       </Panel>
       <Panel className="span-4 inputs-panel" icon={<BarChart3 size={18} />} title="Selected Match Model Drivers">
         <ModelInputsPanel forecast={selectedMatch} diagnostics={diagnostics} evaluation={evaluation} />
+      </Panel>
+    </section>
+  );
+}
+
+function PredictionAuditPage({ evaluation }: { evaluation?: ModelEvaluation }) {
+  return (
+    <section className="page-grid prediction-audit-page" aria-label="Prediction audit">
+      <div className="page-card span-full backtest-card">
+        <p className="eyebrow">Prediction audit</p>
+        <h2>
+          {evaluation?.holdout_match_count
+            ? `${evaluation.holdout_match_count} completed matches scored against pre-match predictions`
+            : 'Waiting for completed-match audit'}
+        </h2>
+        <p>
+          Historical predictions are trained only on data available before the tournament, then compared against
+          actual World Cup results. The delta column shows how far the top predicted scoreline was from the real score.
+        </p>
+      </div>
+      <Panel className="span-full past-panel" icon={<BarChart3 size={18} />} title="Historical Predictions vs Actual Results">
+        <PastPredictions rows={evaluation?.rows ?? []} />
       </Panel>
     </section>
   );
@@ -776,25 +807,63 @@ function BracketPreview({
   onSelectTeam?: (teamId: string) => void;
 }) {
   const bracketTeams = teams.slice(0, 8);
+  const roundLabels = ['Round of 16', 'Quarterfinals', 'Semifinals'];
+  const roundSizes = [8, 4, 2];
+  const roundX = [2, 31, 60];
+  const roundY = [
+    [14, 24, 34, 44, 56, 66, 76, 86],
+    [19, 39, 61, 81],
+    [29, 71],
+  ];
+  const lineSegments = [
+    'M17 14 H27 V19 H30',
+    'M17 24 H27 V19',
+    'M17 34 H27 V39 H30',
+    'M17 44 H27 V39',
+    'M17 56 H27 V61 H30',
+    'M17 66 H27 V61',
+    'M17 76 H27 V81 H30',
+    'M17 86 H27 V81',
+    'M46 19 H55 V29 H59',
+    'M46 39 H55 V29',
+    'M46 61 H55 V71 H59',
+    'M46 81 H55 V71',
+    'M75 29 H82 V50 H86',
+    'M75 71 H82 V50',
+  ];
+
   return (
     <div className="bracket-grid" aria-label="Bracket preview">
-      {[0, 1, 2].map((round) => (
-        <div className={`bracket-round round-${round + 1}`} key={round}>
-          <span>{round === 0 ? 'Round of 16' : round === 1 ? 'Quarterfinals' : 'Semifinals'}</span>
-          {bracketTeams.slice(0, round === 0 ? 8 : round === 1 ? 4 : 2).map((team) => (
-            <button
-              className={team.team_id === selectedTeamId ? 'bracket-node selected-team-row' : 'bracket-node'}
-              key={`${round}-${team.team_id}`}
-              onClick={() => onSelectTeam?.(team.team_id)}
-              type="button"
-            >
-              <span>
-                <TeamFlag teamId={team.team_id} title={team.team_name} /> {team.team_name}
-              </span>
-            </button>
-          ))}
-        </div>
-      ))}
+      <div className="bracket-labels" aria-hidden="true">
+        {roundLabels.map((label) => (
+          <span key={label}>{label}</span>
+        ))}
+      </div>
+      <svg className="bracket-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {lineSegments.map((segment) => (
+          <path d={segment} key={segment} />
+        ))}
+      </svg>
+      {roundSizes.map((size, round) =>
+        bracketTeams.slice(0, size).map((team, index) => (
+          <button
+            className={team.team_id === selectedTeamId ? 'bracket-node selected-team-row' : 'bracket-node'}
+            key={`${round}-${team.team_id}`}
+            onClick={() => onSelectTeam?.(team.team_id)}
+            style={
+              {
+                '--bracket-x': `${roundX[round]}%`,
+                '--bracket-y': `${roundY[round][index]}%`,
+              } as CSSProperties
+            }
+            type="button"
+          >
+            <span>
+              <TeamFlag teamId={team.team_id} title={team.team_name} /> {team.team_name}
+            </span>
+          </button>
+        )),
+      )}
       <div className="bracket-final">
         <Trophy size={24} aria-hidden="true" />
         <strong>

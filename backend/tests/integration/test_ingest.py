@@ -16,8 +16,8 @@ def test_should_load_sample_matches_when_source_files_exist(tmp_path):
     result = ingest_snapshots(
         database_path,
         raw_dir,
-        date(2026, 6, 20),
-        datetime(2026, 6, 20, 12, 0, tzinfo=timezone.utc),
+        date(2026, 6, 23),
+        datetime(2026, 6, 23, 12, 0, tzinfo=timezone.utc),
     )
 
     assert result.match_count == 72
@@ -44,8 +44,8 @@ def test_should_be_idempotent_for_same_source_snapshot(tmp_path):
     kwargs = {
         "database_path": database_path,
         "raw_dir": raw_dir,
-        "as_of_date": date(2026, 6, 20),
-        "fetched_at": datetime(2026, 6, 20, 12, 0, tzinfo=timezone.utc),
+        "as_of_date": date(2026, 6, 23),
+        "fetched_at": datetime(2026, 6, 23, 12, 0, tzinfo=timezone.utc),
     }
     ingest_snapshots(**kwargs)
     ingest_snapshots(**kwargs)
@@ -53,6 +53,38 @@ def test_should_be_idempotent_for_same_source_snapshot(tmp_path):
     connection = duckdb.connect(str(database_path))
     try:
         assert connection.execute("select count(*) from matches").fetchone()[0] == 72
+        assert connection.execute("select count(*) from ingestion_runs").fetchone()[0] == 1
+    finally:
+        connection.close()
+
+
+def test_should_replace_active_snapshot_when_as_of_date_advances(tmp_path):
+    database_path = tmp_path / "worldcup_forecast.duckdb"
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir()
+    project_raw = __import__("pathlib").Path(__file__).resolve().parents[3] / "data" / "raw"
+    for source_path in project_raw.glob("*_sample.csv"):
+        (raw_dir / source_path.name).write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
+
+    ingest_snapshots(
+        database_path,
+        raw_dir,
+        date(2026, 6, 23),
+        datetime(2026, 6, 23, 12, 0, tzinfo=timezone.utc),
+    )
+    ingest_snapshots(
+        database_path,
+        raw_dir,
+        date(2026, 6, 23),
+        datetime(2026, 6, 23, 12, 0, tzinfo=timezone.utc),
+    )
+
+    connection = duckdb.connect(str(database_path))
+    try:
+        assert connection.execute("select count(*) from teams").fetchone()[0] == 48
+        assert connection.execute("select count(*) from matches").fetchone()[0] == 72
+        assert connection.execute("select count(*) from historical_results").fetchone()[0] >= 12000
+        assert connection.execute("select distinct as_of_date from matches").fetchone()[0] == date(2026, 6, 23)
         assert connection.execute("select count(*) from ingestion_runs").fetchone()[0] == 1
     finally:
         connection.close()

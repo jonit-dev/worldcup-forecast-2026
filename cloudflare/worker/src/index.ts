@@ -19,6 +19,7 @@ type Snapshot = {
   evaluation: Record<string, unknown>;
   team_history: Record<string, Array<Record<string, unknown>>>;
   next_forecasts: Record<string, Snapshot['forecasts']>;
+  potential_opponents: Record<string, Array<Record<string, unknown>>>;
 };
 
 type Env = {
@@ -99,6 +100,18 @@ async function handleApi(request: Request, env: Env): Promise<Response> {
     const teamId = decodeURIComponent(nextMatch[1]);
     const limit = Number(url.searchParams.get('limit') ?? '3');
     return json({ team_id: teamId, forecasts: (snapshot.next_forecasts[teamId] ?? []).slice(0, limit) });
+  }
+
+  const potentialMatch = url.pathname.match(/^\/api\/teams\/([^/]+)\/potential-opponents$/);
+  if (potentialMatch) {
+    const teamId = decodeURIComponent(potentialMatch[1]);
+    const limit = Number(url.searchParams.get('limit') ?? '6');
+    return json({
+      team_id: teamId,
+      opponents: (snapshot.potential_opponents[teamId] ?? []).slice(0, limit),
+      note:
+        'Potential opponents are simulated from projected group finishing positions and the published 2026 Round-of-32 slot template. Best-third assignment is approximated.',
+    });
   }
 
   return json({ error: 'Not found' }, 404);

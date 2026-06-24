@@ -2,6 +2,7 @@ import type {
   MatchForecast,
   ModelDiagnostics,
   ModelEvaluation,
+  PotentialOpponent,
   Simulation,
   Standing,
   Summary,
@@ -35,6 +36,13 @@ export async function getNextForecasts(teamId: string): Promise<MatchForecast[]>
     `/api/teams/${encodeURIComponent(teamId)}/next-forecasts?limit=4`,
   );
   return response.forecasts;
+}
+
+export async function getPotentialOpponents(teamId: string): Promise<PotentialOpponent[]> {
+  const response = await getJson<{ opponents: PotentialOpponent[] }>(
+    `/api/teams/${encodeURIComponent(teamId)}/potential-opponents?limit=6`,
+  );
+  return response.opponents;
 }
 
 export async function getStandings(): Promise<Standing[]> {

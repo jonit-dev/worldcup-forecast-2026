@@ -14,6 +14,7 @@ from wc_forecast.services.evaluation_service import evaluate_pre_tournament_mode
 from wc_forecast.services.forecast_service import (
     load_forecasts,
     load_next_team_forecasts,
+    load_potential_team_opponents,
     load_simulation,
     load_tournament_overview,
     model_diagnostics,
@@ -135,6 +136,28 @@ def create_app() -> Flask:
                         team_id,
                         limit=limit,
                     )
+                ),
+            }
+        )
+
+    @app.get("/api/teams/<team_id>/potential-opponents")
+    def team_potential_opponents(team_id: str):
+        settings = load_settings()
+        limit = int(request.args.get("limit", "6"))
+        return jsonify(
+            {
+                "team_id": team_id,
+                "opponents": json_ready(
+                    load_potential_team_opponents(
+                        settings.database_path,
+                        settings.as_of_date,
+                        team_id,
+                        limit=limit,
+                    )
+                ),
+                "note": (
+                    "Potential opponents are simulated from projected group finishing positions and the "
+                    "published 2026 Round-of-32 slot template. Best-third assignment is approximated."
                 ),
             }
         )

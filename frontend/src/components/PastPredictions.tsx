@@ -38,6 +38,16 @@ function getScoreDelta(row: EvaluationRow) {
   };
 }
 
+function formatExpectedGoals(row: EvaluationRow) {
+  return `${row.expected_goals.home.toFixed(2)}-${row.expected_goals.away.toFixed(2)}`;
+}
+
+function getExpectedGoalDelta(row: EvaluationRow) {
+  const predictedTotal = row.expected_goals.home + row.expected_goals.away;
+  const actualTotal = row.actual_score.home + row.actual_score.away;
+  return actualTotal - predictedTotal;
+}
+
 export function PastPredictions({ rows, limit }: PastPredictionsProps) {
   const sortedRows = rows
     .slice()
@@ -81,7 +91,7 @@ export function PastPredictions({ rows, limit }: PastPredictionsProps) {
       </div>
 
       <div className="overflow-x-auto rounded-md border border-line bg-white">
-        <table className="min-w-[980px] w-full border-collapse text-sm">
+        <table className="min-w-[1120px] w-full border-collapse text-sm">
           <thead className="bg-slate-50 text-xs uppercase text-slate-500">
             <tr>
               <th className="px-4 py-3 text-left">Date</th>
@@ -97,11 +107,14 @@ export function PastPredictions({ rows, limit }: PastPredictionsProps) {
                 </span>
               </th>
               <th className="px-4 py-3 text-left">Score delta</th>
+              <th className="px-4 py-3 text-left">Expected goals</th>
+              <th className="px-4 py-3 text-left">xG total delta</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
             {completedRows.map((row) => {
               const scoreDelta = getScoreDelta(row);
+              const expectedGoalDelta = getExpectedGoalDelta(row);
 
               return (
                 <tr key={row.match_id} className="align-top">
@@ -147,6 +160,11 @@ export function PastPredictions({ rows, limit }: PastPredictionsProps) {
                     <div className="mt-1 text-xs text-slate-500">
                       H {formatSigned(scoreDelta.homeDelta)} / A {formatSigned(scoreDelta.awayDelta)}
                     </div>
+                  </td>
+                  <td className="px-4 py-3 font-semibold text-ink">{formatExpectedGoals(row)}</td>
+                  <td className="px-4 py-3">
+                    <div className="font-semibold text-ink">{formatSigned(Number(expectedGoalDelta.toFixed(2)))} goals</div>
+                    <div className="mt-1 text-xs text-slate-500">actual total - predicted xG</div>
                   </td>
                 </tr>
               );

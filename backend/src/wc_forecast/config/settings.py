@@ -18,5 +18,5 @@ def load_settings() -> Settings:
     database_path = Path(
         os.getenv("WC_FORECAST_DATABASE", str(data_dir / "processed" / "worldcup_forecast.duckdb"))
     ).resolve()
-    as_of_date = date.fromisoformat(os.getenv("WC_FORECAST_AS_OF_DATE", "2026-06-20"))
+    as_of_date = date.fromisoformat(os.getenv("WC_FORECAST_AS_OF_DATE", "2026-06-23"))
     return Settings(data_dir=data_dir, database_path=database_path, as_of_date=as_of_date)

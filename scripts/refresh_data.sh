@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-AS_OF_DATE="${1:-2026-06-20}"
+AS_OF_DATE="${1:-2026-06-22}"
 FETCH_HISTORY="${FETCH_HISTORY:-1}"
 FETCH_CURRENT_RESULTS="${FETCH_CURRENT_RESULTS:-1}"
 

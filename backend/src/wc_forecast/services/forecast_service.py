@@ -11,8 +11,8 @@ from wc_forecast.data.repository import (
     list_standings,
     list_teams,
 )
-from wc_forecast.models.forecast import MODEL_VERSION, build_inputs, config_hash, forecast_matches
-from wc_forecast.models.simulate import simulate_group_paths
+from wc_forecast.models.forecast import MODEL_VERSION, build_inputs, config_hash, forecast_match, forecast_matches
+from wc_forecast.models.simulate import simulate_first_knockout_opponents, simulate_group_paths
 
 
 def _champion_odds_from_forecasts(forecasts: list[dict], team_names: dict[str, str]) -> list[dict]:
@@ -82,6 +82,79 @@ def load_next_team_forecasts(
         if forecast["status"] != "complete" and forecast["match_date"] >= as_of_date
     ]
     return sorted(forecasts, key=lambda forecast: (forecast["match_date"], forecast["match_id"]))[:limit]
+
+
+def load_potential_team_opponents(
+    database_path: Path,
+    as_of_date: date,
+    team_id: str,
+    limit: int = 6,
+    iterations: int = 1000,
+    seed: int = 20260620,
+) -> list[dict]:
+    teams = list_teams(database_path, as_of_date)
+    team_names = {team["team_id"]: team["team_name"] for team in teams}
+    standings = list_standings(database_path, as_of_date)
+    group_by_team = {standing["team_id"]: standing["group_name"] for standing in standings}
+    forecasts = load_forecasts(database_path, as_of_date)
+    simulation = simulate_group_paths(forecasts, standings, iterations=iterations, seed=seed)
+    simulation_by_team = {team["team_id"]: team for team in simulation.teams}
+    selected_simulation = simulation_by_team.get(team_id)
+    selected_advance = float(selected_simulation["advance_probability"]) if selected_simulation else 0.0
+    path_result = simulate_first_knockout_opponents(
+        forecasts,
+        standings,
+        team_id,
+        iterations=iterations,
+        seed=seed,
+    )
+
+    rankings = list_rankings(database_path, as_of_date)
+    historical_results = list_historical_results(database_path, as_of_date)
+    matches = list_matches(database_path, as_of_date)
+    inputs = build_inputs(rankings, historical_results, matches, as_of_date)
+
+    opponents = []
+    for opponent_path in path_result.opponents:
+        opponent_id = str(opponent_path["team_id"])
+        hypothetical_forecast = forecast_match(
+            {
+                "match_id": f"potential-{team_id}-{opponent_id}",
+                "match_date": as_of_date,
+                "stage": "knockout_path",
+                "group_name": None,
+                "home_team_id": team_id,
+                "away_team_id": opponent_id,
+                "home_team": team_names.get(team_id, team_id),
+                "away_team": team_names.get(opponent_id, opponent_id),
+                "status": "potential",
+                "home_score": None,
+                "away_score": None,
+                "neutral_site": True,
+            },
+            inputs,
+        )
+        opponents.append(
+            {
+                "team_id": opponent_id,
+                "team_name": team_names.get(opponent_id, opponent_id),
+                "group_name": group_by_team.get(opponent_id),
+                "estimated_match_probability": opponent_path["estimated_match_probability"],
+                "conditional_match_probability": opponent_path["conditional_match_probability"],
+                "advance_probability": simulation_by_team.get(opponent_id, {}).get(
+                    "advance_probability",
+                    0.0,
+                ),
+                "selected_team_advance_probability": selected_advance,
+                "selected_team_win_probability": hypothetical_forecast["probabilities"]["home_win"],
+                "draw_probability": hypothetical_forecast["probabilities"]["draw"],
+                "opponent_win_probability": hypothetical_forecast["probabilities"]["away_win"],
+                "expected_goals": hypothetical_forecast["expected_goals"],
+                "top_scoreline": hypothetical_forecast["top_scorelines"][0],
+            }
+        )
+
+    return opponents[:limit]
 
 
 def load_simulation(database_path: Path, as_of_date: date, iterations: int, seed: int) -> dict:

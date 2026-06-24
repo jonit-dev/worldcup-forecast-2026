@@ -148,6 +148,10 @@ def ingest_snapshots(
     connection = connect(database_path)
     try:
         initialize_schema(connection)
+        # The warehouse currently stores one active forecast snapshot. Several tables use
+        # natural IDs as primary keys (team_id, match_id, result_id), so ingesting a new
+        # as_of_date must replace the active snapshot instead of only deleting rows for
+        # that date.
         for table in (
             "source_snapshots",
             "teams",
@@ -157,7 +161,7 @@ def ingest_snapshots(
             "historical_results",
             "ingestion_runs",
         ):
-            connection.execute(f"delete from {table} where as_of_date = ?", [as_of_date])
+            connection.execute(f"delete from {table}")
 
         connection.executemany(
             "insert into source_snapshots values (?, ?, ?, ?, ?, ?)",

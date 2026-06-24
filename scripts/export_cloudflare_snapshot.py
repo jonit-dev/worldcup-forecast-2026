@@ -12,6 +12,7 @@ from wc_forecast.services.evaluation_service import evaluate_pre_tournament_mode
 from wc_forecast.services.forecast_service import (
     load_forecasts,
     load_next_team_forecasts,
+    load_potential_team_opponents,
     load_simulation,
     load_tournament_overview,
     model_diagnostics,
@@ -69,6 +70,15 @@ def build_snapshot() -> dict[str, Any]:
                     as_of_date,
                     team["team_id"],
                     limit=4,
+                )
+                for team in teams
+            },
+            "potential_opponents": {
+                team["team_id"]: load_potential_team_opponents(
+                    settings.database_path,
+                    as_of_date,
+                    team["team_id"],
+                    limit=6,
                 )
                 for team in teams
             },

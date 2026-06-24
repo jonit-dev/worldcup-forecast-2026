@@ -52,6 +52,21 @@ export type MatchForecast = {
   };
 };
 
+export type PotentialOpponent = {
+  team_id: string;
+  team_name: string;
+  group_name: string;
+  estimated_match_probability: number;
+  conditional_match_probability: number;
+  advance_probability: number;
+  selected_team_advance_probability: number;
+  selected_team_win_probability: number;
+  draw_probability: number;
+  opponent_win_probability: number;
+  expected_goals: { home: number; away: number };
+  top_scoreline: { home_score: number; away_score: number; probability: number };
+};
+
 export type Standing = {
   group_name: string;
   team_id: string;

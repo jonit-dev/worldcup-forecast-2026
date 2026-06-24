@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ArrowLeft, Calendar, Sparkles, Target, TrendingUp, Trophy } from 'lucide-react';
-import { getTeamHistory, getNextForecasts } from '../api/client';
-import type { MatchForecast, SimulationTeam, Standing, Team } from '../api/types';
+import { ArrowLeft, Calendar, Sparkles, Target, TrendingUp, Trophy, Users } from 'lucide-react';
+import { getTeamHistory, getNextForecasts, getPotentialOpponents } from '../api/client';
+import type { MatchForecast, PotentialOpponent, SimulationTeam, Standing, Team } from '../api/types';
 import { TeamFlag, teamWithFlag } from '../utils/flags';
 import { formatPercent } from '../utils/format';
 
@@ -35,6 +35,16 @@ function likelyOutcomeLabel(match: MatchForecast, teamId: string) {
   return outcomes[0];
 }
 
+function potentialOpponentOutcome(opponent: PotentialOpponent) {
+  const outcomes = [
+    { label: 'Win', probability: opponent.selected_team_win_probability, className: 'forecast-win' },
+    { label: 'Draw', probability: opponent.draw_probability, className: 'forecast-draw' },
+    { label: 'Loss', probability: opponent.opponent_win_probability, className: 'forecast-loss' },
+  ].sort((a, b) => b.probability - a.probability);
+
+  return outcomes[0];
+}
+
 export function TeamDetailPage({
   team,
   standing,
@@ -55,6 +65,12 @@ export function TeamDetailPage({
   const { data: nextMatches, isLoading: isMatchesLoading } = useQuery({
     queryKey: ['team-next-matches', teamId],
     queryFn: () => getNextForecasts(teamId),
+    retry: false,
+  });
+
+  const { data: potentialOpponents, isLoading: isPotentialOpponentsLoading } = useQuery({
+    queryKey: ['team-potential-opponents', teamId],
+    queryFn: () => getPotentialOpponents(teamId),
     retry: false,
   });
 
@@ -283,6 +299,83 @@ export function TeamDetailPage({
                       </div>
 
                       <div className="upcoming-goals-hint">W/D/L from {team.team_name}'s perspective</div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+
+          <div className="detail-widget potential-opponents-widget">
+            <div className="widget-header">
+              <Users size={18} className="icon-purple" />
+              <h3>Potential Knockout Opponents</h3>
+            </div>
+            <p className="potential-opponents-note">
+              Scenario-derived from simulated group positions and the 2026 Round-of-32 slot template. Best-third assignment is approximate.
+            </p>
+            <div className="potential-opponents-list">
+              {isPotentialOpponentsLoading ? (
+                <div className="loader-container">Loading potential opponents...</div>
+              ) : !potentialOpponents || potentialOpponents.length === 0 ? (
+                <div className="empty-state">No probable future opponents available yet.</div>
+              ) : (
+                potentialOpponents.map((opponent) => {
+                  const likelyOutcome = potentialOpponentOutcome(opponent);
+                  return (
+                    <div className="potential-opponent-card" key={opponent.team_id}>
+                      <button
+                        className="potential-opponent-team"
+                        onClick={() => onSelectTeam(opponent.team_id)}
+                        type="button"
+                      >
+                        <TeamFlag className="team-node-flag" teamId={opponent.team_id} title={opponent.team_name} />
+                        <span>{opponent.team_name}</span>
+                      </button>
+                      <div className="potential-opponent-meta">
+                        <span>Group {opponent.group_name}</span>
+                        <strong>{formatPercent(opponent.estimated_match_probability)} estimated path chance</strong>
+                      </div>
+                      <div className="forecast-callout compact-callout">
+                        <div className="forecast-callout-icon">
+                          <Target size={16} />
+                        </div>
+                        <div>
+                          <span className={`forecast-outcome ${likelyOutcome.className}`}>
+                            Likely {likelyOutcome.label} · {formatPercent(likelyOutcome.probability)}
+                          </span>
+                          <strong>
+                            Most likely score {opponent.top_scoreline.home_score}-{opponent.top_scoreline.away_score}
+                          </strong>
+                          <span>
+                            xG: {team.team_name} {opponent.expected_goals.home.toFixed(1)} · {opponent.team_name}{' '}
+                            {opponent.expected_goals.away.toFixed(1)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="match-probability-bar">
+                        <div
+                          className="prob-segment fill-win"
+                          style={{ width: `${opponent.selected_team_win_probability * 100}%` }}
+                          title={`Win: ${formatPercent(opponent.selected_team_win_probability)}`}
+                        >
+                          W {formatPercent(opponent.selected_team_win_probability)}
+                        </div>
+                        <div
+                          className="prob-segment fill-draw"
+                          style={{ width: `${opponent.draw_probability * 100}%` }}
+                          title={`Draw: ${formatPercent(opponent.draw_probability)}`}
+                        >
+                          D {formatPercent(opponent.draw_probability)}
+                        </div>
+                        <div
+                          className="prob-segment fill-loss"
+                          style={{ width: `${opponent.opponent_win_probability * 100}%` }}
+                          title={`Loss: ${formatPercent(opponent.opponent_win_probability)}`}
+                        >
+                          L {formatPercent(opponent.opponent_win_probability)}
+                        </div>
+                      </div>
                     </div>
                   );
                 })

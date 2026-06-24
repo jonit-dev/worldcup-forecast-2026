@@ -533,109 +533,46 @@
   }
 
   .bracket-grid {
-    @apply relative grid h-[226px] grid-cols-[1.15fr_1.05fr_1fr_1fr] gap-7 overflow-hidden p-4;
+    @apply relative h-[360px] min-w-[650px] overflow-hidden p-4;
   }
 
-  .bracket-round {
-    @apply relative grid;
-    grid-template-rows: 18px repeat(8, 1fr);
+  .bracket-panel {
+    overflow-x: auto;
   }
 
-  .bracket-round > span {
-    @apply text-xs font-black text-[#5e6c86];
+  .bracket-labels {
+    @apply absolute left-4 right-4 top-3 grid text-xs font-black text-[#5e6c86];
+    grid-template-columns: 18% 24% 24% 1fr;
+  }
+
+  .bracket-lines {
+    @apply pointer-events-none absolute inset-4 top-8;
+    height: calc(100% - 44px);
+    width: calc(100% - 32px);
+  }
+
+  .bracket-lines path {
+    fill: none;
+    stroke: #c6d3e7;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    stroke-width: 0.7;
+    vector-effect: non-scaling-stroke;
   }
 
   .bracket-node {
-    @apply relative z-10 flex h-8 items-center self-center rounded-md border border-[#dce5f4] bg-[#f8fbff] px-3 text-xs font-bold text-[#06133a];
+    @apply absolute z-10 flex h-8 w-[154px] items-center rounded-md border border-[#dce5f4] bg-[#f8fbff] px-3 text-xs font-bold text-[#06133a];
+    left: var(--bracket-x);
+    top: var(--bracket-y);
+    transform: translateY(-50%);
   }
 
   .bracket-node span {
-    @apply truncate;
-  }
-
-  .round-1 .bracket-node:nth-of-type(1) {
-    grid-row: 2;
-  }
-
-  .round-1 .bracket-node:nth-of-type(2) {
-    grid-row: 3;
-  }
-
-  .round-1 .bracket-node:nth-of-type(3) {
-    grid-row: 4;
-  }
-
-  .round-1 .bracket-node:nth-of-type(4) {
-    grid-row: 5;
-  }
-
-  .round-1 .bracket-node:nth-of-type(5) {
-    grid-row: 6;
-  }
-
-  .round-1 .bracket-node:nth-of-type(6) {
-    grid-row: 7;
-  }
-
-  .round-1 .bracket-node:nth-of-type(7) {
-    grid-row: 8;
-  }
-
-  .round-1 .bracket-node:nth-of-type(8) {
-    grid-row: 9;
-  }
-
-  .round-2 .bracket-node:nth-of-type(1) {
-    grid-row: 2 / span 2;
-  }
-
-  .round-2 .bracket-node:nth-of-type(2) {
-    grid-row: 4 / span 2;
-  }
-
-  .round-2 .bracket-node:nth-of-type(3) {
-    grid-row: 6 / span 2;
-  }
-
-  .round-2 .bracket-node:nth-of-type(4) {
-    grid-row: 8 / span 2;
-  }
-
-  .round-3 .bracket-node:nth-of-type(1) {
-    grid-row: 3 / span 3;
-  }
-
-  .round-3 .bracket-node:nth-of-type(2) {
-    grid-row: 7 / span 3;
-  }
-
-  .round-1 .bracket-node::after,
-  .round-2 .bracket-node::after,
-  .round-3 .bracket-node::after {
-    @apply absolute left-full top-1/2 h-px w-7 bg-[#cfd9e9] content-[''];
-  }
-
-  .round-2 .bracket-node::before,
-  .round-3 .bracket-node::before,
-  .bracket-final::before {
-    @apply absolute right-full top-1/2 h-px w-7 bg-[#cfd9e9] content-[''];
-  }
-
-  .round-1::after,
-  .round-2::after {
-    @apply absolute bottom-[15%] right-[-14px] top-[17%] w-px bg-[#cfd9e9] content-[''];
-  }
-
-  .round-2::after {
-    @apply bottom-[26%] top-[29%];
-  }
-
-  .round-3::after {
-    @apply absolute bottom-[38%] right-[-14px] top-[41%] w-px bg-[#cfd9e9] content-[''];
+    @apply min-w-0 truncate;
   }
 
   .bracket-final {
-    @apply relative self-center rounded-lg border border-[#c8ddff] bg-white p-4 text-center;
+    @apply absolute right-4 top-1/2 z-10 w-[132px] -translate-y-1/2 rounded-lg border border-[#c8ddff] bg-white p-4 text-center;
     box-shadow: 0 12px 24px rgb(7 88 255 / 0.08);
   }
 
@@ -1105,7 +1042,7 @@
   }
 
   .full-bracket-panel .bracket-grid {
-    min-height: 430px;
+    height: 430px;
   }
 
   .group-stage-full .group-standings {
@@ -1201,8 +1138,8 @@
   }
 
   .bracket-grid {
-    height: auto;
-    min-height: 250px;
+    height: 360px;
+    min-height: 360px;
   }
 
   .group-standings {
@@ -1323,10 +1260,6 @@
 
     .team-focus-flag {
       @apply h-14 w-14 text-4xl;
-    }
-
-    .bracket-grid {
-      @apply h-auto grid-cols-1;
     }
 
     .insights-bar {
@@ -1484,6 +1417,42 @@
 
   .upcoming-list {
     @apply grid gap-3;
+  }
+
+  .potential-opponents-widget {
+    @apply mt-4;
+  }
+
+  .potential-opponents-note {
+    @apply -mt-2 mb-3 text-xs font-semibold leading-relaxed text-[#5e6c86];
+  }
+
+  .potential-opponents-list {
+    @apply grid gap-3;
+  }
+
+  .potential-opponent-card {
+    @apply rounded-lg border border-[#e1e8f4] bg-[#fbfdff] p-4;
+  }
+
+  .potential-opponent-team {
+    @apply mb-2 flex items-center gap-2 border-0 bg-transparent p-0 text-left text-sm font-black text-[#0758ff] cursor-pointer;
+  }
+
+  .potential-opponent-team:hover span {
+    @apply underline;
+  }
+
+  .potential-opponent-meta {
+    @apply mb-3 flex items-center justify-between gap-3 text-[11px] font-bold text-[#5e6c86];
+  }
+
+  .potential-opponent-meta strong {
+    @apply text-[#06133a];
+  }
+
+  .compact-callout {
+    @apply mb-2;
   }
 
   .upcoming-item-card {

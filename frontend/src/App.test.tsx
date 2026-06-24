@@ -61,6 +61,21 @@ const completedForecast = {
   away_score: 0,
 };
 
+const potentialOpponent = {
+  team_id: 'brazil',
+  team_name: 'Brazil',
+  group_name: 'C',
+  estimated_match_probability: 0.54,
+  conditional_match_probability: 0.54,
+  advance_probability: 0.75,
+  selected_team_advance_probability: 0.72,
+  selected_team_win_probability: 0.36,
+  draw_probability: 0.26,
+  opponent_win_probability: 0.38,
+  expected_goals: { home: 1.2, away: 1.3 },
+  top_scoreline: { home_score: 1, away_score: 1, probability: 0.12 },
+};
+
 const evaluationRow = {
   match_id: '2026-GD-004',
   match_date: '2026-06-19',
@@ -143,6 +158,13 @@ describe('App', () => {
         }
         if (url.includes('/api/teams/usa/next-forecasts')) {
           return Response.json({ forecasts: [forecast] });
+        }
+        if (url.includes('/api/teams/usa/potential-opponents')) {
+          return Response.json({
+            team_id: 'usa',
+            opponents: [potentialOpponent],
+            note: 'Potential opponents are a co-advancement proxy.',
+          });
         }
         if (url.includes('/history')) {
           return Response.json({ history: [] });
@@ -258,5 +280,8 @@ describe('App', () => {
     await userEvent.selectOptions(screen.getByLabelText('Team'), 'usa');
     expect(screen.getByText('Back to Dashboard')).toBeInTheDocument();
     expect(screen.getAllByText('80.0%').length).toBeGreaterThan(0);
+    expect(await screen.findByRole('heading', { name: 'Potential Knockout Opponents' })).toBeInTheDocument();
+    expect(screen.getByText('Brazil')).toBeInTheDocument();
+    expect(screen.getByText(/estimated path chance/i)).toBeInTheDocument();
   });
 });

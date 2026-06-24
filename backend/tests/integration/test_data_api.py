@@ -19,12 +19,12 @@ def test_should_expose_loaded_summary_and_team_match_data(monkeypatch, tmp_path)
     ingest_snapshots(
         database_path,
         raw_dir,
-        date(2026, 6, 20),
-        datetime(2026, 6, 20, 12, 0, tzinfo=timezone.utc),
+        date(2026, 6, 23),
+        datetime(2026, 6, 23, 12, 0, tzinfo=timezone.utc),
     )
     monkeypatch.setenv("WC_FORECAST_DATABASE", str(database_path))
     monkeypatch.setenv("WC_FORECAST_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-20")
+    monkeypatch.setenv("WC_FORECAST_AS_OF_DATE", "2026-06-23")
 
     client = create_app().test_client()
 
